@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probotbor", "Probotbor\Probotbor.csproj", "{0E710B84-728D-4E60-9EF9-4B9536158405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{FA348362-F7B4-44A6-B6D4-44162BBBF89D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E710B84-728D-4E60-9EF9-4B9536158405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E710B84-728D-4E60-9EF9-4B9536158405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E710B84-728D-4E60-9EF9-4B9536158405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E710B84-728D-4E60-9EF9-4B9536158405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA348362-F7B4-44A6-B6D4-44162BBBF89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA348362-F7B4-44A6-B6D4-44162BBBF89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA348362-F7B4-44A6-B6D4-44162BBBF89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA348362-F7B4-44A6-B6D4-44162BBBF89D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F171DB5-3813-4759-9F45-778C468249DC}
+	EndGlobalSection
+EndGlobal

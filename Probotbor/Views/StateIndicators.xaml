@@ -1,0 +1,142 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Probotbor.Views">
+    <local:IsEqual x:Key="isEqual"/>    
+    <!--#region Индикатор пробоотборника -->
+    <ControlTemplate TargetType="UserControl" x:Key="ProbOtborIndicator">
+        <Grid ToolTipService.IsEnabled="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, 
+            Path=DataContext.CurrentUser.Level, Converter={StaticResource isEqual}, ConverterParameter=Администратор}">
+
+            <Image x:Name="image" Source="Pictures\ProbError.png" Stretch="Uniform"></Image>
+            <Label Content="{Binding Description}"  VerticalContentAlignment="Bottom" FontSize="20" HorizontalContentAlignment="Center"></Label>
+
+            <ContentControl x:Name="content" Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}">
+            </ContentControl>
+            <Grid.ToolTip>
+                <ToolTip Content="{Binding Id}" ContentStringFormat="{}Параметр {0}" Placement="Mouse"/>
+            </Grid.ToolTip>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding ParamValue}" Value="1">
+                <Setter TargetName="image" Property="Source" Value="Pictures\ProbReady.png"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ParamValue}" Value="2">
+                <Setter TargetName="image" Property="Source" Value="Pictures\ProbWork.png"></Setter>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!--#region Индикатор бункера -->
+    <ControlTemplate TargetType="UserControl" x:Key="bunkIndicator">
+        <Grid ToolTipService.IsEnabled="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, 
+            Path=DataContext.CurrentUser.Level, Converter={StaticResource isEqual}, ConverterParameter=Администратор}">
+
+            <Image x:Name="image" Source="Pictures\bunkerErr.png" Stretch="Uniform"></Image>
+            <Label Content="{Binding Description}"  VerticalContentAlignment="Bottom" FontSize="20" HorizontalContentAlignment="Center"></Label>
+
+            <ContentControl x:Name="content" Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}">
+            </ContentControl>
+            <Grid.ToolTip>
+                <ToolTip Content="{Binding Id}" ContentStringFormat="{}Параметр {0}" Placement="Mouse"/>
+            </Grid.ToolTip>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding ParamValue}" Value="1">
+                <Setter TargetName="image" Property="Source" Value="Pictures\bunkerClosed.png"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ParamValue}" Value="2">
+                <Setter TargetName="image" Property="Source" Value="Pictures\bunkOpened.png"></Setter>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!--#region Индикатор дробилки -->
+    <ControlTemplate TargetType="UserControl" x:Key="DrobIndicator">
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+            <Image x:Name="image" Source="Pictures\cat.png" Stretch="Uniform" Width="241" Height="245"></Image>
+            <Label Content="{Binding Description}"  VerticalContentAlignment="Bottom" FontSize="20" HorizontalContentAlignment="Center"></Label>
+
+            <ContentControl x:Name="content" Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}">
+            </ContentControl>
+            <Grid.ToolTip>
+                <ToolTip Content="{Binding Id}" ContentStringFormat="{}Параметр {0}" Placement="Mouse"/>
+            </Grid.ToolTip>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding ParamValue}" Value="1">
+                <Setter TargetName="image" Property="Source" Value="Pictures\cat.png"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ParamValue}" Value="2">
+                <Setter TargetName="image" Property="Source" Value="Pictures\cat.png"></Setter>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!--#region Индикатор делителя -->
+    <ControlTemplate TargetType="UserControl" x:Key="DelIndicator">
+        <Grid ToolTipService.IsEnabled="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window},
+            Path=DataContext.CurrentUser.Level, Converter={StaticResource isEqual}, ConverterParameter=Администратор}">
+            <Image x:Name="image" Source="Pictures\DelError.png" Stretch="Uniform"></Image>
+            <Label Content="{Binding Description}"  VerticalContentAlignment="Bottom" FontSize="20" HorizontalContentAlignment="Center"></Label>
+            <ContentControl x:Name="content" Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}">
+            </ContentControl>
+            <Grid.ToolTip>
+                <ToolTip Content="{Binding Id}" ContentStringFormat="{}Параметр {0}" Placement="Mouse"/>
+            </Grid.ToolTip>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding ParamValue}" Value="1">
+                <Setter TargetName="image" Property="Source" Value="Pictures\DelReady.png"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ParamValue}" Value="2">
+                <Setter TargetName="image" Property="Source" Value="Pictures\DelWork.png"></Setter>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!--#region Индикатор накопителя -->
+    <ControlTemplate TargetType="UserControl" x:Key="NakopIndicator">
+        <Grid ToolTipService.IsEnabled="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.CurrentUser.Level, Converter={StaticResource isEqual}, ConverterParameter=Администратор}">
+            <Image x:Name="image" Source="Pictures\NakopError.png" Stretch="Uniform" Width="241" ></Image>
+            <Label Content="{Binding Description}"  VerticalContentAlignment="Bottom" FontSize="20" HorizontalContentAlignment="Center"></Label>
+            <ContentControl x:Name="content" Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}">
+            </ContentControl>
+            <Grid.ToolTip>
+                <ToolTip Content="{Binding Id}" ContentStringFormat="{}Параметр {0}" Placement="Mouse"/>
+            </Grid.ToolTip>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding ParamValue}" Value="1">
+                <Setter TargetName="image" Property="Source" Value="Pictures\NakopReady.png"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ParamValue}" Value="2">
+                <Setter TargetName="image" Property="Source" Value="Pictures\NakopDownload.png"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ParamValue}" Value="3">
+                <Setter TargetName="image" Property="Source" Value="Pictures\NakopChange.png"></Setter>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--#endregion-->
+
+</ResourceDictionary>
