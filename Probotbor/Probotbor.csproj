@@ -102,6 +102,7 @@
     <Compile Include="Infrastructure\WriteData.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Infrastructure\DataCell.cs" />
+    <Compile Include="Models\sql.cs" />
     <Compile Include="Models\XML_data.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\TaskWindowVM.cs" />

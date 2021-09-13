@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace Probotbor.ViewModels
 {
-    public class User: NotifyPropertyChanged
-    {
+    public class User: NotifyPropertyChanged   {
             
         public  int Id { get; set; }
         #region Логин пользователя

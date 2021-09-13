@@ -31,12 +31,7 @@ namespace Probotbor.ViewModels
             get => connected;
         }
         private void ChangeStatusConnect(string Ip, bool status)
-        {
-
-            if (!status && status != Connected)
-                AddEventHistory(new EventConfig() { Id = 0, Description = "Нет связи с ПЛК", EventCode = "0000", EventType = "error" });
-            else if(status)
-                AddEventHistory(new EventConfig() { Id = 0, Description = "Есть связь с ПЛК", EventCode = "0000", EventType = "event" });
+        {  
             Connected = status;
         }
         #endregion
@@ -124,9 +119,7 @@ namespace Probotbor.ViewModels
                       UserWindow userWindow = new UserWindow(new User());
                       if (userWindow.ShowDialog() == true && CheckLogin(userWindow.user.Login, userWindow.user.Password) && IsNotExistLogin(userWindow.user.Login))
                       {
-                          User user = userWindow.user;
-                          db.Users.Add(user);
-                          db.SaveChanges();
+                          Users.Add(userWindow.user);                         
                       }
                   }));
             }
@@ -162,8 +155,7 @@ namespace Probotbor.ViewModels
 
                       if (userWindow.ShowDialog() == true && CheckLogin(userWindow.user.Login, userWindow.user.Password))
                       {
-                          // получаем измененный объект
-                          user = db.Users.Find(userWindow.user.Id);
+                          // получаем измененный объект                          
                           if (user != null)
                           {
                               user.Login = userWindow.user.Login;
@@ -171,9 +163,7 @@ namespace Probotbor.ViewModels
                               user.Somename = userWindow.user.Somename;
                               user.Post = userWindow.user.Post;
                               user.Password = userWindow.user.Password;
-                              user.Level = userWindow.user.Level;
-                              db.Entry(user).State = EntityState.Modified;
-                              db.SaveChanges();
+                              user.Level = userWindow.user.Level;                              
                           }
                       }
                   }));
@@ -193,8 +183,7 @@ namespace Probotbor.ViewModels
                       if (selectedItem == null) return;
                       // получаем выделенный объект
                       User user = selectedItem as User;
-                      db.Users.Remove(user);
-                      db.SaveChanges();
+                      Users.Remove(user);
                   }));
             }
         }
@@ -227,11 +216,11 @@ namespace Probotbor.ViewModels
         #endregion
         #region Поля и свойства
         #region Коллекция пользователей
-        IEnumerable<User> users;
+        ObservableCollection<User> users;
         /// <summary>
         /// Коллекция пользователей
         /// </summary>
-        public IEnumerable<User> Users { get => users; set => Set(ref users, value); }
+        public ObservableCollection<User> Users { get => users ?? (users = client.Users); }
         #endregion
 
         #endregion
@@ -307,7 +296,7 @@ namespace Probotbor.ViewModels
         {
             get
             {
-                return historyItems ?? (historyItems = new ObservableCollection<HistoryItem>());
+                return historyItems ?? (historyItems = client.HistoryItems);
             }
             set
             {
@@ -345,38 +334,13 @@ namespace Probotbor.ViewModels
             set
             {
                 if(!Set(ref filterTextHistoryEvent, value)) return;
-                filteringEventCollection.View.Refresh();
+                filteringEventCollection?.View?.Refresh();
 
 
             } 
         }
         #endregion
-        #region Метод добавления События в коллекцию
-        private void AddEventHistory(EventConfig eventConfig)
-        {
-            AddToTable doSomeThing = delegate
-            {
-                HistoryItems.Add(new HistoryItem()
-                {
-                    Date = DateTime.Now.ToString(),
-                    User = Username,
-                    Message = eventConfig.Description,
-                    EventType = eventConfig.EventType,
-                    EventCode = eventConfig.EventCode
-                    
-                });
-                db.SaveChanges();
-
-            };
-            if (CurrentUser != null)
-            {
-                Application.Current?.Dispatcher?.BeginInvoke
-                (doSomeThing);
-            }
-        }
-        delegate void AddToTable();
-
-        #endregion
+        
         #endregion
 
         #region Статусы
@@ -557,13 +521,7 @@ namespace Probotbor.ViewModels
 
         #region Конструктор
         public TaskWindowVM()
-        {
-
-            db = new ApplicationContext();
-            db.Users.Load();
-            db.HistoryItems.Load();
-            Users = db.Users.Local.ToBindingList();
-            HistoryItems =  db.HistoryItems.Local;
+        {            
             timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 1) };// Запуск таймера           
             timer.Start();
             timer.Tick += UpdateTime;
@@ -572,8 +530,7 @@ namespace Probotbor.ViewModels
             EventConfigs = client.EventConfigs;
             IndicatorConfigs = client.IndicatorConfigs;
             ButtonConfigs = client.ButtonConfigs;
-            client.Start();
-            client.EventEvent += AddEventHistory;
+            client.Start();            
             filteringEventCollection.Filter += FilterHistoryEvent;
             client.ConnEvent += ChangeStatusConnect;
         } 
