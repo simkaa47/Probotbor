@@ -9,7 +9,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Sharp7;
 using Probotbor.ViewModels;
-using WpfApp1.Models;
 using System.ComponentModel;
 using System.Reflection;
 
@@ -18,7 +17,7 @@ namespace Probotbor.Models
     class Client
     {
         #region Делегаты и события
-        
+
         #region UpdateDataHandler - вызывается при обновлении данных
         private delegate void UpdateDataHandler();
         UpdateDataHandler UpdateDel;
@@ -66,7 +65,7 @@ namespace Probotbor.Models
         #endregion
 
         #region S7 клиент
-        private S7Client s7Client { get; set; } = new S7Client() {RecvTimeout=500, SendTimeout=500, ConnTimeout=500};
+        private S7Client s7Client { get; set; } = new S7Client() { RecvTimeout = 500, SendTimeout = 500, ConnTimeout = 500 };
         #endregion
 
         #region Стэк данных для записи
@@ -125,7 +124,7 @@ namespace Probotbor.Models
                 }
                 return dataCells;
             }
-            set => dataCells = value; 
+            set => dataCells = value;
         }
         #endregion
 
@@ -133,7 +132,7 @@ namespace Probotbor.Models
         private void UpdateDataCells(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-            { 
+            {
                 (e.NewItems[0] as DataCell).ChangeValueHandlerDel = EditParamCell;
                 (e.NewItems[0] as DataCell).WriteValueHandlerDel = WriteParameter;
             }
@@ -198,131 +197,8 @@ namespace Probotbor.Models
         }
         #endregion
 
-        ObservableCollection<User> users;
-        #region Коллекция пользователей
-        public ObservableCollection<User> Users
-        {
-            get
-            {
-                if (users == null)
-                {
-                    users = new ObservableCollection<User>();
-                    sql.GetFromDB<User>("Users", users);
-                    // Подписка на изменения коллекции
-                    users.CollectionChanged += (sender, e) =>
-                    {
-                        UpdateCollection<User>(sender, e, "Users");
-                        if (e.Action == NotifyCollectionChangedAction.Add) (e.NewItems[0] as User).PropertyChanged += (send, arg) =>
-                        {
-                            EditCellSql<User>("Users", send, arg);
-                        };
-                    };
-                    if (users.Count == 0) users.Add(new User()
-                    {
-                        Id = 1,
-                        Login = "admin",
-                        Level = "Администратор",
-                        Password = "0000"
-                    });
-                    // Подкписка на изменение свойства каждого элемента коллеккции
-                    foreach (var item in users)
-                    {
-                        item.PropertyChanged += (sender, e) =>
-                        {
-                            EditCellSql<User>("Users", sender, e);
-                        };
-                    }
-                }
-                return users;
-            }
-        }
-        #endregion
-
-        #region История событий
-        string tableName = "EventHistory";
-        ObservableCollection<HistoryItem> historyItems;
-        public ObservableCollection<HistoryItem> HistoryItems
-        {
-            get {
-                if (historyItems == null)
-                {
-                    historyItems = new ObservableCollection<HistoryItem>();
-                    sql.GetFromDB<HistoryItem>(tableName, historyItems);
-
-                }
-                historyItems.CollectionChanged += (sender, e) =>
-                {
-                    UpdateCollection<HistoryItem>(sender, e, tableName);
-                    if (e.Action == NotifyCollectionChangedAction.Add) (e.NewItems[0] as HistoryItem).PropertyChanged += (send, arg) =>
-                    {
-                        EditCellSql<HistoryItem>(tableName, send, arg);
-                    };
-                };
-                // Подкписка на изменение свойства каждого элемента коллеккции
-                foreach (var item in historyItems)
-                {
-                    item.PropertyChanged += (sender, e) =>
-                    {
-                        EditCellSql<User>(tableName, sender, e);
-                    };
-                }
-                return historyItems;
-            }
-        }
-        #endregion
-
-        #region Действия в случае изменения коллекции
-        void UpdateCollection<T>(object sender, NotifyCollectionChangedEventArgs e, string tableName)
-        {
-            Type type = typeof(T);
-            var props = type.GetProperties();
-            if (e.Action == NotifyCollectionChangedAction.Add)
-            {
-                ObservableCollection<T> collection = sender as ObservableCollection<T>;
-                if (collection != null && collection.Count > 1 && ContainStringArr(props, "Id"))
-                {
-                    var index = (int)type.GetProperty("Id").GetValue(collection[collection.Count - 2]) + 1;
-                    type.GetProperty("Id").SetValue((T)e.NewItems[0], index);
-                    sql.InsertToTable<T>(tableName, (T)e.NewItems[0]);
-                }
-            }
-            else if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
-                if (ContainStringArr(props, "Id"))
-                {
-                    foreach (var deleteItem in e.OldItems)
-                    {
-                        var index = (int)type.GetProperty("Id").GetValue((T)deleteItem);
-                        sql.DeleteFromSql(tableName, "Id", index);
-                    }
-                }
-            }
-        }
-        #endregion
-
-        #region Действия в случае изменения свойства коллекции
-        void EditCellSql<T>(string tableName, object sender, PropertyChangedEventArgs e)
-        {
-            Type type = typeof(T);
-            var props = type.GetProperties();
-            if (ContainStringArr(props, "Id") && ContainStringArr(props, e.PropertyName) && type == sender.GetType())
-            {
-                int index = (int)type.GetProperty("Id").GetValue((T)sender);
-                var propValue = type.GetProperty(e.PropertyName).GetValue((T)sender);
-                sql.UpdateSql(tableName, "Id", index, e.PropertyName, propValue);
-            }
-        }
-
-        static bool ContainStringArr(PropertyInfo[] props, string name)
-        {
-            foreach (var item in props)
-            {
-                if (item.Name == name) return true;
-            }
-            return false;
-        }
-        #endregion
-
+        public DataBaseCollection<User> Users { get; } = new DataBaseCollection<User>("Users", new User { Login = "admin", Password = "0000" });
+        public DataBaseCollection<HistoryItem> HistoryItems { get; } = new DataBaseCollection<HistoryItem>("EventHistory", null);
 
         #region Статусы
 

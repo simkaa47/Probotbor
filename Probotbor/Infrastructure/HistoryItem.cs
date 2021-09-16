@@ -11,7 +11,7 @@ namespace Probotbor.Infrastructure
     /// <summary>
     /// Описание записи в истории событий
     /// </summary>
-    public class HistoryItem : INotifyPropertyChanged
+    public class HistoryItem : NotifyPropertyChanged
     {
         public int Id { get; set; }
 
@@ -21,7 +21,7 @@ namespace Probotbor.Infrastructure
         /// <summary>
         /// Время возникновения события
         /// </summary>
-        public string Date { get => date; set => Set(ref date, value); }
+        public string EventDate { get => date; set => Set(ref date, value); }
         #endregion
 
         #region Кто был пользователь
@@ -29,7 +29,7 @@ namespace Probotbor.Infrastructure
         /// <summary>
         /// Кто был пользователь
         /// </summary>
-        public string User { get => user; set => Set(ref user, value); }
+        public string UserName { get => user; set => Set(ref user, value); }
         #endregion
 
         #region Сообщение
@@ -61,19 +61,7 @@ namespace Probotbor.Infrastructure
         }
         #endregion
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
-        }
-        protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
-        {
-            if (Equals(field, value)) return false;
-            field = value;
-            OnPropertyChanged(PropertyName);
-            return true;
-        }
+        
 
 
     }

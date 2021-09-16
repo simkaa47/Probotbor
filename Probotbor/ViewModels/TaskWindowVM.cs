@@ -31,8 +31,13 @@ namespace Probotbor.ViewModels
             get => connected;
         }
         private void ChangeStatusConnect(string Ip, bool status)
-        {  
-            Connected = status;
+        { 
+                if (!status && status != Connected)
+                    AddEventHistory(new EventConfig() { Id = 0, Description = "Нет связи с ПЛК", EventCode = "0000", EventType = "error" });
+                else if (status)
+                    AddEventHistory(new EventConfig() { Id = 0, Description = "Есть связь с ПЛК", EventCode = "0000", EventType = "event" });
+                Connected = status;
+            
         }
         #endregion
 
@@ -220,7 +225,7 @@ namespace Probotbor.ViewModels
         /// <summary>
         /// Коллекция пользователей
         /// </summary>
-        public ObservableCollection<User> Users { get => users ?? (users = client.Users); }
+        public ObservableCollection<User> Users { get => users ?? (users = client.Users.Data); }
         #endregion
 
         #endregion
@@ -296,7 +301,7 @@ namespace Probotbor.ViewModels
         {
             get
             {
-                return historyItems ?? (historyItems = client.HistoryItems);
+                return historyItems;
             }
             set
             {
@@ -321,7 +326,7 @@ namespace Probotbor.ViewModels
                 e.Accepted = false;
                 return;
             }
-            if (historyItem.Date.Contains(filter_text)) return;
+            if (historyItem.EventDate.Contains(filter_text)) return;
             e.Accepted = false;
         }
         #endregion
@@ -340,7 +345,33 @@ namespace Probotbor.ViewModels
             } 
         }
         #endregion
-        
+
+        #region Метод добавления События в коллекцию
+        private void AddEventHistory(EventConfig eventConfig)
+        {
+            AddToTable doSomeThing = delegate
+            {
+                HistoryItems.Add(new HistoryItem()
+                {
+                    EventDate = DateTime.Now.ToString(),
+                    UserName = Username,
+                    Message = eventConfig.Description,
+                    EventType = eventConfig.EventType,
+                    EventCode = eventConfig.EventCode
+
+                });               
+
+            };
+            if (CurrentUser != null)
+            {
+                Application.Current?.Dispatcher?.BeginInvoke
+                (doSomeThing);
+            }
+        }
+        delegate void AddToTable();
+
+        #endregion
+
         #endregion
 
         #region Статусы
@@ -517,7 +548,13 @@ namespace Probotbor.ViewModels
         DispatcherTimer timer;
         #endregion
 
-        
+        #region Базы данных
+        void ErrSqlReaction(string message)
+        {
+            MessageBox.Show(message);
+            OnCloseAppCommandExecuted(null);
+        }
+        #endregion
 
         #region Конструктор
         public TaskWindowVM()
@@ -530,9 +567,13 @@ namespace Probotbor.ViewModels
             EventConfigs = client.EventConfigs;
             IndicatorConfigs = client.IndicatorConfigs;
             ButtonConfigs = client.ButtonConfigs;
-            client.Start();            
+            client.Start();
+            HistoryItems = client.HistoryItems.Data;
             filteringEventCollection.Filter += FilterHistoryEvent;
             client.ConnEvent += ChangeStatusConnect;
+            client.EventEvent += AddEventHistory;
+            client.HistoryItems.SqlErrorEvent += ErrSqlReaction;
+            client.Users.SqlErrorEvent += ErrSqlReaction;
         } 
         #endregion
     }
