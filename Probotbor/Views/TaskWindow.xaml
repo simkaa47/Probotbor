@@ -773,11 +773,14 @@
                                 <!--#region Статусы пробоотборников -->
                                 <ListBox DockPanel.Dock="Top" Background="Gray">
                                     <!--#region Статус пробоборника 1 -->
-                                    <ListBoxItem  Template="{StaticResource Status}" Tag="{Binding ParamValue, Converter={StaticResource statProbConv}}"  
-                                             DataContext="{Binding DataCells[1]}"/>
+                                    <ListBoxItem  Template="{StaticResource TextIndicator}" 
+                                                  Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.ProbStatusesString}"  
+                                                  DataContext="{Binding DataCells[1]}"/>
                                     <!--#endregion-->
                                     <!--#region Статус пробоборника 2 -->
-                                    <ListBoxItem   Template="{StaticResource Status}" Tag="{Binding ParamValue, Converter={StaticResource statProbConv}}"  DataContext="{Binding DataCells[2]}"                  
+                                    <ListBoxItem   Template="{StaticResource TextIndicator}" 
+                                                   Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.ProbStatusesString}"  
+                                                   DataContext="{Binding DataCells[2]}"                  
                                              Visibility="{Binding ElementName=ProbInd_2, Path=Visibility}"/>
                                     <!--#endregion-->
                                 </ListBox>
@@ -1145,28 +1148,17 @@
                             <!--#region Статусы и параметры -->
                             <DockPanel Grid.Column="1">
                                 <!--#region Статусы бункера -->
-                                <ListBox DockPanel.Dock="Top" Background="Gray" HorizontalAlignment="Stretch">
-                                    <ListBox.Resources>
-                                        <!--Статус бункера-->
-                                        <col1:ArrayList x:Key="BunkerStatuses">
-                                            <sys1:String>ОШИБКА ПРИ ОТКРЫТИИ БУНКЕРА</sys1:String>
-                                            <sys1:String>ОШИБКА ПРИ ЗАКРЫТИИ БУНКЕРА</sys1:String>
-                                            <sys1:String>БУНКЕР ОТКРЫТ</sys1:String>
-                                            <sys1:String>БУНКЕР ЗАКРЫТ</sys1:String>
-                                            <sys1:String>ОТКРЫТИЕ БУНКЕРА</sys1:String>
-                                            <sys1:String>ЗАКРЫТИЕ БУНКЕРА</sys1:String>
-                                            <sys1:String>ТРАНСПОРТЕР ОСТАНОВЛЕН</sys1:String>
-                                            <sys1:String>ДВИЖЕНИЕ ТРАНСПОРТЕРА</sys1:String>
-                                            <sys1:String>ОШИБКА ПРИВОДА ТРАНСПОРТЕРА</sys1:String>
-                                        </col1:ArrayList>
-                                    </ListBox.Resources>
+                                <ListBox DockPanel.Dock="Top" Background="Gray" HorizontalAlignment="Stretch">                                    
                                     <!--#region  Статус бункера 1-->
-                                    <ListBoxItem Template="{StaticResource TextIndicator}" DataContext="{Binding DataCells[75]}"  Content="{StaticResource BunkerStatuses}"
+                                    <ListBoxItem Template="{StaticResource TextIndicator}" 
+                                                 DataContext="{Binding DataCells[75]}"
+                                                 Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.BunkStatusesString}"
                                                  Style="{StaticResource VisibleBun1}"></ListBoxItem>
                                     <!--#endregion-->
 
                                     <!--#region Статус бункера 2 -->
-                                    <ListBoxItem Template="{StaticResource TextIndicator}" DataContext="{Binding DataCells[76]}"  Content="{StaticResource BunkerStatuses}"
+                                    <ListBoxItem Template="{StaticResource TextIndicator}" DataContext="{Binding DataCells[76]}"
+                                                 Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.BunkStatusesString}"
                                                  Style="{StaticResource VisibleBun2}"></ListBoxItem>
                                     <!--#endregion-->
                                 </ListBox>
@@ -1643,22 +1635,30 @@
                                 <ListBox DockPanel.Dock="Top" Background="Gray">
 
                                     <!--#region Статус  делителя 1 -->
-                                    <ListBoxItem Template="{StaticResource TextIndicator}" Content="{StaticResource DelitelStatuses}" DataContext="{Binding DataCells[64]}" 
+                                    <ListBoxItem Template="{StaticResource TextIndicator}" 
+                                                 Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.DelStatusesString}"
+                                                 DataContext="{Binding DataCells[64]}" 
                                      Style="{StaticResource VisibleDel1}"></ListBoxItem>
                                     <!--#endregion-->
 
                                     <!--#region Статус  делителя 2 -->
-                                    <ListBoxItem Template="{StaticResource TextIndicator}" Content="{StaticResource DelitelStatuses}" DataContext="{Binding DataCells[65]}" 
+                                    <ListBoxItem Template="{StaticResource TextIndicator}" 
+                                                 Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.DelStatusesString}"
+                                                 DataContext="{Binding DataCells[65]}" 
                                      Style="{StaticResource VisibleDel2}"></ListBoxItem>
                                     <!--#endregion-->
 
                                     <!--#region Статус  делителя 3 -->
-                                    <ListBoxItem Template="{StaticResource TextIndicator}" Content="{StaticResource DelitelStatuses}" DataContext="{Binding DataCells[66]}" 
+                                    <ListBoxItem Template="{StaticResource TextIndicator}" 
+                                                 Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.DelStatusesString}"
+                                                 DataContext="{Binding DataCells[66]}" 
                                      Style="{StaticResource VisibleDel3}"></ListBoxItem>
                                     <!--#endregion-->
 
                                     <!--#region Статус  делителя 4 -->
-                                    <ListBoxItem Template="{StaticResource TextIndicator}" Content="{StaticResource DelitelStatuses}" DataContext="{Binding DataCells[67]}" 
+                                    <ListBoxItem Template="{StaticResource TextIndicator}" 
+                                                 Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.DelStatusesString}"
+                                                 DataContext="{Binding DataCells[67]}" 
                                      Style="{StaticResource VisibleDel4}"></ListBoxItem>
                                     <!--#endregion-->
 
@@ -1694,18 +1694,7 @@
 
                     <!--#region Параметры накопителя -->
                     <TabItem Header="НАКОПИТЕЛЬ" Tag="Pictures/nakop.png"  Visibility="{Binding ElementName=NakopitelEnable, Path=IsChecked, Converter={StaticResource visibleConverter}}" >
-                        <Grid>
-                            <Grid.Resources>
-                                <col1:ArrayList x:Key="calibrationEnums">
-                                    <sys1:String>КАЛИБРОВКА НЕ ВЫПОЛНЕНА</sys1:String>
-                                    <sys1:String>ВЫПОЛНЯЕТСЯ КАЛИБРОВКА</sys1:String>
-                                    <sys1:String>КАЛИБРОВКА ВЫПОЛНЕНА</sys1:String>
-                                </col1:ArrayList>
-                                <col1:ArrayList x:Key="changeCanistersEnums">
-                                    <sys1:String>ГОТОВ К СМЕНЕ</sys1:String>
-                                    <sys1:String>ВЫПОЛНЯЕТСЯ СМЕНА КАНИСТРЫ</sys1:String>
-                                </col1:ArrayList>
-                            </Grid.Resources>
+                        <Grid>                            
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
@@ -2148,15 +2137,13 @@
                             <!--#region Параметры и статусы  -->
                             <DockPanel Grid.Row="1" Grid.Column="1">
                                 <!--#region Статусы накопителя -->
-                                <ListBox Background="Gray" DockPanel.Dock="Top">
-                                    <!--#region Статус калибровки накопителя -->
-                                    <ListBoxItem Template="{StaticResource TextIndicator}" DataContext="{Binding DataCells[58]}" Content="{StaticResource calibrationEnums}">
-                                    </ListBoxItem>
-                                    <!--#endregion-->
+                                <ListBox Background="Gray" DockPanel.Dock="Top">                                   
 
                                     <!--#region Статус смены канистры -->
-                                    <ListBoxItem Template="{StaticResource TextIndicator}" DataContext="{Binding DataCells[59]}" Content="{StaticResource changeCanistersEnums}">
-                                    </ListBoxItem>
+                                    <ListBoxItem  Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.NakopStatusesString}"
+                                          DataContext="{Binding DataCells[5]}"  
+                                          Template="{StaticResource TextIndicator}" 
+                                          Visibility="{Binding ElementName=NakopitelEnable,Path=IsChecked, Converter={StaticResource visibleConverter}}"></ListBoxItem>
                                     <!--#endregion-->                                  
 
                                 </ListBox>
