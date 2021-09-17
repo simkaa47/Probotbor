@@ -31,7 +31,9 @@ namespace Probotbor.Infrastructure
                 Set(ref status, value);
                 if (ChangeValueHandlerDel != null) ChangeValueHandlerDel(this);
             } 
-        } 
+        }
         #endregion
+
+       
     }
 }

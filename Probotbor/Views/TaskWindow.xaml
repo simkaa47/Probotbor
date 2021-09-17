@@ -337,7 +337,7 @@
                         <Border x:Name="border2" Background="Black" MinWidth="300" CornerRadius="{Binding ElementName=border2, Path=ActualHeight, Converter={StaticResource DivConverter}, ConverterParameter=2}" >
                             <Label  Content="{Binding Description}" FontFamily="Calibry" Margin="1" FontSize="15" ></Label>
                         </Border>
-                        <ComboBox Name="compobox" Text="НЕТ СВЯЗИ С ПЛК"  SelectedIndex="{Binding ParamValue, Converter={StaticResource FloatToIntConverter}}" 
+                        <ComboBox Name="compobox"   SelectedIndex="{Binding ParamValue, Converter={StaticResource FloatToIntConverter}}" 
                                          Visibility="Collapsed" ItemsSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent} , Path=Content }" IsEnabled="False" ></ComboBox>
                         <TextBlock Text="{Binding ElementName=compobox, Path=Text}" TextWrapping="Wrap" Foreground="{Binding ElementName=compobox, Path=Text, Converter={StaticResource FindTextError}}" 
                                FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
@@ -625,43 +625,60 @@
                     <!--#region Панель с динамическими элементами и параметрами, которых может и не быть-->
                     <DockPanel Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4"  >
                         <ListBox x:Name="count" DockPanel.Dock="Top" Background="Gray">
-                            <!--#region Статус системы -->
-                            <ListBoxItem Name="SysStatus" Grid.Row="0" Grid.Column="1"  Tag="{Binding ParamValue, Converter={StaticResource systemStatusConv}}"  
-                                 DataContext="{Binding DataCells[0]}" Template="{StaticResource Status}"></ListBoxItem>
+
+                            <!--#region Cтатус системы -->
+                            <ListBoxItem Template="{StaticResource TextIndicator}"  DataContext="{Binding DataCells[0]}" Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.SysStatusString}"></ListBoxItem>
                             <!--#endregion-->
-                            <ListBoxItem Template="{StaticResource TextIndicator}"  DataContext="{Binding DataCells[0]}" Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.SysStatuses.Status}"></ListBoxItem>
                             <!--#region Статус пробоотборника -->
-                            <ListBoxItem  Tag="{Binding ParamValue, Converter={StaticResource statProbConv}}"  DataContext="{Binding DataCells[1]}"  Template="{StaticResource Status}"></ListBoxItem>
+                            <ListBoxItem Template="{StaticResource TextIndicator}"  DataContext="{Binding DataCells[1]}" Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.ProbStatusesString}"></ListBoxItem>
+
                             <!--#endregion-->
                             <!--#region Статус проботборника 2  -->
-                            <ListBoxItem    Tag="{Binding ParamValue, Converter={StaticResource statProbConv}}"  DataContext="{Binding DataCells[2]}" Template="{StaticResource Status}" Visibility="{Binding ElementName=ProbInd_2, Path=Visibility}"></ListBoxItem>
+                            <ListBoxItem Template="{StaticResource TextIndicator}"   DataContext="{Binding DataCells[2]}"
+                                         Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.ProbStatusesString}"
+                                         Visibility="{Binding ElementName=ProbInd_2, Path=Visibility}"></ListBoxItem>
                             <!--#endregion-->
                             <!--#region Статус бункера 1 -->
-                            <ListBoxItem   Tag="{Binding ParamValue, Converter={StaticResource statBunkConv}}"  DataContext="{Binding DataCells[75]}" Template="{StaticResource Status}" 
-                                           Visibility="{Binding ElementName=bunType1, Path=SelectedIndex, Converter={StaticResource unVisibleIfLess}, ConverterParameter=1}"></ListBoxItem>
+                            <ListBoxItem Template="{StaticResource TextIndicator}"  
+                                         DataContext="{Binding DataCells[75]}" 
+                                         Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.BunkStatusesString}"
+                                         Visibility="{Binding ElementName=bunType1, Path=SelectedIndex, Converter={StaticResource unVisibleIfLess}, ConverterParameter=1}"></ListBoxItem>
                             <!--#endregion-->
                             <!--#region Статус бункера 2 -->
-                            <ListBoxItem MinWidth="478.5" Tag="{Binding ParamValue, Converter={StaticResource statBunkConv}}"  DataContext="{Binding DataCells[76]}" Template="{StaticResource Status}" 
-                                          Visibility="{Binding ElementName=bunType2, Path=SelectedIndex, Converter={StaticResource unVisibleIfLess}, ConverterParameter=1}"></ListBoxItem>
+                            <ListBoxItem Template="{StaticResource TextIndicator}"  
+                                         DataContext="{Binding DataCells[76]}" 
+                                         Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.BunkStatusesString}"
+                                         Visibility="{Binding ElementName=bunType2, Path=SelectedIndex, Converter={StaticResource unVisibleIfLess}, ConverterParameter=1}"></ListBoxItem>
                             <!--#endregion-->
                             <!--#region Статус делителя 1 -->
-                            <ListBoxItem  Tag="{Binding ParamValue, Converter={StaticResource statDelConv}}"  DataContext="{Binding DataCells[64]}"  Template="{StaticResource Status}" 
-                                         Style="{StaticResource VisibleDel1}"></ListBoxItem>
+                            <ListBoxItem  Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.DelStatusesString}"
+                                          DataContext="{Binding DataCells[64]}"  
+                                          Template="{StaticResource TextIndicator}" 
+                                          Style="{StaticResource VisibleDel1}"></ListBoxItem>
                             <!--#endregion-->
                             <!--#region Статус делителя 2 -->
-                            <ListViewItem   Tag="{Binding ParamValue, Converter={StaticResource statDelConv}}"  DataContext="{Binding DataCells[65]}"  Template="{StaticResource Status}" 
-                                         Style="{StaticResource VisibleDel2}"></ListViewItem>
+                            <ListBoxItem  Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.DelStatusesString}"
+                                          DataContext="{Binding DataCells[65]}"  
+                                          Template="{StaticResource TextIndicator}" 
+                                          Style="{StaticResource VisibleDel2}"></ListBoxItem>
                             <!--#endregion-->
                             <!--#region Статус делителя 3 -->
-                            <ListBoxItem  Tag="{Binding ParamValue, Converter={StaticResource statDelConv}}"  DataContext="{Binding DataCells[66]}"  Template="{StaticResource Status}" 
-                                         Style="{StaticResource VisibleDel3}"></ListBoxItem>
+                            <ListBoxItem  Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.DelStatusesString}"
+                                          DataContext="{Binding DataCells[66]}"  
+                                          Template="{StaticResource TextIndicator}" 
+                                          Style="{StaticResource VisibleDel3}"></ListBoxItem>
                             <!--#endregion-->
                             <!--#region Статус делителя 4 -->
-                            <ListBoxItem   Tag="{Binding ParamValue, Converter={StaticResource statDelConv}}"  DataContext="{Binding DataCells[67]}"  Template="{StaticResource Status}" 
-                                         Style="{StaticResource VisibleDel4}"></ListBoxItem>
+                            <ListBoxItem  Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.DelStatusesString}"
+                                          DataContext="{Binding DataCells[67]}"  
+                                          Template="{StaticResource TextIndicator}" 
+                                          Style="{StaticResource VisibleDel4}"></ListBoxItem>
                             <!--#endregion-->
                             <!--#region Статус накопителя -->
-                            <ListBoxItem  Tag="{Binding ParamValue, Converter={StaticResource statNakopConv}}"  DataContext="{Binding DataCells[5]}"  Template="{StaticResource Status}" Visibility="{Binding ElementName=NakopitelEnable,Path=IsChecked, Converter={StaticResource visibleConverter}}"></ListBoxItem>
+                            <ListBoxItem  Content="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.NakopStatusesString}"
+                                          DataContext="{Binding DataCells[5]}"  
+                                          Template="{StaticResource TextIndicator}" 
+                                          Visibility="{Binding ElementName=NakopitelEnable,Path=IsChecked, Converter={StaticResource visibleConverter}}"></ListBoxItem>
                             <!--#endregion-->
                         </ListBox>
                         
@@ -2194,17 +2211,17 @@
                                 </ListView.ItemContainerStyle>
                                 <ListView.View   >
                                     <GridView >
-                                        <GridViewColumn  Width="200"  DisplayMemberBinding="{Binding Path=Date}" local:GridViewSort.PropertyName="Date">
+                                        <GridViewColumn  Width="200"  DisplayMemberBinding="{Binding Path=EventDate}" local:GridViewSort.PropertyName="EventDate">
                                             <GridViewColumn.Header>
                                                 <TextBlock Text="Время возникновения" TextWrapping="WrapWithOverflow" Foreground="#DDD1C8C8"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn  Width="300"  DisplayMemberBinding="{Binding Path=User}" local:GridViewSort.PropertyName="User">
+                                        <GridViewColumn  Width="300"  DisplayMemberBinding="{Binding Path=UserName}" local:GridViewSort.PropertyName="UserName">
                                             <GridViewColumn.Header>
                                                 <TextBlock Text="Имя пользователя" TextWrapping="WrapWithOverflow" Foreground="#DDD1C8C8"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn  Width="150"  DisplayMemberBinding="{Binding Path=EventCode}" local:GridViewSort.PropertyName="User">
+                                        <GridViewColumn  Width="150"  DisplayMemberBinding="{Binding Path=EventCode}" local:GridViewSort.PropertyName="EventCode">
                                             <GridViewColumn.Header>
                                                 <TextBlock Text="Код события" TextWrapping="WrapWithOverflow" Foreground="#DDD1C8C8"/>
                                             </GridViewColumn.Header>
@@ -2304,6 +2321,7 @@
                             </StackPanel>
                         </Grid>
                     </TabItem>
+                    <!--#region Вкладка "Параметры" на странице "Администрирование" -->
                     <!--Вкладка "Параметры" на странице "Администрирование"-->
                     <TabItem Header="Параметры">
                         <Grid>
@@ -2345,6 +2363,8 @@
                             </ListBox>
                         </Grid>
                     </TabItem>
+                    <!--#endregion-->
+                    <!--#region Вкладка "Индикаторы" на странице "Администрирование -->
                     <!--Вкладка "Индикаторы" на странице "Администрирование"-->
                     <TabItem Header="Индикаторы">
                         <Grid>
@@ -2363,6 +2383,8 @@
                             </DataGrid>
                         </Grid>
                     </TabItem>
+                    <!--#endregion-->
+                    <!--#region Вкладка "Кнопки" на странице "Администрирование" -->
                     <!--Вкладка "Кнопки" на странице "Администрирование"-->
                     <TabItem Header="Кнопки">
                         <Grid>
@@ -2394,7 +2416,8 @@
                             </DataGrid>
                         </Grid>
                     </TabItem>
-                    
+                    <!--#endregion-->
+                    <!--#region Вкладка "События" на странице "Администрирование" -->
                     <!--#region Вкладка "События" на странице "Администрирование" -->
                     <TabItem Header="События">
                         <Grid>
@@ -2421,7 +2444,8 @@
                         </Grid>
                     </TabItem>
                     <!--#endregion-->
-
+                    <!--#endregion-->
+                    <!--#region Статусы узлов -->
                     <TabItem Header="Статусы">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -2431,7 +2455,7 @@
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            
+
                             <!--#region Статусы накопителя -->
                             <StackPanel Grid.Column="0">
                                 <Label FontSize="16" Foreground="Black" HorizontalContentAlignment="Center">СТАТУСЫ НАКОПИТЕЛЯ</Label>
@@ -2494,7 +2518,7 @@
 
                         </Grid>
                     </TabItem>
-
+                    <!--#endregion-->
                     <!--#region Вкладка "Конфигурация" на странице "Администрирование" -->
                     <TabItem Header="Конфигурация">
                         <Grid Margin="5">

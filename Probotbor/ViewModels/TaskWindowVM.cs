@@ -387,13 +387,10 @@ namespace Probotbor.ViewModels
                     nakopStatuses = client.NakopStatuses;
                 }
                 return nakopStatuses;
-            }
-            set
-            {
-                Set(ref nakopStatuses, value);
-            }
+            }            
         }
-
+        public IEnumerable<string> NakopStatusesString { get => NakopStatuses.Select(z => z.Status); }
+      
         #endregion
 
         #region Статусы системы
@@ -407,11 +404,11 @@ namespace Probotbor.ViewModels
                     sysStatuses = client.SysStatuses;
                 }
                 return sysStatuses;
-            }
-            set
-            {
-                Set(ref sysStatuses, value);
-            }
+            }           
+        }
+        public IEnumerable<string> SysStatusString
+        {
+            get => SysStatuses?.Select(z => z.Status);            
         }
 
         #endregion
@@ -427,13 +424,11 @@ namespace Probotbor.ViewModels
                     probStatuses = client.ProbStatuses;
                 }
                 return probStatuses;
-            }
-            set
-            {
-                Set(ref probStatuses, value);
-            }
+            } 
+            
         }
-
+        public IEnumerable<string> ProbStatusesString { get => ProbStatuses.Select(z => z.Status); }
+       
         #endregion
 
         #region Статусы бункера
@@ -447,12 +442,9 @@ namespace Probotbor.ViewModels
                     bunStatuses = client.BunkStatuses;
                 }
                 return bunStatuses;
-            }
-            set
-            {
-                Set(ref bunStatuses, value);
-            }
+            }            
         }
+        public IEnumerable<string> BunkStatusesString { get => BunStatuses.Select(z => z.Status); }
 
         #endregion
 
@@ -467,13 +459,9 @@ namespace Probotbor.ViewModels
                     delStatuses = client.DelStatuses;
                 }
                 return delStatuses;
-            }
-            set
-            {
-                Set(ref delStatuses, value);
-            }
+            }            
         }
-
+        public IEnumerable<string> DelStatusesString { get => DelStatuses.Select(z => z.Status); }
         #endregion
 
         #endregion
