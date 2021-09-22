@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Probotbor.Infrastructure;
+using Probotbor.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -327,141 +330,7 @@ namespace Probotbor.Views
         {
             throw new NotImplementedException();
         }
-    }
-    public class CheckSystemStatusText : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value == null) return "НЕТ СВЯЗИ С ПЛК";
-
-            if (value.GetType()==typeof(float))
-            {
-                switch ((float)value)
-                {
-                    case 0: return "ОШИБКА"; 
-                    case 1: return "АВТОМАТИЧЕСКИЙ РЕЖИМ РАБОТЫ"; 
-                    case 2: return "ЗАПОЛНЕНЫ ВСЕ КАНИЧТРЫ НАКОПИТЕЛЯ ПРОБ"; 
-                    case 3: return "ГОТОВ К РАБОТЕ"; 
-                    default:
-                        return ""; 
-                } 
-            }
-            return "";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class CheckProbStatusText : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value == null) return "НЕТ СВЯЗИ С ПЛК";
-
-            if (value.GetType() == typeof(float))
-            {
-                switch ((float)value)
-                {
-                    case 0: return "ОШИБКА";
-                    case 1: return "ОТБОР ПРОБЫ";
-                    case 2: return "ВОЗВРАТ КОВША В ИСХОДНОЕ ПОЛОЖЕНИЕ";
-                    case 3: return "ТРЕБУЕТСЯ ВОЗВРАТ КОВША В ИСХОДНОЕ ПОЛОЖЕНИЕ";
-                    case 4: return "ГОТОВ К РАБОТЕ";
-                    case 5: return "НЕ ГОТОВ К РАБОТЕ";
-                    default:
-                        return "";
-                }
-            }
-            return "";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class CheckBunkStatusText : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value == null) return "НЕТ СВЯЗИ С ПЛК";
-
-            if (value.GetType() == typeof(float))
-            {
-                switch ((float)value)
-                {
-                    case 0: return "ОШИБКА";
-                    case 1: return "БУНКЕР ОТКРЫТ";
-                    case 2: return "БУНКЕР ЗАКРЫТ";
-                    
-                    default:
-                        return "";
-                }
-            }
-            return "";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class CheckDelStatusText : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value == null) return "НЕТ СВЯЗИ С ПЛК";
-
-            if (value.GetType() == typeof(float))
-            {
-                switch ((float)value)
-                {
-                    case 0: return "ОШИБКА";
-                    case 1: return "ДЕЛИТЕЛЬ В РАБОТЕ";
-                    case 2: return "ДЕЛИТЕЛЬ ОСТАНОВЛЕН";
-
-                    default:
-                        return "";
-                }
-            }
-            return "";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class CheckNakopStatusText : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value == null) return "НЕТ СВЯЗИ С ПЛК";
-
-            if (value.GetType() == typeof(float))
-            {
-                switch ((float)value)
-                {
-                    case 0: return "ОШИБКА";
-                    case 1: return "НЕОБХОДИМА КАЛИБРОВКА";
-                    case 2: return "ВЫПОЛНЯЕТСЯ КАЛИБРОВКА";
-                    case 3: return "ГОТОВ К РАБОТЕ";
-                    case 4: return "ВЫПОЛНЯЕТСЯ СМЕНА КАНИСТРЫ";
-                    case 5: return "СБОР ПРОБЫ";
-                    default:
-                        return "";
-                }
-            }
-            return "";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    } 
     public class TimeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -562,6 +431,68 @@ namespace Probotbor.Views
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value.ToString();
+        }
+    }
+    public class GetPicturePath : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                if (parameter == null) return @"Pictures\not_founded_image.png";
+                if (value == null) return @"Pictures\not_founded_image.png";
+                int index = int.Parse(parameter.ToString());
+                IEnumerable<StatusDevice> collection = value as IEnumerable<StatusDevice>;
+                var arr = collection.Select(s => s.PicturePath).ToArray();
+                if (index + 1 <= arr.Length)
+                {
+                    if (File.Exists(arr[index])) return Path.GetFullPath(arr[index]);
+                    return @"Pictures\not_founded_image.png";
+                }
+                else return @"Pictures\not_founded_image.png";
+            }
+            catch (Exception)
+            {
+                
+                return @"Pictures\not_founded_image.png";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value.ToString();
+        }
+
+        
+    }
+    public class AccessLevelToVisibilityConverter : IMultiValueConverter
+    {
+        public object Convert(
+            object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+           if(values.Length<2) return @"Pictures\not_founded_image.png";
+            if (values[0] == null) return @"Pictures\not_founded_image.png";
+            if (values[1] == null) return @"Pictures\not_founded_image.png";
+            IEnumerable<StatusDevice> collection = values[1] as IEnumerable<StatusDevice>;            
+            if (collection == null) return @"Pictures\not_founded_image.png";            
+            int index = 0;
+            if (int.TryParse(values[0].ToString(), out index))
+            {
+                var arr = collection.Select(s => s.PicturePath).ToArray();
+                if (index + 1 <= arr.Length)
+                {
+                    if (File.Exists(arr[index])) return Path.GetFullPath(arr[index]);
+                    return @"Pictures\not_founded_image.png";
+                }
+                else return @"Pictures\not_founded_image.png";
+            }
+            return @"Pictures\not_founded_image.png";
+        }
+
+        public object[] ConvertBack(
+            object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
         }
     }
 

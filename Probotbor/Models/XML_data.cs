@@ -330,6 +330,7 @@ namespace Probotbor.Models
                     status.Id = i;
                     xRoot.Item(i).Attributes["Id"].Value = i.ToString();
                     status.Status = xRoot.Item(i).Attributes["Description"].Value;
+                    status.PicturePath = xRoot.Item(i).Attributes["PicturePath"].Value;
                     statuses.Add(status);
 
                 }
@@ -357,7 +358,8 @@ namespace Probotbor.Models
                 {
                     if (xRoot.Item(i).Attributes["Id"].Value == status.Id.ToString())
                     {
-                        xRoot.Item(i).Attributes["Description"].Value = status.Status.ToString();
+                        xRoot.Item(i).Attributes["Description"].Value = status.Status;
+                        xRoot.Item(i).Attributes["PicturePath"].Value = status.PicturePath;
                     }
                 }
                 xDoc.Save(Path);
@@ -382,10 +384,14 @@ namespace Probotbor.Models
             XmlText idText = xDoc.CreateTextNode(status.Id.ToString());
             idAttr.AppendChild(idText);
             deviceElem.Attributes.Append(idAttr);
-            XmlAttribute descAttr = xDoc.CreateAttribute("Description");
+            XmlAttribute descAttr = xDoc.CreateAttribute("Description");            
             XmlText descText = xDoc.CreateTextNode(status.Status);
             descAttr.AppendChild(descText);
             deviceElem.Attributes.Append(descAttr);
+            XmlAttribute pictAttr = xDoc.CreateAttribute("PicturePath");
+            XmlText pictText = xDoc.CreateTextNode(status.PicturePath);
+            pictAttr.AppendChild(pictText);
+            deviceElem.Attributes.Append(pictAttr);
             xNode1.AppendChild(deviceElem);
             xDoc.Save(Path);
 
@@ -407,8 +413,7 @@ namespace Probotbor.Models
                     xNode1.RemoveChild(xRoot.Item(i));
                 }
             }
-            xDoc.Save(Path);
-           
+            xDoc.Save(Path);           
         }
         #endregion
 

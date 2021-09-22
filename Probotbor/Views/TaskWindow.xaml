@@ -16,11 +16,7 @@
         <conv:IndicatorVisible x:Key="visibleConverter" />
         <conv:IndicatorUnVisible x:Key="unVisibleConverter" />
         <conv:ColorConverterIndicator x:Key="colorConv"/>
-        <conv:CheckSystemStatusText x:Key="systemStatusConv"/>
-        <conv:CheckProbStatusText x:Key="statProbConv"/>
-        <conv:CheckBunkStatusText x:Key="statBunkConv"/>
-        <conv:CheckDelStatusText x:Key="statDelConv"/>
-        <conv:CheckNakopStatusText x:Key="statNakopConv"/>
+        <conv:AccessLevelToVisibilityConverter x:Key="getPictureConv"/>        
         <conv:TimeConverter x:Key="SecondsToTime"/>
         <conv:FindTextError x:Key="FindTextError"/>
         <!--Конвертер сложения value + parameter-->
@@ -49,15 +45,17 @@
         <conv:FloatToInt x:Key="FloatToIntConverter"/>
         <!--#endregion-->
 
+        <!--#region Стили шрифтов -->
         <Style TargetType="Label">
             <Setter Property="FontFamily" Value="Tahoma"  />
             <Setter Property="Foreground" Value="White"/>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Tahoma"/>
-            
+
         </Style>
-        
+        <!--#endregion-->
+
 
 
 
@@ -303,28 +301,28 @@
         </ControlTemplate>
         <!--#endregion-->
 
-
-        <!--#region Шаблон текстового индикатора -->
-        <ControlTemplate TargetType="ComboBox" x:Key="StateCompobox">
-            <Border  BorderThickness="4" BorderBrush="White" Height="{TemplateBinding Height}"  CornerRadius="4"  >
-                <Grid ToolTipService.IsEnabled="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window},
+        <ControlTemplate TargetType="UserControl" x:Key="ImageIndicator">
+            <Grid ToolTipService.IsEnabled="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window},
                     Path=DataContext.CurrentUser.Level, Converter={StaticResource isEqual}, ConverterParameter=Администратор}">
-                    <Label Content="{Binding Description}"  FontSize="14" ></Label>
-                    <ComboBox Name="compobox"  SelectedIndex="{Binding ParamValue, Converter={StaticResource FloatToIntConverter}}" 
-                                         Visibility="Hidden" ItemsSource="{TemplateBinding ItemsSource}" IsEnabled="False" ></ComboBox>
-                    <TextBlock Text="{Binding ElementName=compobox, Path=Text}" TextWrapping="Wrap" Foreground="{Binding ElementName=compobox, Path=Text, Converter={StaticResource FindTextError}}" 
-                               FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                    <ContentControl x:Name="content" Margin="{TemplateBinding Padding}"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                    </ContentControl>
-                    <Grid.ToolTip>
-                        <ToolTip Content="{Binding Id}" Placement="Mouse" ContentStringFormat="{}Параметр {0}" ToolTipService.IsEnabled="False"></ToolTip>
-                    </Grid.ToolTip>
-                </Grid>
-            </Border>
+                <Image Source="{Binding ElementName=ImagePath, Path=Text}"></Image>
+                <Label Content="{Binding Description}" VerticalAlignment="Bottom" FontSize="20" HorizontalAlignment="Center"></Label>
+                <TextBlock x:Name="ImagePath" Visibility="Collapsed">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource getPictureConv}">
+                            <Binding Path="ParamValue"/>
+                            <Binding ElementName="content" Path="Tag"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <ContentControl x:Name="content" Tag="{TemplateBinding Tag}">                    
+                </ContentControl>
+                <Grid.ToolTip>
+                    <ToolTip Content="{Binding Id}" Placement="Mouse" ContentStringFormat="{}Параметр {0}" ToolTipService.IsEnabled="False"></ToolTip>
+                </Grid.ToolTip>
+            </Grid>
         </ControlTemplate>
-        <!--#endregion-->
+        
+
 
         <!--#region Шаблон текстового индикатора -->
         <ControlTemplate TargetType="ListBoxItem" x:Key="TextIndicator">
@@ -680,6 +678,9 @@
                                           Template="{StaticResource TextIndicator}" 
                                           Visibility="{Binding ElementName=NakopitelEnable,Path=IsChecked, Converter={StaticResource visibleConverter}}"></ListBoxItem>
                             <!--#endregion-->
+                            
+                                
+                            
                         </ListBox>
                         
                         <!--отображение текущих параметров системы-->
@@ -722,7 +723,14 @@
                             <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[65]}" Style="{StaticResource VisibleDel2}"></UserControl>
                             <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[66]}" Style="{StaticResource VisibleDel3}"></UserControl>
                             <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[67]}" Style="{StaticResource VisibleDel4}"></UserControl>
-                            <UserControl Template="{StaticResource NakopIndicator}" DataContext="{Binding DataCells[5]}" Visibility="{Binding ElementName=NakopitelEnable, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"></UserControl>
+
+                            <!--#region Статус накопителя -->
+                            <UserControl Template="{StaticResource ImageIndicator}" DataContext="{Binding DataCells[5]}"
+                                         Visibility="{Binding ElementName=NakopitelEnable}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.NakopStatuses}">                                
+                            </UserControl>
+                            <!--#endregion-->
+
                         </WrapPanel>
                     </Border>
 

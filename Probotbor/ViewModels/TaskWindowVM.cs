@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,7 +108,7 @@ namespace Probotbor.ViewModels
         #endregion
 
         #region Страница "Администрирование"
-        ApplicationContext db;
+       
         #region Вкладка "Управление пользователями"
         #region Команды
         #region Добавление пользователя
