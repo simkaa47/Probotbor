@@ -362,19 +362,14 @@
                 <DataTrigger Binding="{Binding ElementName=bunType1, Path=SelectedIndex}" Value="0">
                     <Setter Property="Visibility" Value="Collapsed"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=bunType1, Path=SelectedIndex}" Value="3">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
+                
             </Style.Triggers>
         </Style>
         <Style TargetType="Control" x:Key="VisibleBun2">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding ElementName=bunType2, Path=SelectedIndex}" Value="0">
                     <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=bunType2, Path=SelectedIndex}" Value="3">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
+                </DataTrigger>                
             </Style.Triggers>
         </Style>        
         <!--#endregion-->
@@ -714,19 +709,65 @@
                         <WrapPanel ItemHeight="{Binding ElementName=count, Path=Items.Count, Converter={StaticResource GetHeight}, ConverterParameter=740}" 
                                    
                                    HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <UserControl Template="{StaticResource ProbOtborIndicator}" DataContext="{Binding DataCells[1]}"></UserControl >
-                            <UserControl Name="ProbInd_2" Template="{StaticResource ProbOtborIndicator}" DataContext="{Binding DataCells[2]}"
-                                         Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.DataCells[13].ParamValue, Converter={StaticResource unVisibleIfLess}, ConverterParameter=2}"></UserControl>
-                            <UserControl Template="{StaticResource bunkIndicator}" DataContext="{Binding DataCells[75]}" Style="{StaticResource VisibleBun1}"></UserControl>
-                            <UserControl Template="{StaticResource bunkIndicator}" DataContext="{Binding DataCells[76]}" Style="{StaticResource VisibleBun2}"></UserControl>
-                            <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[64]}" Style="{StaticResource VisibleDel1}"></UserControl>
-                            <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[65]}" Style="{StaticResource VisibleDel2}"></UserControl>
-                            <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[66]}" Style="{StaticResource VisibleDel3}"></UserControl>
-                            <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[67]}" Style="{StaticResource VisibleDel4}"></UserControl>
-
+                            
+                            <!--#region Статус проботборника 1-->
+                            <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[1]}"                                         
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ProbStatuses}">
+                            </UserControl>
+                            <!--#endregion-->
+                            <!--#region Статус проботборника 2-->
+                            <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[2]}"
+                                         Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.DataCells[13].ParamValue, Converter={StaticResource unVisibleIfLess}, ConverterParameter=2}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ProbStatuses}">
+                            </UserControl>
+                            <!--#endregion-->
+                            <!--#region Статус бункера 1-->
+                            <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[75]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.BunStatuses}"
+                                         Style="{StaticResource VisibleBun1}">
+                            </UserControl>
+                            <!--#endregion-->
+                            <!--#region Статус бункера 2-->
+                            <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[76]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.BunStatuses}"
+                                         Style="{StaticResource VisibleBun2}">
+                            </UserControl>
+                            <!--#endregion-->
+                            <!--#region Статус делителя 1-->
+                            <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[64]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.DelStatuses}"
+                                         Style="{StaticResource VisibleDel1}">
+                            </UserControl>
+                            <!--#endregion-->
+                            <!--#region Статус делителя 2-->
+                            <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[65]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.DelStatuses}"
+                                         Style="{StaticResource VisibleDel2}">
+                            </UserControl>
+                            <!--#endregion-->
+                            <!--#region Статус делителя 3-->
+                            <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[66]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.DelStatuses}"
+                                         Style="{StaticResource VisibleDel3}">
+                            </UserControl>
+                            <!--#endregion-->
+                            <!--#region Статус делителя 4-->
+                            <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[67]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.DelStatuses}"
+                                         Style="{StaticResource VisibleDel4}">
+                            </UserControl>
+                            <!--#endregion-->
                             <!--#region Статус накопителя -->
                             <UserControl Template="{StaticResource ImageIndicator}" DataContext="{Binding DataCells[5]}"
-                                         Visibility="{Binding ElementName=NakopitelEnable}"
+                                         Visibility="{Binding ElementName=NakopitelEnable, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
                                          Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.NakopStatuses}">                                
                             </UserControl>
                             <!--#endregion-->
@@ -968,8 +1009,20 @@
 
                             <!--#region Визуализация -->
                             <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                                <UserControl Template="{StaticResource ProbOtborIndicator}" DataContext="{Binding DataCells[1]}"></UserControl>
-                                <UserControl Template="{StaticResource ProbOtborIndicator}" DataContext="{Binding DataCells[2]}" Visibility="{Binding ElementName=ProbInd_2, Path=Visibility}"></UserControl>
+                                <!--#region Статус проботборника 1-->
+                                <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[1]}"                                         
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ProbStatuses}">
+                                </UserControl>
+                                <!--#endregion-->
+                                <!--#region Статус проботборника 2-->
+                                <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[2]}"
+                                         Visibility="{Binding ElementName=ProbInd_2, Path=Visibility}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.ProbStatuses}">
+                                </UserControl>
+                                <!--#endregion-->                             
+                                
                             </StackPanel>
                             <!--#endregion-->
                             
@@ -1317,13 +1370,24 @@
                             <!--#endregion-->
 
                             <!--#region Визуализация бункера -->
-                            <Viewbox Grid.Row="3"  Stretch="Uniform">
-                                <StackPanel Orientation="Horizontal">
-                                    <UserControl Template="{StaticResource bunkIndicator}" DataContext="{Binding DataCells[75]}"  Style="{StaticResource VisibleBun1}"></UserControl>
-                                    <UserControl Template="{StaticResource bunkIndicator}" DataContext="{Binding DataCells[76]}" Style="{StaticResource VisibleBun2}"></UserControl>
-
+                            
+                                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">                                    
+                                    <!--#region Статус бункера 1-->
+                                    <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[75]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.BunStatuses}"
+                                         Style="{StaticResource VisibleBun1}">
+                                    </UserControl>
+                                    <!--#endregion-->
+                                    <!--#region Статус бункера 2-->
+                                    <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[76]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.BunStatuses}"
+                                         Style="{StaticResource VisibleBun2}">
+                                    </UserControl>
+                                    <!--#endregion-->
                                 </StackPanel>
-                            </Viewbox>
+                           
                             <!--#endregion-->
 
                         </Grid>
@@ -1688,10 +1752,34 @@
                             <!--#region Визуализация делителя -->
                             <Viewbox Grid.Row="3"  Stretch="Uniform">
                                 <StackPanel Orientation="Horizontal">
-                                    <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[64]}" Style="{StaticResource VisibleDel1}"></UserControl>
-                                    <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[65]}" Style="{StaticResource VisibleDel2}"></UserControl>
-                                    <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[66]}" Style="{StaticResource VisibleDel3}"></UserControl>
-                                    <UserControl Template="{StaticResource DelIndicator}" DataContext="{Binding DataCells[67]}" Style="{StaticResource VisibleDel4}"></UserControl>
+                                    <!--#region Статус делителя 1-->
+                                    <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[64]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.DelStatuses}"
+                                         Style="{StaticResource VisibleDel1}">
+                                    </UserControl>
+                                    <!--#endregion-->
+                                    <!--#region Статус делителя 2-->
+                                    <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[65]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.DelStatuses}"
+                                         Style="{StaticResource VisibleDel2}">
+                                    </UserControl>
+                                    <!--#endregion-->
+                                    <!--#region Статус делителя 3-->
+                                    <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[66]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.DelStatuses}"
+                                         Style="{StaticResource VisibleDel3}">
+                                    </UserControl>
+                                    <!--#endregion-->
+                                    <!--#region Статус делителя 4-->
+                                    <UserControl Template="{StaticResource ImageIndicator}"
+                                         DataContext="{Binding DataCells[67]}"
+                                         Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext.DelStatuses}"
+                                         Style="{StaticResource VisibleDel4}">
+                                    </UserControl>
+                                    <!--#endregion-->
                                 </StackPanel>
                             </Viewbox>
                             <!--#endregion-->
@@ -2441,77 +2529,76 @@
                     <!--#endregion-->
                     <!--#endregion-->
                     <!--#region Статусы узлов -->
-                    <TabItem Header="Статусы">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                    <TabItem Header="Статусы">                        
+                        <Grid>                         
+                           
+                            <TabControl TabStripPlacement="Top">
+                                <TabControl.Resources>
+                                    <Style TargetType="TabItem">
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </Style>
+                                </TabControl.Resources>
+                                <!--#region Статусы системы -->
+                                <TabItem Header="СТАТУСЫ СИСТЕМЫ">
 
-                            <!--#region Статусы накопителя -->
-                            <StackPanel Grid.Column="0">
-                                <Label FontSize="16" Foreground="Black" HorizontalContentAlignment="Center">СТАТУСЫ НАКОПИТЕЛЯ</Label>
-                                <DataGrid ItemsSource="{Binding NakopStatuses}" AutoGenerateColumns="False" >
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Индекс" Binding="{Binding Path=Id}" IsReadOnly="True"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Текст" Binding="{Binding Path=Status}" ></DataGridTextColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </StackPanel>
-                            <!--#endregion-->
-
-                            <!--#region Статусы системы -->
-                            <StackPanel Grid.Column="1">
-                                <Label FontSize="16" Foreground="Black" HorizontalContentAlignment="Center">СТАТУСЫ СИСТЕМЫ</Label>
-                                <DataGrid ItemsSource="{Binding SysStatuses}" AutoGenerateColumns="False" >
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Индекс" Binding="{Binding Path=Id}" IsReadOnly="True"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Текст" Binding="{Binding Path=Status}" ></DataGridTextColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </StackPanel>
-                            <!--#endregion-->
-
-                            <!--#region Статусы проботборника -->
-                            <StackPanel Grid.Column="2">
-                                <Label FontSize="16" Foreground="Black" HorizontalContentAlignment="Center">СТАТУСЫ ПРОБООТБОРНИКА</Label>
-                                <DataGrid ItemsSource="{Binding ProbStatuses}" AutoGenerateColumns="False" >
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Индекс" Binding="{Binding Path=Id}" IsReadOnly="True"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Текст" Binding="{Binding Path=Status}" ></DataGridTextColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </StackPanel>
-                            <!--#endregion-->
-
-                            <!--#region Статусы бункера -->
-                            <StackPanel Grid.Column="3">
-                                <Label FontSize="16" Foreground="Black" HorizontalContentAlignment="Center">СТАТУСЫ БУНКЕРА</Label>
-                                <DataGrid ItemsSource="{Binding BunStatuses}" AutoGenerateColumns="False" >
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Индекс" Binding="{Binding Path=Id}" IsReadOnly="True"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Текст" Binding="{Binding Path=Status}" ></DataGridTextColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </StackPanel>
-                            <!--#endregion-->
-
-                            <!--#region Статусы делителя -->
-                            <StackPanel Grid.Column="4">
-                                <Label FontSize="16" Foreground="Black" HorizontalContentAlignment="Center">СТАТУСЫ ДЕЛИТЕЛЯ</Label>
-                                <DataGrid ItemsSource="{Binding DelStatuses}" AutoGenerateColumns="False" >
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Индекс" Binding="{Binding Path=Id}" IsReadOnly="True"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Текст" Binding="{Binding Path=Status}" ></DataGridTextColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </StackPanel>
-                            <!--#endregion-->
-
+                                    <DataGrid ItemsSource="{Binding SysStatuses}" AutoGenerateColumns="False" >
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Индекс" Binding="{Binding Path=Id}" IsReadOnly="True"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Текст" Binding="{Binding Path=Status}" ></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Расположение картинки индикатора" Binding="{Binding Path=PicturePath}" ></DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </TabItem>
+                                <!--#endregion-->
+                                <!--#region "СТАТУСЫ ПРОБОТБОРНИКОВ -->
+                                <TabItem Header="СТАТУСЫ ПРОБОТБОРНИКОВ">
+                                    <DataGrid ItemsSource="{Binding ProbStatuses}" AutoGenerateColumns="False" >
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Индекс" Binding="{Binding Path=Id}" IsReadOnly="True"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Текст" Binding="{Binding Path=Status}" ></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Расположение картинки индикатора" Binding="{Binding Path=PicturePath}" ></DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </TabItem>
+                                <!--#endregion-->
+                                <!--#region "СТАТУСЫ БУНКЕРА" -->
+                                <TabItem Header="СТАТУСЫ БУНКЕРА">
+                                    <DataGrid ItemsSource="{Binding BunStatuses}" AutoGenerateColumns="False" >
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Индекс" Binding="{Binding Path=Id}" IsReadOnly="True"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Текст" Binding="{Binding Path=Status}" ></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Расположение картинки индикатора" Binding="{Binding Path=PicturePath}" ></DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </TabItem>
+                                <!--#endregion-->
+                                <!--#region СТАТУСЫ ДЕЛИТЕЛЯ -->
+                                <TabItem Header="СТАТУСЫ ДЕЛИТЕЛЯ">
+                                    <DataGrid ItemsSource="{Binding DelStatuses}" AutoGenerateColumns="False" >
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Индекс" Binding="{Binding Path=Id}" IsReadOnly="True"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Текст" Binding="{Binding Path=Status}" ></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Расположение картинки индикатора" Binding="{Binding Path=PicturePath}" ></DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </TabItem>
+                                <!--#endregion-->
+                                <!--#region СТАТУСЫ НАКОПИТЕЛЯ -->
+                                <TabItem Header="СТАТУСЫ НАКОПИТЕЛЯ">
+                                    <DataGrid ItemsSource="{Binding NakopStatuses}" AutoGenerateColumns="False" >
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Индекс" Binding="{Binding Path=Id}" IsReadOnly="True"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Текст" Binding="{Binding Path=Status}" ></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Расположение картинки индикатора" Binding="{Binding Path=PicturePath}" ></DataGridTextColumn>
+                                           
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </TabItem>
+                                <!--#endregion-->
+                            </TabControl>
                         </Grid>
+                            
+                       
                     </TabItem>
                     <!--#endregion-->
                     <!--#region Вкладка "Конфигурация" на странице "Администрирование" -->

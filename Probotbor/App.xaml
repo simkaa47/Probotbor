@@ -12,8 +12,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-                <ResourceDictionary Source="Views/icons.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="Views/StateIndicators.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Views/icons.xaml"></ResourceDictionary>                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
        

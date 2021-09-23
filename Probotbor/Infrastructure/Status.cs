@@ -37,7 +37,15 @@ namespace Probotbor.Infrastructure
         /// <summary>
         ///Расположение картинки
         /// </summary>
-        public string PicturePath { get => picturePath; set => Set(ref picturePath, value); } 
+        public string PicturePath 
+        { 
+            get => picturePath;
+            set
+            {
+                Set(ref picturePath, value);
+                if (ChangeValueHandlerDel != null) ChangeValueHandlerDel(this);
+            }
+        } 
         #endregion
         #endregion
 
