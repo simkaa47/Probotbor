@@ -15,9 +15,9 @@ namespace Probotbor.View
         public App()
         {
             _host = Host.CreateDefaultBuilder()
-                .ConfigureServices(services => 
-                {
-                    services.AddApplicationServices();
+                .ConfigureServices((conf, services) => 
+                {                    
+                    services.AddApplicationServices(conf.Configuration);
                     services.AddSingleton<MainWindow>((services) => new MainWindow()
                     {
                         DataContext = services.GetRequiredService<MainViewModel>()
