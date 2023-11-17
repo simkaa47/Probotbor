@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\DataAccess\Repositories\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
