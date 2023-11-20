@@ -77,5 +77,14 @@ namespace Probotbor.Core.Infrastructure.DataAccess.Repositories
             _dbContext.Entry(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task UpdateAllAsync(List<T> list)
+        {
+            foreach (var entity in list)
+            {
+                _dbContext.Entry(entity).State = EntityState.Modified;
+            }
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

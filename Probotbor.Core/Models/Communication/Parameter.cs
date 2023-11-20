@@ -19,6 +19,8 @@ public partial class Parameter<T> : ParameterBase, INotifyDataErrorInfo where T 
         PlcModel.Parameters.Add(this);
     }
 
+    public string TypeName => typeof(T).ToString();
+
     public T MinValue { get; }
     public T MaxValue { get; }
 

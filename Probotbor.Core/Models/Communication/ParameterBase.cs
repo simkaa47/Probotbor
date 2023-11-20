@@ -19,5 +19,6 @@ public class ParameterBase : EntityCommon
     public int ByteNum { get; set; }
 
     public int Length { get; set; }
+    public bool IsRequired { get; set; }
 
 }

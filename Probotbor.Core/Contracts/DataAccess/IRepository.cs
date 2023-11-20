@@ -12,6 +12,7 @@ namespace Probotbor.Core.Contracts.DataAccess
         Task DeleteAsync(T entity);
         Task<T?> GetFirstWhere(Expression<Func<T, bool>> predicate);
         Task<IEnumerable<T>> GetWhere(Expression<Func<T, bool>> predicate);
+        Task UpdateAllAsync(List<T> list);
         Task<IEnumerable<T>> InitAsync(IEnumerable<T> initCollection, int requiredCount);
         Task<T?> GetLastWhere<TKey>(Expression<Func<T, bool>> predicate, Expression<Func<T, TKey>> orderExp);
     }
