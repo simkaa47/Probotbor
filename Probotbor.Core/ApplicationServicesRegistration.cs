@@ -41,7 +41,7 @@ namespace Probotbor.Core
             if(sett.Protocol == CommProtocol.Modbus)
                 services.AddSingleton(typeof(ICommunicationService), typeof(ModbusCommunicationService));
             else
-                services.AddSingleton(typeof(ICommunicationService), typeof(ModbusCommunicationService));
+                services.AddSingleton(typeof(ICommunicationService), typeof(SiemensCommunicationService));
             return services;
         }
 

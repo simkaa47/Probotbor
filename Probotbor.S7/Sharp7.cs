@@ -831,7 +831,7 @@ namespace S7
             Result += Buffer[Pos + 3];
             return Result;
         }
-        public static void SetDIntAt(byte[] Buffer, int Pos, int Value)
+        public static void SetUDintAt(byte[] Buffer, int Pos, int Value)
         {
             Buffer[Pos + 3] = (byte)(Value & 0xFF);
             Buffer[Pos + 2] = (byte)(Value >> 8 & 0xFF);
@@ -1105,7 +1105,7 @@ namespace S7
         public static void SetTODAt(byte[] Buffer, int Pos, DateTime Value)
         {
             TimeSpan Time = Value.TimeOfDay;
-            SetDIntAt(Buffer, Pos, (int)Math.Round(Time.TotalMilliseconds));
+            SetUDintAt(Buffer, Pos, (int)Math.Round(Time.TotalMilliseconds));
         }
         #endregion
 
@@ -1192,7 +1192,7 @@ namespace S7
             Buffer[Pos + 5] = Hour;
             Buffer[Pos + 6] = Min;
             Buffer[Pos + 7] = Sec;
-            SetDIntAt(Buffer, Pos + 8, NanoSecs);
+            SetUDintAt(Buffer, Pos + 8, NanoSecs);
         }
 
         #endregion
@@ -1306,7 +1306,7 @@ namespace S7
 
         public static void SetS7TimespanAt(byte[] Buffer, int Pos, TimeSpan Value)
         {
-            SetDIntAt(Buffer, Pos, (int)Value.TotalMilliseconds);
+            SetUDintAt(Buffer, Pos, (int)Value.TotalMilliseconds);
         }
 
         public static TimeSpan GetS7TimespanAt(byte[] Buffer, int pos)
