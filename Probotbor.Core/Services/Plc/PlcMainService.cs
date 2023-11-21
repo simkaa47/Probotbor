@@ -5,7 +5,6 @@ using Probotbor.Core.Models.Communication;
 using Probotbor.Core.Models.Plc;
 using Probotbor.Core.Models.Probotbor;
 using Probotbor.Core.ViewModels;
-using System.Collections.Generic;
 
 namespace Probotbor.Core.Services.Plc
 {
@@ -22,7 +21,7 @@ namespace Probotbor.Core.Services.Plc
         public PlcMainService(IOptions<ProbotborSettings> options, ILogger<PlcMainService> logger,
             ICommunicationService communicationService, ParametersVm parametersVm)
         {
-            ProbotborSettings = options.Value;            
+            ProbotborSettings = options.Value;
             Initialized = true;
             _logger = logger;
             _communicationService = communicationService;
@@ -31,7 +30,7 @@ namespace Probotbor.Core.Services.Plc
             ReadProcess();
         }
 
-        private  async void  ReadProcess()
+        private async void ReadProcess()
         {
             await Task.Run(() =>
             {
@@ -39,7 +38,7 @@ namespace Probotbor.Core.Services.Plc
                 while (_communicationService != null)
                 {
                     try
-                    {                        
+                    {
                         Connected = _communicationService.Connected;
                         if (!Connected)
                             Thread.Sleep(2000);
@@ -80,10 +79,10 @@ namespace Probotbor.Core.Services.Plc
 
         private void SetIsWritingFlag<T>(Parameter<T> parameter) where T : IComparable
         {
-            if(parameter.ValidationOk && Connected)
+            if (parameter.ValidationOk && Connected)
             {
                 parameter.IsWriting = true;
-                WriteCommands.Enqueue(parameter);   
+                WriteCommands.Enqueue(parameter);
             }
         }
     }
