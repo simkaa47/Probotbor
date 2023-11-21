@@ -3,10 +3,12 @@ using CommunityToolkit.Mvvm.Input;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Probotbor.Core.Contracts.DataAccess;
 using Probotbor.Core.Infrastructure.DataAccess;
 using Probotbor.Core.Models.Communication;
 using Probotbor.Core.Models.Plc;
+using Probotbor.Core.Models.Probotbor;
 using Probotbor.Core.Services.Plc;
 
 namespace Probotbor.Core.ViewModels
@@ -14,24 +16,27 @@ namespace Probotbor.Core.ViewModels
     public partial class ParametersVm : ObservableObject
     {
         private readonly IRepository<ParameterBase> _parametersRepository;
-        private readonly DbContext _dbContext;
-        private readonly PlcMainService _plcMainService;
+        private readonly DbContext _dbContext;        
         private readonly ILogger<ParametersVm> _logger;
 
         [ObservableProperty]
         private bool _isLoaded;
 
-        public bool IsInitialized { get; private set; }
 
-        public ParametersVm(IRepository<ParameterBase> parametersRepository, ApplicationContext dbContext,
-            PlcMainService plcMainService,
-            ILogger<ParametersVm> logger)
+        public PlcModel PlcModel { get; set; }
+        public bool IsInitialized { get; private set; }
+        public ProbotborSettings ProbotborSettings { get; set; }
+
+        public ParametersVm(IRepository<ParameterBase> parametersRepository, ApplicationContext dbContext,            
+            ILogger<ParametersVm> logger, IOptions<ProbotborSettings> options)
         {
+            ProbotborSettings = options.Value;
+            PlcModel = new PlcModel(ProbotborSettings);
             _parametersRepository = parametersRepository;
-            _dbContext = dbContext;
-            _plcMainService = plcMainService;
+            _dbContext = dbContext;            
             _logger = logger;
             SychroParametersWithDb();
+            
         }
 
         [ObservableProperty]
@@ -42,28 +47,24 @@ namespace Probotbor.Core.ViewModels
             var pars = new List<object>();
             try
             {
-
-                if (_plcMainService.Initialized)
+                foreach (var par in PlcModel.Parameters)
                 {
-                    foreach (var par in PlcModel.Parameters)
+                    var parBase = par as ParameterBase;
+                    if (parBase != null)
                     {
-                        var parBase = par as ParameterBase;
-                        if (parBase != null)
+                        var parDb = await _dbContext.Set<ParameterBase>().AsNoTracking().FirstOrDefaultAsync(p => p.Name == parBase.Name);
+                        if (parDb == null)
                         {
-                            var parDb = await _dbContext.Set<ParameterBase>().AsNoTracking().FirstOrDefaultAsync(p => p.Name == parBase.Name);
-                            if (parDb == null)
-                            {
-                                parBase.Id = 0;
-                                await _parametersRepository.AddAsync(parBase);
-                            }
-                            else
-                            {
-                                parDb.Adapt(parBase);
-                            }
-
+                            parBase.Id = 0;
+                            await _parametersRepository.AddAsync(parBase);
                         }
-                        pars.Add(par);
+                        else
+                        {
+                            parDb.Adapt(parBase);
+                        }
+
                     }
+                    pars.Add(par);
                 }
                 Parameters = pars;
                 IsInitialized = true;
@@ -72,10 +73,7 @@ namespace Probotbor.Core.ViewModels
             {
                 _logger.LogError($"Синхронизация параметров с БД - \"{ex.Message}\"");
             }
-        }
-
-
-        public ParameterBase ekjdked;
+        }        
 
         [RelayCommand]
         private async Task SaveParameters()

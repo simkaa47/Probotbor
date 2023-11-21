@@ -26,9 +26,10 @@
         </Grid.RowDefinitions>
         <Button Content="Сохранить"
                 Margin="5"
+                HorizontalAlignment="Left"
                 Height="60"
-                IsEnabled="{Binding IsLoaded}"
-                Width="100"
+                IsEnabled="{Binding IsLoaded, Converter={StaticResource BoolNegationConverter}}"
+                Width="200"
                 Command="{Binding SaveParametersCommand}">
             
         </Button>
@@ -51,7 +52,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox ItemsSource="{Binding Source={StaticResource RegTypes}}"
-                                      SelectedItem="{Binding ModbusRegType}"/>
+                                      SelectedItem="{Binding ModbusRegType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -62,6 +63,7 @@
                 <DataGridTextColumn  Header="Длина (если строка)"  Binding="{Binding Length}"/>
                 <DataGridCheckBoxColumn Header="Задействован" Binding="{Binding IsRequired}"/>
                 <DataGridTextColumn IsReadOnly="True"  Header="Тип данных"  Binding="{Binding TypeName}"/>
+                <DataGridTextColumn IsReadOnly="True"  Header="Значение"  Binding="{Binding Value}"/>
                
             </DataGrid.Columns>
         </DataGrid>  

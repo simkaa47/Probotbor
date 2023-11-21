@@ -6,7 +6,9 @@ public class ParameterBase : EntityCommon
 {    
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
-    public ModbusRegType ModbusRegType { get; set; }
+    public ModbusRegType ModbusRegType 
+    { get; 
+        set; }
     public int RegNum { get; set; }
     public int BitNum { get; set; }
     /// <summary>
