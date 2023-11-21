@@ -2,6 +2,7 @@
 using MapsterMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Probotbor.Core.Contracts.Communication;
 using Probotbor.Core.Contracts.DataAccess;
 using Probotbor.Core.Infrastructure.DataAccess;
 using Probotbor.Core.Infrastructure.DataAccess.Repositories;
@@ -37,6 +38,10 @@ namespace Probotbor.Core
         {
             var sett = new CommSettings();
             configuration.GetSection("Comm").Bind(sett);
+            if(sett.Protocol == CommProtocol.Modbus)
+                services.AddSingleton(typeof(ICommunicationService), typeof(ModbusCommunicationService));
+            else
+                services.AddSingleton(typeof(ICommunicationService), typeof(ModbusCommunicationService));
             return services;
         }
 
