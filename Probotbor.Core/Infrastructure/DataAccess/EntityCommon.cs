@@ -2,8 +2,13 @@
 
 namespace Probotbor.Core.Infrastructure.DataAccess
 {
-    public class EntityCommon : ObservableObject
+    public class EntityCommon : ObservableValidator
     {
         public int Id { get; set; }
+
+        public void Validate() 
+        {
+            ValidateAllProperties();
+        }
     }
 }

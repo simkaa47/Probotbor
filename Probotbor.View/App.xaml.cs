@@ -1,7 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Probotbor.Core;
+using Probotbor.Core.Contracts.AccessControl;
+using Probotbor.Core.Contracts.Dialog;
 using Probotbor.Core.ViewModels;
+using Probotbor.View.Dialogs;
+using Probotbor.View.Dialogs.AccessControl;
 using System.Windows;
 
 namespace Probotbor.View
@@ -18,6 +22,8 @@ namespace Probotbor.View
                 .ConfigureServices((conf, services) => 
                 {                    
                     services.AddApplicationServices(conf.Configuration);
+                    services.AddScoped<IAccessDialogService, UserDialogService>();
+                    services.AddScoped<IQuestionDialog, AskDialog>();                    
                     services.AddSingleton<MainWindow>((services) => new MainWindow()
                     {
                         DataContext = services.GetRequiredService<MainViewModel>()
