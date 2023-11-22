@@ -1,0 +1,16 @@
+﻿<Window x:Class="Probotbor.View.Dialogs.AskDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Probotbor.View.Dialogs"
+        mc:Ignorable="d"
+        Title="AskDialogWindow" SizeToContent="WidthAndHeight">
+    <StackPanel>
+        <TextBlock Width="200" Name="Content" TextWrapping="Wrap"/>
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,15,0,10">
+            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">OK</Button>
+            <Button IsCancel="True" MinWidth="60">Отмена</Button>
+        </WrapPanel>
+    </StackPanel>
+</Window>

@@ -43,8 +43,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\AccessControl\" />
-  </ItemGroup>
-
 </Project>
