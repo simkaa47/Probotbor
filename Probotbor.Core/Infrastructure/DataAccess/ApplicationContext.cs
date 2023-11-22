@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Probotbor.Core.Models.AccessControl;
 using Probotbor.Core.Models.Communication;
 
 namespace Probotbor.Core.Infrastructure.DataAccess
@@ -6,6 +7,7 @@ namespace Probotbor.Core.Infrastructure.DataAccess
     public class ApplicationContext : DbContext
     {
         public DbSet<ParameterBase> ParameterBases => Set<ParameterBase>();
+        public DbSet<User> Users => Set<User>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

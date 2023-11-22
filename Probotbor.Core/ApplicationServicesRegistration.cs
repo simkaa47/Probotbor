@@ -24,6 +24,7 @@ namespace Probotbor.Core
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<PlcVm>();
             services.AddSingleton<ParametersVm>();
+            services.AddSingleton<AccessViewModel>();
             services.AddSingleton<PlcMainService>();
             services.AddCommunication(configuration);
             services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
