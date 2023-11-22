@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Probotbor.View"
         mc:Ignorable="d"
+        xmlns:common="clr-namespace:Probotbor.View.UserControls.Common"
         xmlns:adm="clr-namespace:Probotbor.View.Pages.Administration"
         xmlns:vm="clr-namespace:Probotbor.Core.ViewModels;assembly=Probotbor.Core"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <adm:ParametersView DataContext="{Binding ParametersVm}"/>
+        <common:MainTabControl/>
     </Grid>
 </Window>

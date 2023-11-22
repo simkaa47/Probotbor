@@ -109,10 +109,40 @@ namespace Probotbor.Core.ViewModels
 
         }
 
+        [RelayCommand]
+        private async Task LoginAsync(object parameter)
+        {
+            if (!(parameter is Login login)) return;
+            try
+            {
+                var user = await _userRepository.GetFirstWhere(u => u.Login == login.LoginName && u.Password == login.Password);
+                if (user == null)
+                {
+                    login.FaliledLogin = true;
+                    _logger.LogInformation($"Попытка авторизоваться с логином = {login.LoginName} и паролем {login.Password} была неуспешной");
+                }
+                else
+                {
+                    CurrentUser = user;
+                    _logger.LogInformation($"Пользователь c логином {login.LoginName}");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Ошибка при авторизации пользователя с логином  {login.LoginName} - {ex.Message}");
+            }
+        }
+
+        [RelayCommand]
+        public void Logout()
+        {
+            CurrentUser = null;
+        }
 
 
 
 
-        
+
+
     }
 }
