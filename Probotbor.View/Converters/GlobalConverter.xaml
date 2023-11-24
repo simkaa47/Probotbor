@@ -2,4 +2,5 @@
                     xmlns:conv="clr-namespace:Probotbor.View.Converters"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <conv:BoolNegationConverter x:Key="BoolNegationConverter"/>
+    <conv:IfTrueConverter x:Key="IfTrueConverter"/>
 </ResourceDictionary>

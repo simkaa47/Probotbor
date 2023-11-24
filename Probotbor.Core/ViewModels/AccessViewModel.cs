@@ -109,6 +109,7 @@ namespace Probotbor.Core.ViewModels
 
         }
 
+        
         [RelayCommand]
         private async Task LoginAsync(object parameter)
         {
