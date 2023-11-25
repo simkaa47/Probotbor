@@ -1,5 +1,4 @@
-﻿using Castle.Core.Logging;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
 using Probotbor.Core.Contracts.AccessControl;
@@ -10,7 +9,7 @@ using Probotbor.Core.Services.AccessControl;
 
 namespace Probotbor.Core.ViewModels
 {
-    public partial class AccessViewModel:ObservableObject
+    public partial class AccessViewModel : ObservableObject
     {
         private readonly IRepository<User> _userRepository;
         private readonly ILogger<AccessViewModel> _logger;
@@ -21,8 +20,8 @@ namespace Probotbor.Core.ViewModels
         [ObservableProperty]
         private User? _currentUser;
 
-        public AccessViewModel(IRepository<User> userRepository, 
-            ILogger<AccessViewModel> logger, 
+        public AccessViewModel(IRepository<User> userRepository,
+            ILogger<AccessViewModel> logger,
             IAccessDialogService accessDialog, IQuestionDialog questionDialog)
         {
             _userRepository = userRepository;
@@ -68,6 +67,8 @@ namespace Probotbor.Core.ViewModels
         }
 
 
+
+
         [RelayCommand]
         private async Task UpdateUserAsync(object parameter)
         {
@@ -80,8 +81,8 @@ namespace Probotbor.Core.ViewModels
                 {
                     throw new Exception("New user adding: validation error");
                 }
-                
-                await _userRepository.UpdateAsync(user);                
+
+                await _userRepository.UpdateAsync(user);
             }
             catch (Exception ex)
             {
@@ -109,7 +110,7 @@ namespace Probotbor.Core.ViewModels
 
         }
 
-        
+
         [RelayCommand]
         private async Task LoginAsync(object parameter)
         {

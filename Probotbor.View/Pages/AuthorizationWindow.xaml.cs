@@ -41,16 +41,18 @@ namespace Probotbor.View.Pages
             return login;
         }
 
-        
+        public int cnt = 0;
 
         public  void CloseAuthorisationWindow()
         {
             if(App.Current is App app)
             {
+                cnt++;
                 var mainWindow = app.GetWindow<MainWindow>();
-                app.MainWindow = mainWindow;
+                app.MainWindow = mainWindow;                
                 mainWindow?.Show();
-                this.Close();                
+                this.Close();
+
             }
         }
     }

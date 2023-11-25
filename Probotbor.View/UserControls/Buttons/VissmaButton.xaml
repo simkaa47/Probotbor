@@ -23,7 +23,7 @@
         <Border VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch">
             <b:Interaction.Triggers>
-                <b:EventTrigger EventName="MouseLeave">
+                <b:EventTrigger EventName="MouseDown">
                     <b:InvokeCommandAction Command="{Binding ElementName=_modernButton, Path=Command}" CommandParameter="{Binding ElementName=_modernButton, Path=ParameterCommand}"/>
                 </b:EventTrigger>
             </b:Interaction.Triggers>

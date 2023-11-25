@@ -36,7 +36,7 @@ namespace Probotbor.View
                     {
                         DataContext = services.GetRequiredService<AccessViewModel>()
                     });
-                    services.AddSingleton<MainWindow>((services) => new MainWindow()
+                    services.AddTransient<MainWindow>((services) => new MainWindow()
                     {
                         DataContext = services.GetRequiredService<MainViewModel>()
                     });
