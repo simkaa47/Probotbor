@@ -11,19 +11,14 @@
              xmlns:local="clr-namespace:Probotbor.View.UserControls.Common.HighBar"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <b:Interaction.Triggers>
-            <b:DataTrigger Binding="{Binding CurrentUser}" Comparison="Equal" Value="{x:Null}">
-                <b:CallMethodAction MethodName="GoToAuthorisationWindow" TargetObject="{Binding RelativeSource={RelativeSource AncestorType=local:HighBarUserControl}}"/>
-            </b:DataTrigger>
-        </b:Interaction.Triggers>
+    <Grid>        
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding CurrentUser.FullName}" Foreground="WhiteSmoke"
                            FontSize="16"
                            VerticalAlignment="Center"
                            FontWeight="Bold"/>
             <buttons:VissmaButton Height="50" Width="50" Background="{StaticResource PanelBorderColor}"
-                                  Margin="10" Command="{Binding LogoutCommand}">
+                                  Margin="10" MouseDown="LogoutClick">
                 <buttons:VissmaButton.MouseOverSolidColorBrush>
                     <SolidColorBrush Color="White" Opacity="0.15"/>
                 </buttons:VissmaButton.MouseOverSolidColorBrush>

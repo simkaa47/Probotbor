@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Probotbor.Core.Contracts.Communication;
 using Probotbor.Core.Models.Communication;
@@ -8,7 +9,7 @@ using Probotbor.Core.ViewModels;
 
 namespace Probotbor.Core.Services.Plc
 {
-    public class PlcMainService
+    public partial class PlcMainService:ObservableObject
     {
         private readonly ILogger<PlcMainService> _logger;
         private readonly ICommunicationService _communicationService;
@@ -16,7 +17,8 @@ namespace Probotbor.Core.Services.Plc
 
         private Queue<object> WriteCommands { get; } = new Queue<object>();
         public bool Initialized { get; }
-        public bool Connected { get; private set; }
+        [ObservableProperty]
+        public bool _connected;
         public ProbotborSettings ProbotborSettings { get; set; }
         public PlcMainService(IOptions<ProbotborSettings> options, ILogger<PlcMainService> logger,
             ICommunicationService communicationService, ParametersVm parametersVm)

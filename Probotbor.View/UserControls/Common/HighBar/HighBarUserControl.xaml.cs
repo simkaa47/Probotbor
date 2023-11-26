@@ -1,4 +1,5 @@
-﻿using Probotbor.View.Pages;
+﻿using Probotbor.Core.ViewModels;
+using Probotbor.View.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,15 +27,37 @@ namespace Probotbor.View.UserControls.Common.HighBar
             InitializeComponent();
         }
 
+        private  void LogoutClick(object sender, MouseButtonEventArgs e)
+        {
+            if (App.Current is App app)
+            {
+                var accessVm = app.GetService<AccessViewModel>();
+                if (accessVm != null) 
+                {
+                    accessVm.Logout();
+                    if(accessVm.CurrentUser is null)
+                    {
+                        var authWindow = new AuthorizationWindow();
+                        authWindow.DataContext = accessVm;
+                        var currWindow = app.MainWindow;
+                        app.MainWindow = authWindow;
+                        authWindow?.Show();
+                        currWindow?.Close();
+
+                    }
+                }
+            }
+        }
+
         public void GoToAuthorisationWindow()
         {
             if (App.Current is App app)
             {
-                var authWindow = app.GetWindow<AuthorizationWindow>();
+                var authWindow = app.GetService<AuthorizationWindow>();
                 var currWindow = app.MainWindow;
                 app.MainWindow = authWindow;
                 authWindow?.Show();
-                currWindow?.Close();   
+                currWindow?.Hide();
             }
         }
 

@@ -112,7 +112,7 @@ namespace Probotbor.Core.ViewModels
 
 
         [RelayCommand]
-        private async Task LoginAsync(object parameter)
+        public async Task LoginAsync(object parameter)
         {
             if (!(parameter is Login login)) return;
             try

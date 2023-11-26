@@ -38,6 +38,20 @@ namespace Probotbor.View.UserControls.Buttons
         }
 
 
+
+        public Brush MousePressedSolidColorBrush
+        {
+            get { return (Brush)GetValue(MousePressedSolidColorBrushProperty); }
+            set { SetValue(MousePressedSolidColorBrushProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MousePressedSolidColorBrush.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MousePressedSolidColorBrushProperty =
+            DependencyProperty.Register("MousePressedSolidColorBrush", typeof(Brush), typeof(VissmaButton), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+
+
+
+
         public Brush MouseOverSolidColorBrush
         {
             get { return (Brush)GetValue(MouseOverSolidColorBrushProperty); }

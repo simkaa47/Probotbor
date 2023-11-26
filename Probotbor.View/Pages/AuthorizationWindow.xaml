@@ -19,12 +19,7 @@
             <SolidColorBrush Color="Red"/>
         </x:Array>
     </Window.Resources>
-    <Viewbox>
-        <b:Interaction.Triggers>
-            <b:DataTrigger Binding="{Binding CurrentUser}" Comparison="NotEqual" Value="{x:Null}" >
-                <b:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource AncestorType=Window}}" MethodName="CloseAuthorisationWindow"/>
-            </b:DataTrigger>
-        </b:Interaction.Triggers>
+    <Viewbox>        
         <Canvas Width="1920" Height="1080">
             <Canvas.Background>
                 <ImageBrush ImageSource="../Pictures/00.png"/>
@@ -54,8 +49,7 @@
                 Canvas.Left="1630" 
                 Canvas.Top="792" 
                 Height="92" 
-                Command="{Binding LoginCommand}"
-                ParameterCommand="{StaticResource LoginModel}"
+                MouseDown="LoginClick"                
                 Background="Transparent"
                 Width="208">
                 <btns:VissmaButton.MouseOverSolidColorBrush>
