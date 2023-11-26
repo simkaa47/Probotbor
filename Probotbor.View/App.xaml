@@ -7,6 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Converters\GlobalConverter.xaml"/>
                 <ResourceDictionary Source="Styles\Buttons.xaml"/>
+                <ResourceDictionary Source="Styles\TabItems.xaml"/>
                 <ResourceDictionary Source="Colors\ColorsDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
