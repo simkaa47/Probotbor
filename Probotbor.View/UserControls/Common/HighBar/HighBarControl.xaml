@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Probotbor.View.UserControls.Common.HighBar.HighBarControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:buttons="clr-namespace:Probotbor.View.UserControls.Buttons"
+             xmlns:vm="clr-namespace:Probotbor.Core.ViewModels;assembly=Probotbor.Core"
+             xmlns:local="clr-namespace:Probotbor.View.UserControls.Common.HighBar"
+             mc:Ignorable="d"              
+             d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
+             Background="{StaticResource TabControlCommon}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Viewbox>        
+        <StackPanel Orientation="Horizontal">
+            <Image Source="../../../Pictures/konvels.png" Margin="10"  />
+            <local:HighBarPlcConnectControl/>
+            <local:HighBarGlobalErrorControl/>
+            <local:HighBarDataControl/>
+            <buttons:VissmaButton Height="50" Width="120" 
+                                  Margin="10"
+                                  BorderBrush="{StaticResource AquaColor}"
+                                  BorderThickness="1"
+                                  Command="{Binding PlcVm.WriteParameterCommand}"
+                                  ParameterCommand="{Binding PlcVm.PlcMainService.PlcModel.CommandModel.RstCmd}"
+                                  Background="Transparent">
+                <buttons:VissmaButton.MouseOverSolidColorBrush>
+                    <SolidColorBrush Color="White" Opacity="0.1"/>
+                </buttons:VissmaButton.MouseOverSolidColorBrush>
+                <TextBlock Text="СБРОС ОШИБОК"
+                           Foreground="White"
+                           Margin="30,0,0,0"
+                           Width="80"
+                           TextWrapping="Wrap"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Center"/>
+            </buttons:VissmaButton>
+            <local:HighBarUserControl DataContext="{Binding AccessViewModel}"/>
+        </StackPanel>      
+    </Viewbox>
+</UserControl>

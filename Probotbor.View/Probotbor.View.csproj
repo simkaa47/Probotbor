@@ -9,6 +9,9 @@
 
   <ItemGroup>
     <None Remove="Pictures\00.png" />
+    <None Remove="Pictures\konvels.png" />
+    <None Remove="Pictures\Ok.png" />
+    <None Remove="Pictures\Warning.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +32,9 @@
 
   <ItemGroup>
     <Resource Include="Pictures\00.png" />
+    <Resource Include="Pictures\konvels.png" />
+    <Resource Include="Pictures\Ok.png" />
+    <Resource Include="Pictures\Warning.png" />
   </ItemGroup>
 
   <ItemGroup>

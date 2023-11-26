@@ -26,6 +26,30 @@ namespace Probotbor.View.Pages
             InitializeComponent();
         }
 
+        private async void LoginClick(object sender, MouseButtonEventArgs e)
+        {
+            var login = GetLoginFromResources();
+            if (login != null)
+            {
+                if (App.Current is App app)
+                {
+                    var vm = app.GetService<AccessViewModel>();
+                    if (vm != null) 
+                    { 
+                        await vm.LoginAsync(login);
+                        if(vm.CurrentUser!=null)
+                        {
+                            var mainWindow = new MainWindow();
+                            app.MainWindow = mainWindow;
+                            mainWindow.DataContext = app.GetService<MainViewModel>();
+                            mainWindow.Show();
+                            this.Close();
+                        }
+                    }
+                }
+            }
+        }
+
         private void Password_PasswordChanged(object sender, RoutedEventArgs e)
         {
             var login  = GetLoginFromResources();
@@ -42,16 +66,5 @@ namespace Probotbor.View.Pages
         }
 
         
-
-        public  void CloseAuthorisationWindow()
-        {
-            if(App.Current is App app)
-            {
-                var mainWindow = app.GetWindow<MainWindow>();
-                app.MainWindow = mainWindow;
-                mainWindow?.Show();
-                this.Close();                
-            }
-        }
     }
 }

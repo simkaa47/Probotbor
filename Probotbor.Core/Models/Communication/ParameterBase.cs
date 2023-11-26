@@ -1,26 +1,33 @@
-﻿using Probotbor.Core.Infrastructure.DataAccess;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Probotbor.Core.Infrastructure.DataAccess;
 
 namespace Probotbor.Core.Models.Communication;
 
-public class ParameterBase : EntityCommon
-{    
-    public string Name { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public ModbusRegType ModbusRegType 
-    { get; 
-        set; }
-    public int RegNum { get; set; }
-    public int BitNum { get; set; }
+public partial class ParameterBase : EntityCommon
+{
+    [ObservableProperty]
+    private string _name = string.Empty;
+    [ObservableProperty]
+    private string _description  = string.Empty;
+    [ObservableProperty]
+    private ModbusRegType _modbusRegType;
+    [ObservableProperty]
+    private int _regNum;
+    [ObservableProperty]
+    private int _bitNum;
     /// <summary>
     /// Db number (Siemens only)
     /// </summary>
-    public int DbNum { get; set; }
+    [ObservableProperty]
+    private int _dbNum;
     /// <summary>
     /// Number of byte (Siemens only)
     /// </summary>
-    public int ByteNum { get; set; }
-
-    public int Length { get; set; }
-    public bool IsRequired { get; set; }
+    [ObservableProperty] 
+    private int _byteNum;
+    [ObservableProperty]
+    private int _length;
+    [ObservableProperty]
+    public bool _isRequired;
 
 }
