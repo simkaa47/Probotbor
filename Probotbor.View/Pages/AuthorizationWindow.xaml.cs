@@ -38,7 +38,7 @@ namespace Probotbor.View.Pages
                     { 
                         await vm.LoginAsync(login);
                         if(vm.CurrentUser!=null)
-                        {
+                        {                            
                             var mainWindow = new MainWindow();
                             app.MainWindow = mainWindow;
                             mainWindow.DataContext = app.GetService<MainViewModel>();

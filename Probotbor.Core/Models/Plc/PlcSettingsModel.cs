@@ -8,7 +8,7 @@ namespace Probotbor.Core.Models.Plc
         {
             KanistraSv  = new Parameter<ushort>(nameof(KanistraSv), "Уставка проб в канистру, шт", 1, 20);
             NakopitelVolume = new Parameter<short>(nameof(NakopitelVolume), "Обьем накопителя, канистр", 1, 16);
-            TimeForKanistra = new Parameter<ushort>(nameof(TimeForKanistra), "Время сбора в одну канистру, мин", 4, 1440);
+            TimeForKanistra = new Parameter<ushort>(nameof(TimeForKanistra), "Частота отбора проб, проб в час", 1, 120);
             ProbeId = new Parameter<string>(nameof(ProbeId), "Id пробы", string.Empty, "ZZZZZZZZZZZZZ") { Length = 12, IsOnlyRead = true };
             AutoMode = new Parameter<bool>(nameof(AutoMode), "Автоматичекий режим", false, true);
             FcFrequencesSvs = Enumerable.Range(0, 4).Select(i => new Parameter<short>(nameof(FcFrequencesSvs) + i + 1, $"Скорость ПЧ {i + 1}, Гц", 0, 50)).ToList();

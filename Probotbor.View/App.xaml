@@ -1,14 +1,19 @@
 ﻿<Application x:Class="Probotbor.View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
              xmlns:local="clr-namespace:Probotbor.View">
-    <Application.Resources>
+    <Application.Resources>        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Enums\Statuses.xaml"/>
+                <ResourceDictionary Source="Resourses\UnitNumbers.xaml"/>
                 <ResourceDictionary Source="Converters\GlobalConverter.xaml"/>
                 <ResourceDictionary Source="Styles\Buttons.xaml"/>
                 <ResourceDictionary Source="Styles\TabItems.xaml"/>
                 <ResourceDictionary Source="Colors\ColorsDictionary.xaml"/>
+                <ResourceDictionary Source="Pictures\PicturesPaths.xaml"/>
+                <ResourceDictionary Source="Styles\ListBoxItems.xaml"/>
+                <ResourceDictionary Source="Styles\TextBlocks.xaml"/>                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

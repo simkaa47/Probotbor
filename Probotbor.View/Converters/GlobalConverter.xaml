@@ -6,4 +6,10 @@
     <conv:AndMultiVisibleConverter x:Key="AndMultiVisibleConverter"/>
     <conv:IfEqualConverter x:Key="IsEqualConverter"/>
     <conv:AndMultiNotVisibleConverter x:Key="AndMultiNotVisibleConverter"/>
+    <conv:UserVisibilityConverter x:Key="UserVisibilityConverter"/>
+    <conv:DivConverter x:Key="DivConverter"/>
+    <conv:GetByIndexFromParameterConverter x:Key="GetByIndexFromParameterConverter"/>
+    <conv:VisibleIfEqualConverter x:Key="VisibleIfEqualConverter"/>
+    <conv:AddNumberConverter x:Key="AddNumberConverter"/>
+    <conv:GetByIndexMultiplyConverter x:Key="GetByIndexMultiplyConverter"/>
 </ResourceDictionary>

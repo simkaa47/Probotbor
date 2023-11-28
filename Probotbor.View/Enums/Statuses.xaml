@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:Array Type="sys:String"  x:Key="ProbotborStatus">
+        <sys:String>Готов к работе</sys:String>
+        <sys:String>Готов к работе</sys:String>
+        <sys:String>Готов к работе</sys:String>
+        <sys:String>Необходим возврат ковша</sys:String>
+        <sys:String>Возврат ковша</sys:String>
+        <sys:String>В работе</sys:String>
+        <sys:String>Ошибка</sys:String>
+    </x:Array>
+
+
+    <x:Array Type="sys:String" x:Key="UniversalStatus">
+        <sys:String>Готов</sys:String>
+        <sys:String>>>>></sys:String>
+        <sys:String>>>></sys:String>
+        <sys:String>>>></sys:String>
+        <sys:String>>>></sys:String>
+        <sys:String>В работе</sys:String>
+        <sys:String>Ошибка</sys:String>
+    </x:Array>
+
+    <x:Array Type="sys:String" x:Key="NakopStatus">
+        <sys:String>Готов</sys:String>
+        <sys:String>Требуется калибровка</sys:String>
+        <sys:String>Калибровка</sys:String>
+        <sys:String>Смена канистры</sys:String>
+        <sys:String>Открыта дверь</sys:String>
+        <sys:String>Ошибка</sys:String>
+        <sys:String>Накопитель заполнен</sys:String>
+    </x:Array>
+
+    <x:Array Type="sys:String" x:Key="DryUnitStatus">
+        <sys:String>Готов</sys:String>
+        <sys:String>Открывание шибера ВЕРХ</sys:String>
+        <sys:String>Ожидание шибера ВЕРХ</sys:String>
+        <sys:String>Закрывание шибера ВЕРХ</sys:String>
+        <sys:String>Сушка</sys:String>
+        <sys:String>Спуск барабана</sys:String>
+        <sys:String>Открывание шибера ВНИЗ</sys:String>
+        <sys:String>Ожидание шибера ВНИЗ</sys:String>
+        <sys:String>Закрывание шибера ВНИЗ</sys:String>
+        <sys:String>Истирание</sys:String>
+        <sys:String>Подьем барабана</sys:String>
+        <sys:String>Ошибка</sys:String>
+    </x:Array>
+
+
+
+
+</ResourceDictionary>

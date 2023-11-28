@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Probotbor.View.UserControls.Common"
              xmlns:main="clr-namespace:Probotbor.View.Pages.MainControlTab"
+             xmlns:u="clr-namespace:Probotbor.Core.Models.AccessControl;assembly=Probotbor.Core"
              xmlns:adm="clr-namespace:Probotbor.View.Pages.Administration"
              xmlns:vm="clr-namespace:Probotbor.Core.ViewModels;assembly=Probotbor.Core"
              d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
@@ -15,7 +16,12 @@
             <TabItem Header="Управление" Style="{StaticResource TabItemStyleCommon}" MinHeight="50" MinWidth="240" FontSize="24">
                 <main:ControlTab/>
             </TabItem>
-            <TabItem Header="Администрирование" Style="{StaticResource TabItemStyleCommon}" MinHeight="50" MinWidth="300" FontSize="24">
+            <TabItem Header="Администрирование"
+                     Style="{StaticResource TabItemStyleCommon}" 
+                     MinHeight="50" 
+                     MinWidth="300"
+                     Visibility="{Binding AccessViewModel.CurrentUser, Converter={StaticResource UserVisibilityConverter}, ConverterParameter={x:Static u:UserAccessLevel.Admin}}"
+                     FontSize="24">
                 <adm:AdministrationControl />
             </TabItem>
         </TabControl>    

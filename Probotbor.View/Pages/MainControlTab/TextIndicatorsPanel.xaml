@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="Probotbor.View.Pages.MainControlTab.TextIndicatorsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materials="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Probotbor.View.Pages.MainControlTab"
+             mc:Ignorable="d" 
+             xmlns:par="clr-namespace:Probotbor.View.UserControls.Parameters"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime" 
+             xmlns:buttons="clr-namespace:Probotbor.View.UserControls.Buttons"
+             xmlns:vm="clr-namespace:Probotbor.Core.ViewModels;assembly=Probotbor.Core"
+             d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Margin="10,20,10,0">
+        <StackPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <x:Array Type="materials:MaterialIcon" x:Key="AutoButtonIcons">
+                <materials:MaterialIcon Kind="Play" Foreground="WhiteSmoke" Height="50"/>
+                <materials:MaterialIcon Kind="Stop" Foreground="WhiteSmoke" Height="50"/>
+            </x:Array>
+            <x:Array Type="sys:String" x:Key="AutoButtonTexts">
+                <sys:String>ВКЛЮЧИТЬ АВТОМАТИЧЕСКИЙ РЕЖИМ</sys:String>
+                <sys:String>ВЫКЛЮЧИТЬ АВТОМАТИЧЕСКИЙ РЕЖИМ</sys:String>
+            </x:Array>
+        </StackPanel.Resources>
+        <!--#region Кнопки  -->
+        <buttons:VissmaButton HorizontalAlignment="Stretch" Height="80"
+                              BorderThickness="1" BorderBrush="{StaticResource AquaColor}"
+                              Command="{Binding PlcVm.WriteParameterCommand}"
+                              Condition="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.AutoMode.Value}"
+                              OnConditionSolidColorBrush="{StaticResource AquaColor}"
+                              Background="Transparent"
+                              ParameterCommand="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.AutoMode}">
+            <buttons:VissmaButton.MouseOverSolidColorBrush>
+                <SolidColorBrush Color="White" Opacity="0.1"/>
+            </buttons:VissmaButton.MouseOverSolidColorBrush>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <ContentControl Content="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.AutoMode.Value, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource AutoButtonIcons}}"/>
+                <TextBlock Text="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.AutoMode.Value, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource AutoButtonTexts}}"/>
+            </StackPanel>
+        </buttons:VissmaButton>
+        <!--#endregion-->
+
+        <!--#region Статусы -->
+        <ListBox Background="Transparent"
+                 BorderThickness="0"
+                 Margin="0,10,0,0"
+                 ItemContainerStyle="{StaticResource ParameterListBoxItem}">
+            <!--#region Проботборник 1 -->
+            <local:TextStatusControl Number="{DynamicResource ProbNum}"                                     
+                                     Tag="Проботборник"
+                                     Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotborStatus}}"/>
+            <!--#endregion-->
+            <!--#region Питатпель -->
+            <local:TextStatusControl Number="{DynamicResource PitatelNum}"                                     
+                                     Tag="Питатель"
+                                     Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.PitatelExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
+                                     Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.PitatelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"/>
+            <!--#endregion-->
+            <!--#region Дробилка -->
+            <local:TextStatusControl Number="{DynamicResource DrobilkaNumNum}"                                     
+                                     Tag="Дробилка"
+                                     Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.DrobilkaExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
+                                     Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.DrobilkaStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"/>
+            <!--#endregion-->
+            <!--#region Делитель -->
+            <local:TextStatusControl Number="{DynamicResource DelitelNum}"                                     
+                                     Tag="Делитель"
+                                     Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.SecondaryExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
+                                     Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus2.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotborStatus}}"/>
+            <!--#endregion-->
+            <!--#region Блок сушки -->
+            <local:TextStatusControl Number="{DynamicResource DryNum}"                                     
+                                     Tag="Блок сушки"
+                                     Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.DryUnitExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
+                                     Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.DryUnitStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DryUnitStatus}}"/>
+            <!--#endregion-->
+            <!--#region Истиратель -->
+            <local:TextStatusControl Number="{DynamicResource IstiratelNum}"                                     
+                                     Tag="Истиратель"
+                                     Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.IstiratelExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
+                                     Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.IstiratelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"/>
+            <!--#endregion-->
+            <!--#region Накопитенль -->
+            <local:TextStatusControl Number="{DynamicResource NakopitelNum}"                                     
+                                     Tag="Накопитель"
+                                     Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.NakopitelExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
+                                     Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.NakopitelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource NakopStatus}}"/>
+            <!--#endregion-->
+            <!--#region Возврта -->
+            <local:TextStatusControl Number="{DynamicResource ReturnNum}"                                     
+                                     Tag="Возврат пробы"
+                                     Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.ReturnExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
+                                     Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.SysReturnStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"/>
+            <!--#endregion-->
+        </ListBox>
+        <!--#endregion-->
+
+        <!--#region Параметры -->
+        <ListBox ItemContainerStyle="{StaticResource ParameterListBoxItemWithBorder}"
+                 Background="Transparent"
+                 FontWeight="Normal"
+                 BorderThickness="0">
+            <ListBox.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="Foreground" Value="WhiteSmoke"/>                    
+                </Style>
+            </ListBox.Resources>
+            <!--#region Время до следующей пробы -->
+            <DockPanel Margin="10,0,10,0" Height="60">
+                <TextBlock Text="Время до следующей пробы" Style="{StaticResource TextBlockCommon}"/>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0:d2} часов {1:d2} минут {2:d2} секунд">
+                                <Binding Path="PlcVm.PlcMainService.PlcModel.IndicationModel.TimeBeforeNextOtborHours.Value"/>
+                                <Binding Path="PlcVm.PlcMainService.PlcModel.IndicationModel.TimeBeforeNextOtborMinutes.Value"/>
+                                <Binding Path="PlcVm.PlcMainService.PlcModel.IndicationModel.TimeBeforeNextOtborSeconds.Value"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+            </DockPanel>
+            <!--#endregion-->
+            <!--#region Частота отбора проб -->
+            <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.TimeForKanistra}"
+                                  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.PlcVm.WriteParameterCommand}"/>
+            <!--#endregion-->
+            <!--#region Прежельное кол-во проб в канистре -->
+            <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.KanistraSv}"   
+                                  Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.NakopitelExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
+                                  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.PlcVm.WriteParameterCommand}"/>
+            <!--#endregion-->
+            <!--#region Текущее кол-во проб в канистре -->
+            <DockPanel Margin="10,0,10,0" Height="60" Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.NakopitelExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}">
+                <TextBlock Text="Текущее кол-во проб в канистре" Style="{StaticResource TextBlockCommon}"/>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Width="100">
+                    <TextBlock Text="{Binding ProbeCnt.Value}" Margin="10,0,0,0">
+                            <TextBlock.DataContext>
+                                <MultiBinding Converter="{StaticResource GetByIndexMultiplyConverter}">
+                                    <Binding Path="PlcVm.PlcMainService.PlcModel.IndicationModel.NakopitelCurrentCell.Value"/>
+                                    <Binding Path="PlcVm.PlcMainService.PlcModel.IndicationModel.Kanistras"/>                                    
+                                </MultiBinding>
+                            </TextBlock.DataContext>
+                        </TextBlock>
+                    <TextBlock Text="/"/>
+                    <TextBlock Text="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.KanistraSv.Value}"/>
+                </StackPanel>
+            </DockPanel>
+            <!--#endregion-->
+        </ListBox>
+        <!--#endregion-->
+    </StackPanel>
+</UserControl>

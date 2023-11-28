@@ -14,9 +14,13 @@
             <Style TargetType="Border">
                 <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource AncestorType=local:VissmaButton}, Path=Background}"/>
                 <Style.Triggers>
+                   
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:VissmaButton}, Path=Condition}" Value="True">
+                        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource AncestorType=local:VissmaButton}, Path=OnConditionSolidColorBrush}"/>
+                    </DataTrigger>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource AncestorType=local:VissmaButton}, Path=MouseOverSolidColorBrush}"/>
-                    </Trigger>                    
+                    </Trigger>
                 </Style.Triggers>
             </Style>
         </Grid.Resources>

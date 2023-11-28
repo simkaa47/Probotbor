@@ -9,8 +9,49 @@
 
   <ItemGroup>
     <None Remove="Pictures\00.png" />
+    <None Remove="Pictures\Delitel\470.jpg" />
+    <None Remove="Pictures\Delitel\471.jpg" />
+    <None Remove="Pictures\Delitel\472.jpg" />
+    <None Remove="Pictures\Delitel\473.jpg" />
+    <None Remove="Pictures\Delitel\474.jpg" />
+    <None Remove="Pictures\Delitel\475.jpg" />
+    <None Remove="Pictures\Delitel\476.jpg" />
+    <None Remove="Pictures\Drobilka\540.jpg" />
+    <None Remove="Pictures\Drobilka\545.png" />
+    <None Remove="Pictures\Drobilka\546.jpg" />
+    <None Remove="Pictures\Dry\Dry_0.jpg" />
+    <None Remove="Pictures\Dry\Dry_10.jpg" />
+    <None Remove="Pictures\Dry\Dry_11.jpg" />
+    <None Remove="Pictures\Istiratel\Istiratel_Err.jpg" />
+    <None Remove="Pictures\Istiratel\Istiratel_Stop.jpg" />
+    <None Remove="Pictures\Istiratel\Istiratel_Work.jpg" />
     <None Remove="Pictures\konvels.png" />
+    <None Remove="Pictures\Nakopitel\530.jpg" />
+    <None Remove="Pictures\Nakopitel\531.jpg" />
+    <None Remove="Pictures\Nakopitel\532.jpg" />
+    <None Remove="Pictures\Nakopitel\533.jpg" />
+    <None Remove="Pictures\Nakopitel\534.jpg" />
+    <None Remove="Pictures\Nakopitel\535.jpg" />
+    <None Remove="Pictures\Nakopitel\536.jpg" />
     <None Remove="Pictures\Ok.png" />
+    <None Remove="Pictures\Pitatel\490.jpg" />
+    <None Remove="Pictures\Pitatel\491.jpg" />
+    <None Remove="Pictures\Pitatel\492.jpg" />
+    <None Remove="Pictures\Pitatel\493.jpg" />
+    <None Remove="Pictures\Pitatel\494.jpg" />
+    <None Remove="Pictures\Pitatel\495.jpg" />
+    <None Remove="Pictures\Pitatel\496.jpg" />
+    <None Remove="Pictures\Probotborniks\480.jpg" />
+    <None Remove="Pictures\Probotborniks\481.jpg" />
+    <None Remove="Pictures\Probotborniks\482.jpg" />
+    <None Remove="Pictures\Probotborniks\483.jpg" />
+    <None Remove="Pictures\Probotborniks\484.jpg" />
+    <None Remove="Pictures\Probotborniks\485.jpg" />
+    <None Remove="Pictures\Probotborniks\486.jpg" />
+    <None Remove="Pictures\Return\SysRet_Err.jpg" />
+    <None Remove="Pictures\Return\SysRet_Stop.jpg" />
+    <None Remove="Pictures\Return\SysRet_Work.jpg" />
+    <None Remove="Pictures\SVG\KONVELS_NORNIKEL_upravlenie-59.svg" />
     <None Remove="Pictures\Warning.png" />
   </ItemGroup>
 
@@ -24,6 +65,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+    <PackageReference Include="SharpVectors" Version="1.8.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,8 +74,49 @@
 
   <ItemGroup>
     <Resource Include="Pictures\00.png" />
+    <Resource Include="Pictures\Delitel\470.jpg" />
+    <Resource Include="Pictures\Delitel\471.jpg" />
+    <Resource Include="Pictures\Delitel\472.jpg" />
+    <Resource Include="Pictures\Delitel\473.jpg" />
+    <Resource Include="Pictures\Delitel\474.jpg" />
+    <Resource Include="Pictures\Delitel\475.jpg" />
+    <Resource Include="Pictures\Delitel\476.jpg" />
+    <Resource Include="Pictures\Drobilka\540.jpg" />
+    <Resource Include="Pictures\Drobilka\545.png" />
+    <Resource Include="Pictures\Drobilka\546.jpg" />
+    <Resource Include="Pictures\Dry\Dry_0.jpg" />
+    <Resource Include="Pictures\Dry\Dry_10.jpg" />
+    <Resource Include="Pictures\Dry\Dry_11.jpg" />
+    <Resource Include="Pictures\Istiratel\Istiratel_Err.jpg" />
+    <Resource Include="Pictures\Istiratel\Istiratel_Stop.jpg" />
+    <Resource Include="Pictures\Istiratel\Istiratel_Work.jpg" />
     <Resource Include="Pictures\konvels.png" />
+    <Resource Include="Pictures\Nakopitel\530.jpg" />
+    <Resource Include="Pictures\Nakopitel\531.jpg" />
+    <Resource Include="Pictures\Nakopitel\532.jpg" />
+    <Resource Include="Pictures\Nakopitel\533.jpg" />
+    <Resource Include="Pictures\Nakopitel\534.jpg" />
+    <Resource Include="Pictures\Nakopitel\535.jpg" />
+    <Resource Include="Pictures\Nakopitel\536.jpg" />
     <Resource Include="Pictures\Ok.png" />
+    <Resource Include="Pictures\Pitatel\490.jpg" />
+    <Resource Include="Pictures\Pitatel\491.jpg" />
+    <Resource Include="Pictures\Pitatel\492.jpg" />
+    <Resource Include="Pictures\Pitatel\493.jpg" />
+    <Resource Include="Pictures\Pitatel\494.jpg" />
+    <Resource Include="Pictures\Pitatel\495.jpg" />
+    <Resource Include="Pictures\Pitatel\496.jpg" />
+    <Resource Include="Pictures\Probotborniks\480.jpg" />
+    <Resource Include="Pictures\Probotborniks\481.jpg" />
+    <Resource Include="Pictures\Probotborniks\482.jpg" />
+    <Resource Include="Pictures\Probotborniks\483.jpg" />
+    <Resource Include="Pictures\Probotborniks\484.jpg" />
+    <Resource Include="Pictures\Probotborniks\485.jpg" />
+    <Resource Include="Pictures\Probotborniks\486.jpg" />
+    <Resource Include="Pictures\Return\SysRet_Err.jpg" />
+    <Resource Include="Pictures\Return\SysRet_Stop.jpg" />
+    <Resource Include="Pictures\Return\SysRet_Work.jpg" />
+    <Resource Include="Pictures\SVG\KONVELS_NORNIKEL_upravlenie-59.svg" />
     <Resource Include="Pictures\Warning.png" />
   </ItemGroup>
 
