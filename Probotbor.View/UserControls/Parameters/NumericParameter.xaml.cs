@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Probotbor.Core.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,20 @@ namespace Probotbor.View.UserControls.Parameters
         {
             InitializeComponent();
         }
+
+        public override void EndInit()
+        {
+            base.EndInit();
+            if(App.Current is App app)
+            {
+                var plcVm = app.GetService<PlcVm>();
+                if(plcVm != null) 
+                {
+                    Input.InputBindings[0].Command = plcVm.WriteParameterCommand;
+                }
+            }
+            
+        }
+
     }
 }

@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:material="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
              xmlns:local="clr-namespace:Probotbor.View.UserControls.Parameters"
              mc:Ignorable="d" 
+             x:Name="numeric"
              d:DesignHeight="450" d:DesignWidth="800">
     <local:ParameterCommon.Resources>
         <ControlTemplate x:Key="validationFailed">
@@ -42,13 +44,22 @@
                                 </TextBox>
                             </Border>                            
                         </StackPanel>
-                        <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding IsWriting}" Value="False">
-                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource AquaColor}"/>
+                        <ControlTemplate.Triggers>                            
+                            <DataTrigger Binding="{Binding IsOnlyRead}" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent"/>
                             </DataTrigger>
                             <Trigger Property="Validation.HasError" Value="True">
                                 <Setter TargetName="Border" Property="BorderBrush" Value="Red"/>                                
                             </Trigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsWriting}" Value="False"/>
+                                    <Condition Binding="{Binding IsOnlyRead}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.Setters>
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource AquaColor}"/>
+                                </MultiDataTrigger.Setters>
+                            </MultiDataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -56,17 +67,20 @@
         </Style>
     </local:ParameterCommon.Resources>
     <DockPanel Margin="10,0,10,0" MinHeight="50">
-        <TextBlock Text="{Binding Description}"
-                   Visibility="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}, Path=DescriptionInvisible, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=False}"/>
-        <StackPanel Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
             <TextBox Name="Input" Width="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}, Path=ParamWidth, TargetNullValue=100}"
                      Background="Transparent"                     
                      Foreground="WhiteSmoke"
                      Validation.ErrorTemplate="{StaticResource validationFailed}"
                      Style="{StaticResource ParameterTextBox}"
-                     VerticalAlignment="Center"
+                     VerticalAlignment="Center"                     
                      BorderThickness="0"
                      IsReadOnly="{Binding IsOnlyRead}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="MouseUp">
+                        <b:CallMethodAction MethodName="hh" TargetObject="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}}"/>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
                 <TextBox.Text>
                     <Binding Path="WriteValue" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
@@ -74,13 +88,14 @@
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
-                <TextBox.InputBindings>
-                    <KeyBinding Gesture="Enter"
-								Command="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}, Path=Command}"
-                                CommandParameter="{Binding}">                       
+                <TextBox.InputBindings>                    
+                    <KeyBinding Gesture="Enter" 
+								Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcVm.WriteParameterCommand, Converter={StaticResource CommandConverter}, Mode=OneTime, UpdateSourceTrigger=PropertyChanged}"
+                                CommandParameter="{Binding ElementName=numeric, Path=DataContext}">
 
                     </KeyBinding>
                 </TextBox.InputBindings>
+                
             </TextBox>
             <material:MaterialIcon Kind="DownloadCircle" Height="30" Width="30"
 								   HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -88,5 +103,11 @@
 								   Margin="5,0,0,0" 
                                    Visibility="{Binding IsWriting, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
         </StackPanel>
+        <TextBlock Text="{Binding Description}"
+                   TextWrapping="Wrap"
+                   Margin="0,5,0,5"
+                   Style="{StaticResource TextBlockCommon}"
+                   Visibility="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}, Path=DescriptionInvisible, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=False}"/>
+        
     </DockPanel>
 </local:ParameterCommon>

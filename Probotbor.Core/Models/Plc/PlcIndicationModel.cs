@@ -51,10 +51,16 @@ namespace Probotbor.Core.Models.Plc
             PitatelTimeCurrent = new Parameter<short>(nameof(PitatelTimeCurrent), "Текущее время питателя, с, с", 0, short.MaxValue) { IsOnlyRead = true };        
             IstiratelTimeCurrent = new Parameter<short>(nameof(IstiratelTimeCurrent), "Текущее время истирателя, с, с", 0, short.MaxValue) { IsOnlyRead = true };        
             SysReturnTimeCurrent = new Parameter<short>(nameof(SysReturnTimeCurrent), "Текущее время системы возврата проб, с", 0, short.MaxValue) { IsOnlyRead = true };        
-            DryCurrentTime = new Parameter<short>(nameof(DryCurrentTime), "Текущее время сушки , с", 0, short.MaxValue) { IsOnlyRead = true };        
+            DryCurrentTime = new Parameter<short>(nameof(DryCurrentTime), "Текущее время сушки , с", 0, short.MaxValue) { IsOnlyRead = true };
+            PitatelCurrentVolume = new Parameter<short>(nameof(PitatelCurrentVolume), "Проб в питателе, шт", 0, short.MaxValue) { IsOnlyRead = true };
+            ProbotborTimeCurrent1 = new Parameter<short>(nameof(ProbotborTimeCurrent1), "Текущее время работы", 0, short.MaxValue) { IsOnlyRead = true };
+            ProbotborTimeCurrent2 = new Parameter<short>(nameof(ProbotborTimeCurrent2), "Текущее время работы", 0, short.MaxValue) { IsOnlyRead = true };
+            DrobilkaTimeTimeCurrent = new Parameter<short>(nameof(DrobilkaTimeTimeCurrent), "Текущее время работы", 0, short.MaxValue) { IsOnlyRead = true };
             IsInitialized = true;
-        }        
-
+        }
+        #region Проб в питателе, шт
+        public Parameter<short> PitatelCurrentVolume { get; }
+        #endregion
         #region Статус накопителя
         public Parameter<short> NakopitelStatus { get; }
         #endregion
@@ -179,7 +185,16 @@ namespace Probotbor.Core.Models.Plc
         public Parameter<short> SysReturnTimeCurrent { get; }
         #endregion
         #region Текущее время сушки , с
-        public Parameter<short> DryCurrentTime { get; } 
+        public Parameter<short> DryCurrentTime { get; }
+        #endregion
+        #region Текущее время первичного проботборника 1
+        public Parameter<short> ProbotborTimeCurrent1 { get; }
+        #endregion
+        #region Текущее время первичного проботборника 2
+        public Parameter<short> ProbotborTimeCurrent2 { get; }
+        #endregion
+        #region Текущее время дробилки
+        public Parameter<short> DrobilkaTimeTimeCurrent { get; }
         #endregion
     }
 }
