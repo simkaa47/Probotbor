@@ -12,4 +12,5 @@
     <conv:VisibleIfEqualConverter x:Key="VisibleIfEqualConverter"/>
     <conv:AddNumberConverter x:Key="AddNumberConverter"/>
     <conv:GetByIndexMultiplyConverter x:Key="GetByIndexMultiplyConverter"/>
+    <conv:CommandConverter x:Key="CommandConverter"/>
 </ResourceDictionary>

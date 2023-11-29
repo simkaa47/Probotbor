@@ -21,10 +21,15 @@ namespace Probotbor.Core.Models.Plc
             DryUnitTemperatureSv = new Parameter<short>(nameof(DryUnitTemperatureSv), "Блок осушителя, уставка температуры, С", 20, 300);
             ProbotbornikTimeout1 = new Parameter<short>(nameof(ProbotbornikTimeout1), "Тайм-аут движения ковша проботборника 1, c", 1, 100);
             ProbotbornikTimeout2  = new Parameter<short>(nameof(ProbotbornikTimeout2), "Тайм-аут движения ковша проботборника 2, c", 1, 100);
-        }
+            PitatelVolume = new Parameter<ushort>(nameof(PitatelVolume), "Обьем питателя, шт", 1, 100);
+            PitatelStayTime = new Parameter<short>(nameof(PitatelStayTime), "Время работы питателя в накопительном режиме", 0, 100);
+            DrobilkaTime = new Parameter<ushort>(nameof(DrobilkaTime), "Время работы дробилки", 0, 1000);
+    }
 
 
-
+        #region Обьем питателя, шт
+        public Parameter<ushort> PitatelVolume { get; }
+        #endregion
         #region Уставка проб в канистру, шт
         public Parameter<ushort> KanistraSv { get; }
         #endregion
@@ -50,7 +55,10 @@ namespace Probotbor.Core.Models.Plc
         public Parameter<short> DryUnitDryTime { get; } 
         #endregion
         #region Время работы питателя в автоматическом режиме, с
-        public Parameter<short> PitatelWorkTime { get; } 
+        public Parameter<short> PitatelWorkTime { get; }
+        #endregion
+        #region Время работы питателя в накопительном режиме
+        public Parameter<short> PitatelStayTime { get; }
         #endregion
         #region Время работы системы возврата проб в автоматическом режиме, с
         public Parameter<short> SysReturnWorkTime { get; } 
@@ -69,6 +77,9 @@ namespace Probotbor.Core.Models.Plc
         #endregion
         #region Тайм-аут движения ковша проботборника 2
         public Parameter<short> ProbotbornikTimeout2 { get; }
+        #endregion
+        #region Время работы дробилки, с
+        public Parameter<ushort> DrobilkaTime { get; }
         #endregion
     }
 }
