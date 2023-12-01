@@ -10,6 +10,7 @@
     <conv:DivConverter x:Key="DivConverter"/>
     <conv:GetByIndexFromParameterConverter x:Key="GetByIndexFromParameterConverter"/>
     <conv:VisibleIfEqualConverter x:Key="VisibleIfEqualConverter"/>
+    <conv:VisisbleIfNotEqual x:Key="VisisbleIfNotEqual"/>
     <conv:AddNumberConverter x:Key="AddNumberConverter"/>
     <conv:GetByIndexMultiplyConverter x:Key="GetByIndexMultiplyConverter"/>
     <conv:CommandConverter x:Key="CommandConverter"/>

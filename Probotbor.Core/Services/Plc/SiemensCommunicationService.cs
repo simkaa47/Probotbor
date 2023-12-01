@@ -58,6 +58,7 @@ namespace Probotbor.Core.Services.Plc
                         }
                     }
                 }
+                ScanCompletedEvent?.Invoke();
             }
             catch (Exception ex)
             {
