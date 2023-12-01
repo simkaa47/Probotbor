@@ -1,0 +1,77 @@
+﻿<Window x:Class="Probotbor.View.Dialogs.Errors.AddErrorDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Probotbor.View.Dialogs.Errors"
+        mc:Ignorable="d"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:par="clr-namespace:Probotbor.Core.Models.Communication;assembly=Probotbor.Core"
+        SizeToContent="Height"
+        d:DataContext="{d:DesignInstance Type=par:ParameterBase}"
+        Width="400"
+        Title="Добавление ошибки">
+    <StackPanel>
+        <StackPanel.Resources>            
+            <Style TargetType="TextBlock" x:Key="desc">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <ObjectDataProvider x:Key="RegTypes"
+                                ObjectType="{x:Type sys:Enum}"
+                                MethodName="GetValues">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="par:ModbusRegType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </StackPanel.Resources>
+        <!--#region Описание -->
+        <DockPanel >
+            <TextBlock Text="Описание ошибки" Style="{StaticResource desc}"/>
+            <TextBox HorizontalAlignment="Right" TabIndex="2"
+					 Margin="50,5,5,5" Width="200" Text="{Binding Description , ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <!--#endregion-->
+        <!--#region тип регистра -->
+        <DockPanel >
+            <TextBlock Text="Тип регистра (если Modbus)" Style="{StaticResource desc}"/>
+            <ComboBox HorizontalAlignment="Right" TabIndex="2"
+                      ItemsSource="{Binding Source={StaticResource RegTypes}}"
+                      SelectedItem="{Binding ModbusRegType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					  Margin="50,5,5,5" Width="100"/>
+        </DockPanel>
+        <!--#endregion-->
+        <!--#region # регистра -->
+        <DockPanel >
+            <TextBlock Text="Номер регистра (если Modbus)" Style="{StaticResource desc}"/>
+            <TextBox HorizontalAlignment="Right" TabIndex="2"
+					 Margin="50,5,5,5" Width="100" Text="{Binding RegNum , ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <!--#endregion-->
+        <!--#region № дб -->
+        <DockPanel >
+            <TextBlock Text="Номер ДБ (если Siemens)" Style="{StaticResource desc}"/>
+            <TextBox HorizontalAlignment="Right" TabIndex="2"
+					 Margin="50,5,5,5" Width="100" Text="{Binding DbNum , ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <!--#endregion-->
+        <!--#region № байта -->
+        <DockPanel >
+            <TextBlock Text="Номер байта (если Siemens)" Style="{StaticResource desc}"/>
+            <TextBox HorizontalAlignment="Right" TabIndex="2"
+					 Margin="50,5,5,5" Width="100" Text="{Binding ByteNum , ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <!--#endregion-->
+        <!--#region № ,bnf -->
+        <DockPanel >
+            <TextBlock Text="Номер бита (если Siemens)" Style="{StaticResource desc}"/>
+            <TextBox HorizontalAlignment="Right" TabIndex="2"
+					 Margin="50,5,5,5" Width="100" Text="{Binding BitNum , ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <!--#endregion-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Margin="15" Width="100" Content="Отмена" Click="Cancel_Click" HorizontalContentAlignment="Center"/>
+            <Button Margin="15" Width="100" Content="Ок" IsEnabled="{Binding HasErrors, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}"  HorizontalContentAlignment="Center"  Click="Accept_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -21,12 +21,12 @@ namespace Probotbor.View.Dialogs.AccessControl
             User = user;
         }
 
-        public User User { get; }
+        public User? User { get; }
 
         void Accept_Click(object sender, RoutedEventArgs e)
         {
-            User.Validate();
-            if(!User.HasErrors)
+            User?.Validate();
+            if(User is not null &&!User.HasErrors)
             {
                 DialogResult = true;
                 Close();

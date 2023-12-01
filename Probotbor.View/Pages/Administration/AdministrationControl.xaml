@@ -12,6 +12,9 @@
         <TabItem Header="Параметры">
             <local:ParametersView DataContext="{Binding ParametersVm}"/>
         </TabItem>
+        <TabItem Header="Ошибки">
+            <local:ErrorsEditView DataContext="{Binding ParametersVm}"/>
+        </TabItem>
         <TabItem Header="Пользователи">
             <local:UsersControl DataContext="{Binding AccessViewModel}"/>
         </TabItem>
