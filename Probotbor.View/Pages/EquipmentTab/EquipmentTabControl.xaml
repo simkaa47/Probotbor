@@ -72,14 +72,11 @@
                              ItemContainerStyle="{StaticResource ParameterListBoxItemWithBorder}"
                              BorderThickness="0">
                                 <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.FcFrequencesSvs[0]}"
-                                              Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.PlcVm.WriteParameterCommand, UpdateSourceTrigger=PropertyChanged}"
+                                              
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
-                                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.TimeForKanistra}"
-                                              Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.PlcVm.WriteParameterCommand, UpdateSourceTrigger=PropertyChanged}"/>
-                                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.ProbotbornikTimeout1}"
-                                              Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.PlcVm.WriteParameterCommand, UpdateSourceTrigger=PropertyChanged}"/>
+                                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.TimeForKanistra}"/>
+                                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.ProbotbornikTimeout1}"/>
                                 <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborTimeCurrent1}"
-                                              Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.PlcVm.WriteParameterCommand, UpdateSourceTrigger=PropertyChanged}"
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
 
                             </ListBox>
@@ -100,16 +97,12 @@
                              ItemContainerStyle="{StaticResource ParameterListBoxItemWithBorder}"
                              BorderThickness="0">
                             <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.FcFrequencesSvs[1]}"
-                                              Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.PlcVm.WriteParameterCommand, UpdateSourceTrigger=PropertyChanged}"
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
                             <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.PitatelVolume}"
-                                              Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.PlcVm.WriteParameterCommand, UpdateSourceTrigger=PropertyChanged}"
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
                             <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.PitatelStayTime}"
-                                              Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.PlcVm.WriteParameterCommand, UpdateSourceTrigger=PropertyChanged}"
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
                             <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.PitatelWorkTime}"
-                                              Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.PlcVm.WriteParameterCommand, UpdateSourceTrigger=PropertyChanged}"
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
                             <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.PitatelTimeCurrent}"                                              
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>

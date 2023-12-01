@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Probotbor.Core.Attribites;
 using Probotbor.Core.Models.Plc;
 using System.Collections;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Timers;
 
 namespace Probotbor.Core.Models.Communication;
@@ -66,6 +68,8 @@ public partial class Parameter<T> : ParameterBase, INotifyDataErrorInfo where T 
 
     T _writeValue;
 
+    
+    [InDiapasone(nameof(MinValue), nameof(MaxValue))]
     public T WriteValue
     {
         get => _writeValue;
@@ -73,16 +77,11 @@ public partial class Parameter<T> : ParameterBase, INotifyDataErrorInfo where T 
         {
             if (value != null)
             {
-                ValidationOk = true;
-                ClearError(nameof(WriteValue));
-                if (value.CompareTo(MinValue) < 0 || value.CompareTo(MaxValue) > 0)
-                {
-                    AddError(nameof(WriteValue), $"Input value ({value}) must be between {MinValue} and {MaxValue}");
-                }
+                ValidateProperty(value, nameof(WriteValue));
                 if (value.CompareTo(Value) != 0)
                 {
                     RestartTimer();
-                }
+                }                
                 SetProperty(ref _writeValue, value);
 
             }
@@ -90,37 +89,38 @@ public partial class Parameter<T> : ParameterBase, INotifyDataErrorInfo where T 
     }
 
 
-    private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
-    public bool HasErrors => _propertyErrors.Any();
-    public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+    //private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
+    //public bool HasErrors => _propertyErrors.Any();
+    //public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
-    public IEnumerable GetErrors(string? propertyName)
-    {        
-        return _propertyErrors.GetValueOrDefault(propertyName, null);
-    }
+    //public IEnumerable GetErrors(string? propertyName)
+    //{        
+    //    return _propertyErrors.GetValueOrDefault(propertyName, null);
+    //}
 
-    public void AddError(string propertyName, string message)
-    {
-        if (!_propertyErrors.ContainsKey(propertyName))
-        {
-            _propertyErrors.Add(propertyName, new List<string>());
-        }
-        _propertyErrors[propertyName].Add(message);
-        OnPropertyChanged(propertyName);
-        ValidationOk = false;
-    }
+    //public void AddError(string propertyName, string message)
+    //{
+    //    if (!_propertyErrors.ContainsKey(propertyName))
+    //    {
+    //        _propertyErrors.Add(propertyName, new List<string>());
+    //    }
+    //    _propertyErrors[propertyName].Add(message);
+    //    OnPropertyChanged(propertyName);
+        
+    //    ValidationOk = false;
+    //}
 
-    public void ClearError(string propertyName)
-    {
-        if (_propertyErrors.Remove(propertyName))
-        {
-            OnErrorsChanged(propertyName);
-        }
-    }
+    //public void ClearError(string propertyName)
+    //{
+    //    if (_propertyErrors.Remove(propertyName))
+    //    {
+    //        OnErrorsChanged(propertyName);
+    //    }
+    //}
 
-    private void OnErrorsChanged(string propertyName)
-    {
-        ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
-    }
+    //private void OnErrorsChanged(string propertyName)
+    //{
+    //    ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+    //}
 
 }

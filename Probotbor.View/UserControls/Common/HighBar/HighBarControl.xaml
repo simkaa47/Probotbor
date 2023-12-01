@@ -14,6 +14,7 @@
         <StackPanel Orientation="Horizontal">
             <Image Source="../../../Pictures/konvels.png" Margin="10"  />
             <local:HighBarPlcConnectControl/>
+            <local:HighBarReadyControl/>
             <local:HighBarGlobalErrorControl/>
             <local:HighBarDataControl/>
             <buttons:VissmaButton Height="50" Width="120" 

@@ -24,7 +24,7 @@
                 <sys:String>ОШИБКИ СИСТЕМЫ</sys:String>
             </x:Array>
         </Grid.Resources>
-        <Border VerticalAlignment="Stretch" Width="160" 
+        <Border VerticalAlignment="Stretch" Width="160" Margin="1,0,1,0"
                 Background="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.GlobalError.Value, 
             Converter={StaticResource IfTrueConverter}, 
             ConverterParameter={StaticResource BorderColors}, UpdateSourceTrigger=PropertyChanged}" >

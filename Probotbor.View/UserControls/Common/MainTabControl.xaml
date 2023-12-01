@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:eq="clr-namespace:Probotbor.View.Pages.EquipmentTab"
+             xmlns:err="clr-namespace:Probotbor.View.Pages.ErrorsTab"
              xmlns:local="clr-namespace:Probotbor.View.UserControls.Common"
              xmlns:main="clr-namespace:Probotbor.View.Pages.MainControlTab"
              xmlns:u="clr-namespace:Probotbor.Core.Models.AccessControl;assembly=Probotbor.Core"
@@ -21,7 +22,7 @@
                 <eq:EquipmentTabControl/>
             </TabItem>
             <TabItem Header="Ошибки" Style="{StaticResource TabItemStyleCommon}" MinHeight="50" MinWidth="270" FontSize="24">
-                <eq:EquipmentTabControl/>
+                <err:ErrorsTabControl DataContext="{Binding ParametersVm}"/>
             </TabItem>
             <TabItem Header="Администрирование"
                      Style="{StaticResource TabItemStyleCommon}" 

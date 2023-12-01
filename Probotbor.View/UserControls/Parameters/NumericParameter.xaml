@@ -75,24 +75,18 @@
                      Style="{StaticResource ParameterTextBox}"
                      VerticalAlignment="Center"                     
                      BorderThickness="0"
-                     IsReadOnly="{Binding IsOnlyRead}">
-                <b:Interaction.Triggers>
-                    <b:EventTrigger EventName="MouseUp">
-                        <b:CallMethodAction MethodName="hh" TargetObject="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}}"/>
-                    </b:EventTrigger>
-                </b:Interaction.Triggers>
+                     IsReadOnly="{Binding IsOnlyRead}">               
                 <TextBox.Text>
-                    <Binding Path="WriteValue" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                    <Binding Path="WriteValue" ValidatesOnNotifyDataErrors="True" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                         <Binding.ValidationRules>
+                            <NotifyDataErrorValidationRule/>
                             <DataErrorValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
                 <TextBox.InputBindings>                    
-                    <KeyBinding Gesture="Enter" 
-								Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcVm.WriteParameterCommand, Converter={StaticResource CommandConverter}, Mode=OneTime, UpdateSourceTrigger=PropertyChanged}"
+                    <KeyBinding Gesture="Enter"
                                 CommandParameter="{Binding ElementName=numeric, Path=DataContext}">
-
                     </KeyBinding>
                 </TextBox.InputBindings>
                 

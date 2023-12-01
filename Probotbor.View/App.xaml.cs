@@ -2,10 +2,12 @@
 using Microsoft.Extensions.Hosting;
 using Probotbor.Core;
 using Probotbor.Core.Contracts.AccessControl;
+using Probotbor.Core.Contracts.Communication;
 using Probotbor.Core.Contracts.Dialog;
 using Probotbor.Core.ViewModels;
 using Probotbor.View.Dialogs;
 using Probotbor.View.Dialogs.AccessControl;
+using Probotbor.View.Dialogs.Errors;
 using Probotbor.View.Pages;
 using System;
 using System.Windows;
@@ -33,7 +35,7 @@ namespace Probotbor.View
                     services.AddApplicationServices(conf.Configuration);
                     services.AddScoped<IAccessDialogService, UserDialogService>();
                     services.AddScoped<IQuestionDialog, AskDialog>();
-                    
+                    services.AddScoped<IErrorDialog, AddErrorDialog>();
 
                 }).Build();
         }
