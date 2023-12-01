@@ -17,11 +17,7 @@ namespace Probotbor.Core.ViewModels
 
         [RelayCommand]
         public void WriteParameter(object parameter)
-        {
-            
-            
-            
-            
+        {    
             if (parameter is Parameter<bool> parBool)
             {
                 parBool.WriteValue = !parBool.Value;

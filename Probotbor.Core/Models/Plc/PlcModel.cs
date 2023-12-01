@@ -11,11 +11,14 @@ namespace Probotbor.Core.Models.Plc
             IndicationModel = new PlcIndicationModel(probotborSettings);
             SettingsModel = new PlcSettingsModel();
             CommandModel = new PlcCommandModel();
+            DiModel = new PlcDiModel();
         }
+
         public static List<ParameterBase> Parameters { get; } = new List<ParameterBase>();
         public ProbotborSettings ProbotborSettings { get; }
         public PlcSettingsModel SettingsModel { get; }
         public PlcIndicationModel IndicationModel { get; }
         public PlcCommandModel CommandModel { get; }
+        public PlcDiModel DiModel { get; }
     }
 }

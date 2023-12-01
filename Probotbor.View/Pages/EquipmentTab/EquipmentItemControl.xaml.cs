@@ -84,8 +84,22 @@ namespace Probotbor.View.Pages.EquipmentTab
 
         // Using a DependencyProperty as the backing store for Status.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StatusProperty =
-            DependencyProperty.Register("Status", typeof(string), typeof(EquipmentItemControl), new PropertyMetadata(string.Empty)); 
+            DependencyProperty.Register("Status", typeof(string), typeof(EquipmentItemControl), new PropertyMetadata(string.Empty));
         #endregion
+
+
+
+        public ICommand OnClickCommand
+        {
+            get { return (ICommand)GetValue(OnClickCommandProperty); }
+            set { SetValue(OnClickCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for OnClickCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty OnClickCommandProperty =
+            DependencyProperty.Register("OnClickCommand", typeof(ICommand), typeof(EquipmentItemControl), new PropertyMetadata(null));
+
+
 
     }
 }

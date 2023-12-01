@@ -83,44 +83,9 @@ public partial class Parameter<T> : ParameterBase, INotifyDataErrorInfo where T 
                     RestartTimer();
                 }                
                 SetProperty(ref _writeValue, value);
-
+                ValidationOk = _writeValue.CompareTo(MinValue)>=0 && _writeValue.CompareTo(MaxValue)<=0;
             }
         }
-    }
-
-
-    //private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
-    //public bool HasErrors => _propertyErrors.Any();
-    //public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
-
-    //public IEnumerable GetErrors(string? propertyName)
-    //{        
-    //    return _propertyErrors.GetValueOrDefault(propertyName, null);
-    //}
-
-    //public void AddError(string propertyName, string message)
-    //{
-    //    if (!_propertyErrors.ContainsKey(propertyName))
-    //    {
-    //        _propertyErrors.Add(propertyName, new List<string>());
-    //    }
-    //    _propertyErrors[propertyName].Add(message);
-    //    OnPropertyChanged(propertyName);
-        
-    //    ValidationOk = false;
-    //}
-
-    //public void ClearError(string propertyName)
-    //{
-    //    if (_propertyErrors.Remove(propertyName))
-    //    {
-    //        OnErrorsChanged(propertyName);
-    //    }
-    //}
-
-    //private void OnErrorsChanged(string propertyName)
-    //{
-    //    ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
-    //}
+    }    
 
 }

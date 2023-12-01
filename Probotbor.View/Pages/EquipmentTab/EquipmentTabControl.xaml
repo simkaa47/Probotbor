@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Probotbor.View.Pages.EquipmentTab"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"              
              xmlns:par="clr-namespace:Probotbor.View.UserControls.Parameters"
              xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
              xmlns:materials="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
@@ -55,32 +55,42 @@
             </svg:SvgViewbox.LayoutTransform>
         </svg:SvgViewbox>
         <Grid Name="Panel">
+            
+                   
             <ScrollViewer VerticalScrollBarVisibility="Hidden" Name="ScrollBar">
                 <WrapPanel  FlowDirection="LeftToRight">
                     <!--#region Проботборник -->
                     <local:EquipmentItemControl Height="{Binding ElementName=Panel, Path=ActualHeight, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}" 
-                                            Width="{Binding ElementName=Panel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}"
-                                            UnitNumber="{DynamicResource ProbNum}"
-                                            UnitName="Проботборник"
-                                            Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotborStatus}}"
-                                            ImagePath="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}">
+                                                Width="{Binding ElementName=Panel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}"
+                                                UnitNumber="{DynamicResource ProbNum}"
+                                                UnitName="Проботборник"
+                                                x:Name="ProbEq"
+                                                OnClickCommand="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentTabControl}, Path=OpenProbotborWindow}"
+                                                Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotborStatus}}"
+                                                ImagePath="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}">
 
                         <local:EquipmentItemControl.InnerContent>
-                            <ListBox Background="Black"
+                            <Grid>
+                                <ListBox Background="Black"
                              HorizontalContentAlignment="Stretch"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              ItemContainerStyle="{StaticResource ParameterListBoxItemWithBorder}"
                              BorderThickness="0">
-                                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.FcFrequencesSvs[0]}"
+                                    <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.FcFrequencesSvs[0]}"
                                               
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
-                                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.TimeForKanistra}"/>
-                                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.ProbotbornikTimeout1}"/>
-                                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborTimeCurrent1}"
+                                    <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.TimeForKanistra}"/>
+                                    <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.ProbotbornikTimeout1}"/>
+                                    <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborTimeCurrent1}"
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
 
-                            </ListBox>
+                                </ListBox>
+
+                            </Grid>
+
+
                         </local:EquipmentItemControl.InnerContent>
+
                     </local:EquipmentItemControl>
                     <!--#endregion-->
                     <!--#region питатель -->
@@ -182,7 +192,7 @@
                              ItemContainerStyle="{StaticResource ParameterListBoxItemWithBorder}"
                              BorderThickness="0">
                                 <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.DryUnitDryTime}"                                              
-                                              Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>                                
+                                              Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
                                 <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.DryUnitDelayClose}"                                              
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
                                 <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.DryUnitTemperatureSv}"                                              
@@ -211,7 +221,7 @@
                              ItemContainerStyle="{StaticResource ParameterListBoxItemWithBorder}"
                              BorderThickness="0">
                                 <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.IstiratelWorkTime}"                                              
-                                              Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>                                
+                                              Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
                                 <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.IstiratelTimeCurrent}"                                              
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
                             </ListBox>
@@ -278,10 +288,10 @@
                              ItemContainerStyle="{StaticResource ParameterListBoxItemWithBorder}"
                              BorderThickness="0">
                                 <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.SysReturnWorkTime}"                                              
-                                              Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>                                
+                                              Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
                                 <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.SysReturnTimeCurrent}"                                              
                                               Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
-                                
+
                                 <!--#endregion-->
                             </ListBox>
                         </local:EquipmentItemControl.InnerContent>

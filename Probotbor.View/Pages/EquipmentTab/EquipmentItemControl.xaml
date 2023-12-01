@@ -15,6 +15,7 @@
         <Image Name="Image" Source="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentItemControl}, Path=ImagePath}"/>
         <buttons:VissmaButton Height="{Binding ElementName=Image, Path=ActualHeight}"
                               Background="Transparent"
+                              Command="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentItemControl}, Path=OnClickCommand}"
                               Width="{Binding ElementName=Image, Path=ActualWidth}"/>
         <Grid Grid.Column="1">
             <StackPanel>
