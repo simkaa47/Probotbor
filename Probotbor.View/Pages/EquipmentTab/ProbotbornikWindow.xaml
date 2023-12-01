@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Probotbor.View.Pages.EquipmentTab"
         mc:Ignorable="d"
+        KeyUp="Window_KeyUp"
         WindowStartupLocation="CenterOwner"
         xmlns:par="clr-namespace:Probotbor.View.UserControls.Parameters"
         xmlns:type="clr-namespace:Probotbor.Core.Models.Probotbor;assembly=Probotbor.Core"
@@ -16,7 +17,7 @@
         xmlns:sys="clr-namespace:System;assembly=System.Runtime" 
         BorderBrush="{StaticResource BorderNonActiveColor}"
         Background="{StaticResource TabControlCommon}"
-        Title="Управление проботборником" Height="450" Width="800">
+        Title="Управление проботборником" Height="600" Width="1000">
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockCommon}">
@@ -36,9 +37,14 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
-            <!--#region Единичный отбор -->
-            <buttons:VissmaButton Margin="20"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <!--#region Единичный отбор -->
+                <buttons:VissmaButton Margin="20,10,20,10"
                                   HorizontalAlignment="Left"
                                   Width="200"
                                   Condition="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource IsEqualConverter}, ConverterParameter=5}"
@@ -48,30 +54,30 @@
                                   BorderThickness="1"                                   
                                   Background="Transparent"
                                   BorderBrush="{StaticResource AquaColor}"
-                                  Height="100">
-                <buttons:VissmaButton.MouseOverSolidColorBrush>
-                    <SolidColorBrush Color="White" Opacity="0.1"/>
-                </buttons:VissmaButton.MouseOverSolidColorBrush>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.33*"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <mat:MaterialIcon Kind="Play" Foreground="WhiteSmoke" Visibility="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource VisisbleIfNotEqual}, ConverterParameter=5}"/>
-                    <mat:MaterialIcon Kind="Stop" Foreground="WhiteSmoke" Visibility="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=5}"/>
-                    <TextBlock Text="Произвести единичный отбор"
+                                  Height="80">
+                    <buttons:VissmaButton.MouseOverSolidColorBrush>
+                        <SolidColorBrush Color="White" Opacity="0.1"/>
+                    </buttons:VissmaButton.MouseOverSolidColorBrush>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.33*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <mat:MaterialIcon Kind="Play" Foreground="WhiteSmoke" Visibility="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource VisisbleIfNotEqual}, ConverterParameter=5}"/>
+                        <mat:MaterialIcon Kind="Stop" Foreground="WhiteSmoke" Visibility="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=5}"/>
+                        <TextBlock Text="Произвести единичный отбор"
                            Style="{StaticResource TextBlockCommon}"
                            HorizontalAlignment="Center"
                            Grid.Column="1"
                            FontSize="16"
                            TextWrapping="Wrap">
 
-                    </TextBlock>
-                </Grid>
-            </buttons:VissmaButton>
-            <!--#endregion-->
-            <!--#region Возврат -->
-            <buttons:VissmaButton Margin="20"
+                        </TextBlock>
+                    </Grid>
+                </buttons:VissmaButton>
+                <!--#endregion-->
+                <!--#region Возврат -->
+                <buttons:VissmaButton Margin="20,10,10,10"
                                   HorizontalAlignment="Left"
                                   Width="200"
                                   Condition="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource IsEqualConverter}, ConverterParameter=4}"
@@ -81,54 +87,86 @@
                                   BorderThickness="1"                                   
                                   Background="Transparent"
                                   BorderBrush="{StaticResource AquaColor}"
-                                  Height="100">
-                <buttons:VissmaButton.MouseOverSolidColorBrush>
-                    <SolidColorBrush Color="White" Opacity="0.1"/>
-                </buttons:VissmaButton.MouseOverSolidColorBrush>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.33*"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <mat:MaterialIcon Kind="Play" Foreground="WhiteSmoke" Visibility="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource VisisbleIfNotEqual}, ConverterParameter=4}"/>
-                    <mat:MaterialIcon Kind="Stop" Foreground="WhiteSmoke" Visibility="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=4}"/>
-                    <TextBlock Text="Возврат пробы"
+                                  Height="80">
+                    <buttons:VissmaButton.MouseOverSolidColorBrush>
+                        <SolidColorBrush Color="White" Opacity="0.1"/>
+                    </buttons:VissmaButton.MouseOverSolidColorBrush>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.33*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <mat:MaterialIcon Kind="Play" Foreground="WhiteSmoke" Visibility="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource VisisbleIfNotEqual}, ConverterParameter=4}"/>
+                        <mat:MaterialIcon Kind="Stop" Foreground="WhiteSmoke" Visibility="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=4}"/>
+                        <TextBlock Text="Возврат ковша"
                            Style="{StaticResource TextBlockCommon}"
                            HorizontalAlignment="Center"
                            Grid.Column="1"
                            FontSize="16"
                            TextWrapping="Wrap">
 
-                    </TextBlock>
-                </Grid>
-            </buttons:VissmaButton>
-            <!--#endregion-->
-        </StackPanel>
+                        </TextBlock>
+                    </Grid>
+                </buttons:VissmaButton>
+                <!--#endregion-->
+            </StackPanel>
+            <DockPanel Grid.Row="1">
+                <TextBlock Text="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotborStatus}}"
+                               HorizontalAlignment="Center" FontSize="20" DockPanel.Dock="Top"/>
+                <Viewbox>
+                    <Image Source="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
+                           Margin="10"/>
+                </Viewbox>
+            </DockPanel>
+        </Grid>
         <!--#region Датчики -->
-        <StackPanel Margin="20" HorizontalAlignment="Left" Grid.Column="1" Grid.RowSpan="2">
-            <!--#region Аварийный датчик (лево) -->
-            <StackPanel Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.PrimaryType, ConverterParameter={x:Static type:ProbotborType.ForwardReverse}, Converter={StaticResource VisibleIfEqualConverter}}">
-                <par:SensorIndicator DataContext="{Binding PlcVm.PlcMainService.PlcModel.DiModel.SqProbHomeAbort1}"/>
-            </StackPanel>
-            <!--#endregion-->
-            <!--#region Домашний датчик -->
-            <par:SensorIndicator DataContext="{Binding PlcVm.PlcMainService.PlcModel.DiModel.SqProbHome1}"/>
-            <!--#endregion-->
-            <!--#region Рабочий датчик -->
-            <StackPanel Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.PrimaryType, ConverterParameter={x:Static type:ProbotborType.ForwardReverse}, Converter={StaticResource VisibleIfEqualConverter}}">
-                <par:SensorIndicator DataContext="{Binding PlcVm.PlcMainService.PlcModel.DiModel.SqProbWork1}"/>
-            </StackPanel>
-            <!--#endregion-->
-            <!--#region Рабочий аварийный датчик -->
-            <StackPanel Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.PrimaryType, ConverterParameter={x:Static type:ProbotborType.ForwardReverse}, Converter={StaticResource VisibleIfEqualConverter}}">
-                <par:SensorIndicator DataContext="{Binding PlcVm.PlcMainService.PlcModel.DiModel.SqProbWorkAbort2}"/>
-            </StackPanel>
-            <!--#endregion-->
-            <!--#region  Ошибка привода-->
-            <par:SensorIndicator DataContext="{Binding PlcVm.PlcMainService.PlcModel.DiModel.ProbDriveReady1}"
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Margin="20" HorizontalAlignment="Left">
+                <!--#region Аварийный датчик (лево) -->
+                <StackPanel Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.PrimaryType, ConverterParameter={x:Static type:ProbotborType.ForwardReverse}, Converter={StaticResource VisibleIfEqualConverter}}">
+                    <par:SensorIndicator DataContext="{Binding PlcVm.PlcMainService.PlcModel.DiModel.SqProbHomeAbort1}"/>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region Домашний датчик -->
+                <par:SensorIndicator DataContext="{Binding PlcVm.PlcMainService.PlcModel.DiModel.SqProbHome1}"/>
+                <!--#endregion-->
+                <!--#region Рабочий датчик -->
+                <StackPanel Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.PrimaryType, ConverterParameter={x:Static type:ProbotborType.ForwardReverse}, Converter={StaticResource VisibleIfEqualConverter}}">
+                    <par:SensorIndicator DataContext="{Binding PlcVm.PlcMainService.PlcModel.DiModel.SqProbWork1}"/>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region Рабочий аварийный датчик -->
+                <StackPanel Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.PrimaryType, ConverterParameter={x:Static type:ProbotborType.ForwardReverse}, Converter={StaticResource VisibleIfEqualConverter}}">
+                    <par:SensorIndicator DataContext="{Binding PlcVm.PlcMainService.PlcModel.DiModel.SqProbWorkAbort2}"/>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region  Ошибка привода-->
+                <par:SensorIndicator DataContext="{Binding PlcVm.PlcMainService.PlcModel.DiModel.ProbDriveReady1}"
                                  Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
-            <!--#endregion-->
-        </StackPanel>
+                <!--#endregion-->
+            </StackPanel>
+            <ListBox Background="Transparent"
+                     Grid.Row="1"
+                     FontSize="16"
+                             HorizontalContentAlignment="Stretch"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             ItemContainerStyle="{StaticResource ParameterListBoxItemWithBorder}"
+                             BorderThickness="0">
+                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.FcFrequencesSvs[0]}"
+                                              
+                                              Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
+                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.TimeForKanistra}"/>
+                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.SettingsModel.ProbotbornikTimeout1}"/>
+                <par:NumericParameter DataContext="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborTimeCurrent1}"
+                                              Visibility="{Binding IsRequired, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"/>
+
+            </ListBox>
+        </Grid>
+        
         <!--#endregion-->
 
     </Grid>

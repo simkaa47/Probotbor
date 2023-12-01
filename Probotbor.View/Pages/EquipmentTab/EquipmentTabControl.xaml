@@ -99,6 +99,7 @@
                                             Width="{Binding ElementName=Panel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}"
                                             UnitNumber="{DynamicResource PitatelNum}"
                                             UnitName="Питатель"
+                                                OnClickCommand="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentTabControl}, Path=OpenPitatelWindow}"
                                             Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.PitatelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"
                                             ImagePath="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.PitatelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource PitatelImageStatuses}}">
                         <ListBox Background="Black"

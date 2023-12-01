@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Probotbor.View.Pages.EquipmentTab
 {
     /// <summary>
-    /// Interaction logic for ProbotbornikWindow.xaml
+    /// Interaction logic for PitatelWindow.xaml
     /// </summary>
-    public partial class ProbotbornikWindow : Window
+    public partial class PitatelWindow : Window
     {
-        public ProbotbornikWindow()
+        public PitatelWindow()
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace Probotbor.View.Pages.EquipmentTab
             if (e.Key == Key.Escape)
             {
                 this.DialogResult = true;
-                this.Close(); 
+                this.Close();
             }
         }
     }

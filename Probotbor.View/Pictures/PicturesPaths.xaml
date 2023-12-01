@@ -2,13 +2,13 @@
                     xmlns:sys="clr-namespace:System;assembly=System.Runtime" 
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <x:Array Type="sys:String" x:Key="ProbotbornikImageStatuses">
-        <sys:String>/Pictures\Probotborniks\480.jpg</sys:String>
-        <sys:String>/Pictures\Probotborniks\481.jpg</sys:String>
-        <sys:String>/Pictures\Probotborniks\482.jpg</sys:String>
-        <sys:String>/Pictures\Probotborniks\483.jpg</sys:String>
-        <sys:String>/Pictures\Probotborniks\484.jpg</sys:String>
-        <sys:String>/Pictures\Probotborniks\485.jpg</sys:String>
-        <sys:String>/Pictures\Probotborniks\486.jpg</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-12.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-12.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-12.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-06.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-09.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-09.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-06.png</sys:String>
     </x:Array>
 
     <x:Array Type="sys:String" x:Key="PitatelImageStatuses">
