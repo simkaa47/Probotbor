@@ -18,6 +18,10 @@
                               Command="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentItemControl}, Path=OnClickCommand}"
                               Width="{Binding ElementName=Image, Path=ActualWidth}"/>
         <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <StackPanel>
                 <Border Background="Black" 
                     VerticalAlignment="Top"
@@ -38,8 +42,12 @@
                 <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentItemControl}, Path=Status}" 
                        Style="{StaticResource TextBlockCommon}"
                        Margin="40,0,0,0"/>
-                <ContentPresenter Content="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentItemControl}, Path=InnerContent,  Mode=TwoWay}" />
+               
             </StackPanel>
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <ContentPresenter  Content="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentItemControl}, Path=InnerContent,  Mode=TwoWay}"
+                                   VerticalAlignment="Top"/>
+            </ScrollViewer>
             
         </Grid>
     </Grid>

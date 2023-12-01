@@ -30,11 +30,38 @@ namespace Probotbor.View.Pages.EquipmentTab
 
             get => new RelayCommand(() =>
             {
-                var pw = new ProbotbornikWindow();                
-                pw.DataContext = this.DataContext;
-                pw.ShowDialog();
+                if(App.Current.MainWindow is not null)
+                {
+                    OpenEquipWindow(new ProbotbornikWindow());
+                }
+                
             });
         }
 
+        public RelayCommand OpenPitatelWindow
+        {
+            get => new RelayCommand(() =>
+            {
+                if (App.Current.MainWindow is not null)
+                {
+                    OpenEquipWindow(new PitatelWindow());
+                }
+
+            });
+        }
+
+
+        private void OpenEquipWindow(Window window)
+        {
+            if (App.Current.MainWindow is not null)
+            {
+                System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+                objBlur.Radius = 10;
+                Application.Current.MainWindow.Effect = objBlur;
+                window.DataContext = this.DataContext;
+                window.ShowDialog();
+                Application.Current.MainWindow.Effect = null;
+            }
+        }
     }
 }
