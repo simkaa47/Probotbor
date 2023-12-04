@@ -52,6 +52,15 @@ namespace Probotbor.View.Pages.EquipmentTab
             });
         }
 
+        public RelayCommand OpenDelitelWindow
+        {
+            get => new RelayCommand(() =>
+            {
+                OpenEquipWindow(new DelitelWindow());
+
+            });
+        }
+
 
         private void OpenEquipWindow(Window window)
         {
