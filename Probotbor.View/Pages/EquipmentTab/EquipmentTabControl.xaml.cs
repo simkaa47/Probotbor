@@ -30,11 +30,8 @@ namespace Probotbor.View.Pages.EquipmentTab
 
             get => new RelayCommand(() =>
             {
-                if(App.Current.MainWindow is not null)
-                {
-                    OpenEquipWindow(new ProbotbornikWindow());
-                }
-                
+                OpenEquipWindow(new ProbotbornikWindow());
+
             });
         }
 
@@ -42,10 +39,15 @@ namespace Probotbor.View.Pages.EquipmentTab
         {
             get => new RelayCommand(() =>
             {
-                if (App.Current.MainWindow is not null)
-                {
-                    OpenEquipWindow(new PitatelWindow());
-                }
+                OpenEquipWindow(new PitatelWindow());
+            });
+        }
+
+        public RelayCommand OpenDrobilkaWindow
+        {
+            get => new RelayCommand(() =>
+            {
+                OpenEquipWindow(new DrobilkaWindow());
 
             });
         }
