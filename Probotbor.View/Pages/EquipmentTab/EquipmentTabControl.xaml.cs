@@ -61,6 +61,15 @@ namespace Probotbor.View.Pages.EquipmentTab
             });
         }
 
+        public RelayCommand OpenNakopitelWindow
+        {
+            get => new RelayCommand(() =>
+            {
+                OpenEquipWindow(new NakopitelWindow());
+
+            });
+        }
+
 
         private void OpenEquipWindow(Window window)
         {

@@ -238,6 +238,7 @@
                                             Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.NakopitelExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
                                             UnitNumber="{DynamicResource NakopitelNum}"
                                             UnitName="Накопитель"
+                                            OnClickCommand="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentTabControl}, Path=OpenNakopitelWindow}"   
                                             Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.NakopitelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource NakopStatus}}"
                                             ImagePath="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.NakopitelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}">
 
