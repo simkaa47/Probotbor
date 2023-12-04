@@ -157,6 +157,7 @@
                                             Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.SecondaryExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
                                             UnitNumber="{DynamicResource DelitelNum}"
                                             UnitName="Делитель"
+                                            OnClickCommand="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentTabControl}, Path=OpenDelitelWindow}"    
                                             Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus2.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotborStatus}}"
                                             ImagePath="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus2.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DelitelImageStatuses}}">
 
@@ -180,12 +181,13 @@
                     <!--#endregion-->
                     <!--#region Блок сушки -->
                     <local:EquipmentItemControl Height="{Binding ElementName=Panel, Path=ActualHeight, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}" 
-                                            Width="{Binding ElementName=Panel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}"
-                                            Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.DryUnitExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
-                                            UnitNumber="{DynamicResource DryNum}"
-                                            UnitName="Блок сушки"
-                                            Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.DryUnitStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DryUnitStatus}}"
-                                            ImagePath="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.DryUnitStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DryImageStatuses}}">
+                                                Width="{Binding ElementName=Panel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}"
+                                                Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.DryUnitExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
+                                                UnitNumber="{DynamicResource DryNum}"
+                                                UnitName="Блок сушки"
+                                                OnClickCommand="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentTabControl}, Path=OpenDelitelWindow}"
+                                                Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.DryUnitStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DryUnitStatus}}"
+                                                ImagePath="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.DryUnitStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DryImageStatuses}}">
 
                         <local:EquipmentItemControl.InnerContent>
                             <ListBox Background="Black"

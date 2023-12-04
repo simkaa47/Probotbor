@@ -14,4 +14,5 @@
     <conv:AddNumberConverter x:Key="AddNumberConverter"/>
     <conv:GetByIndexMultiplyConverter x:Key="GetByIndexMultiplyConverter"/>
     <conv:CommandConverter x:Key="CommandConverter"/>
+    <conv:OrMultibisibleConverter x:Key="OrMultibisibleConverter"/>
 </ResourceDictionary>

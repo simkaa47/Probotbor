@@ -13,7 +13,7 @@
 
 
     <x:Array Type="sys:String" x:Key="UniversalStatus">
-        <sys:String>Готов</sys:String>
+        <sys:String>Готов к работе</sys:String>
         <sys:String>>>>></sys:String>
         <sys:String>>>></sys:String>
         <sys:String>>>></sys:String>
@@ -23,7 +23,7 @@
     </x:Array>
 
     <x:Array Type="sys:String" x:Key="NakopStatus">
-        <sys:String>Готов</sys:String>
+        <sys:String>Готов к работе</sys:String>
         <sys:String>Требуется калибровка</sys:String>
         <sys:String>Калибровка</sys:String>
         <sys:String>Смена канистры</sys:String>
@@ -33,7 +33,7 @@
     </x:Array>
 
     <x:Array Type="sys:String" x:Key="DryUnitStatus">
-        <sys:String>Готов</sys:String>
+        <sys:String>Готов к работе</sys:String>
         <sys:String>Открывание шибера ВЕРХ</sys:String>
         <sys:String>Ожидание шибера ВЕРХ</sys:String>
         <sys:String>Закрывание шибера ВЕРХ</sys:String>

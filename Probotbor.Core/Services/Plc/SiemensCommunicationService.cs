@@ -24,6 +24,7 @@ namespace Probotbor.Core.Services.Plc
             CommSettings = options.Value;
             _logger = logger;
             _reader = new S7MultiVar(_s7Client);
+            _s7Client.SendTimeout = 500;            
         }
 
         private void Init()
@@ -55,6 +56,10 @@ namespace Probotbor.Core.Services.Plc
                         if (result == 0)
                         {
                             GetValueFromParameter(sec);
+                        }
+                        else
+                        {
+                            throw new Exception($"Не удалось прочитать  данные с ПЛК Siemens (DbNum = {sec.DbNum}, ByteNum = {sec.Start}, Length = {sec.Data.Length})");
                         }
                     }
                 }
@@ -156,11 +161,17 @@ namespace Probotbor.Core.Services.Plc
                 try
                 {
                     _logger.LogInformation($"Производится запись параметра \"{parameter.Description}\" со значением \"{parameter.WriteValue}\"");
-                    _s7Client.DBWrite(parameter.DbNum, parameter.ByteNum, bytes.Length, bytes);
+                    var result = _s7Client.DBWrite(parameter.DbNum, parameter.ByteNum, bytes.Length, bytes);
+                    if(result!=0)
+                    {
+
+                    }
                 }
                 catch (Exception ex)
                 {
+                    Disconnect();
                     throw new Exception($"Ошибка записи параметра \"{parameter.Description}\" (№ ДБ={parameter.DbNum}, № байта={parameter.ByteNum}) - {ex.Message}");
+                    
                 }
             }
         }

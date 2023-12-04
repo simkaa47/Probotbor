@@ -25,6 +25,7 @@ namespace Probotbor.Core.Models.Plc
             SqNakopCell = new Parameter<bool>(nameof(SqNakopCell), "Датчик ячейки", false, true) { IsOnlyRead = true };       
             SqNakopKanistra = new Parameter<bool>(nameof(SqNakopKanistra), "Датчик канистры", false, true) { IsOnlyRead = true };
             ProbDriveReady1 = new Parameter<bool>(nameof(ProbDriveReady1), "Неисправность привода", false, true);
+            ProbDriveReady2 = new Parameter<bool>(nameof(ProbDriveReady2), "Неисправность привода", false, true);
             PitatelDriveReady = new Parameter<bool>(nameof(PitatelDriveReady), "Неисправность привода", false, true);
             DrobilkalDriveReady = new Parameter<bool>(nameof(DrobilkalDriveReady), "Неисправность привода", false, true);
     }
@@ -91,6 +92,10 @@ namespace Probotbor.Core.Models.Plc
 
         #region Проботбоник 1 - готовность привода
         public Parameter<bool> ProbDriveReady1 { get; }
+        #endregion
+
+        #region Проботбоник 2 - готовность привода
+        public Parameter<bool> ProbDriveReady2 { get; }
         #endregion
 
         #region Питатель  1 - готовность привода
