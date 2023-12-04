@@ -130,6 +130,7 @@
                                             Width="{Binding ElementName=Panel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}"
                                             UnitNumber="{DynamicResource DrobilkaNumNum}"
                                             UnitName="Дробилка"
+                                            OnClickCommand="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentTabControl}, Path=OpenDrobilkaWindow}"
                                             Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.DrobilkaStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"
                                             ImagePath="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.DrobilkaStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DrobilkaImageStatuses}}">
 
