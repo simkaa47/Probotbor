@@ -28,6 +28,7 @@ namespace Probotbor.Core.Models.Plc
             OpenLockNakopCmd = new Parameter<bool>(nameof(OpenLockNakopCmd), "Открыть замок накопителя", false, true);
             RstCmd = new Parameter<bool>(nameof(RstCmd), "Сброс ошибок", false, true);
             DryCycleCmd = new Parameter<bool>(nameof(DryCycleCmd), "Цикл блока сушки", false, true);
+            RemoteModeCmd = new Parameter<bool>(nameof(RemoteModeCmd), "Удаленный режим", false, true);
         }
         #region Произвести отбор 1
         public Parameter<bool> OtborCmd1 { get; }
@@ -103,8 +104,11 @@ namespace Probotbor.Core.Models.Plc
         #region Цикл блока сушки
         public Parameter<bool> DryCycleCmd { get; }
         #endregion
+        #region Удаленный режим
+        public Parameter<bool> RemoteModeCmd { get; }
+        #endregion
 
 
     }
-    
+
 }

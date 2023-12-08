@@ -28,7 +28,12 @@ namespace Probotbor.Core.Models.Plc
             ProbDriveReady2 = new Parameter<bool>(nameof(ProbDriveReady2), "Неисправность привода", false, true);
             PitatelDriveReady = new Parameter<bool>(nameof(PitatelDriveReady), "Неисправность привода", false, true);
             DrobilkalDriveReady = new Parameter<bool>(nameof(DrobilkalDriveReady), "Неисправность привода", false, true);
-    }
+            ReturnDriveReady = new Parameter<bool>(nameof(ReturnDriveReady), "Неисправность привода", false, true);
+            SqSysReturn1 = new Parameter<bool>(nameof(SqSysReturn1), "Концевик 1", false, true);
+            SqSysReturn2 = new Parameter<bool>(nameof(SqSysReturn2), "Концевик 2", false, true);
+            SqSysReturn3 = new Parameter<bool>(nameof(SqSysReturn3), "Концевик 3", false, true);
+            SqSysReturn4 = new Parameter<bool>(nameof(SqSysReturn4), "Концевик 4", false, true);
+        }
 
 
         #region Проботборник 1 - аварийный датчик начального положения
@@ -104,6 +109,25 @@ namespace Probotbor.Core.Models.Plc
 
         #region Дробилка  - готовность привода
         public Parameter<bool> DrobilkalDriveReady { get; }
+        #endregion
+
+        #region Возврат проб  - готовность привода
+        public Parameter<bool> ReturnDriveReady { get; }
+        #endregion
+
+        #region Возврат проб  - концевик 1
+        public Parameter<bool> SqSysReturn1 { get; }
+        #endregion
+
+        #region Возврат проб  - концевик 2
+        public Parameter<bool> SqSysReturn2 { get; }
+        #endregion
+        #region Возврат проб  - концевик 3
+        public Parameter<bool> SqSysReturn3 { get; }
+        #endregion
+
+        #region Возврат проб  - концевик 4
+        public Parameter<bool> SqSysReturn4 { get; }
         #endregion
     }
 }

@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <x:Array Type="mat:MaterialIcon" x:Key="Sensors">
             <mat:MaterialIcon Kind="LightbulbOff" Foreground="WhiteSmoke" Height="50"/>
-            <mat:MaterialIcon Kind="LightbulbOn" Foreground="Red" Height="50"/>
+            <mat:MaterialIcon Kind="LightbulbOn" Foreground="WhiteSmoke" Height="50"/>
         </x:Array>
     </UserControl.Resources>
     <DockPanel>

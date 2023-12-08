@@ -66,7 +66,8 @@
                     <ListBoxItem>
                         <Grid Height="{Binding ElementName=IndicatorsPanel, Path=ActualHeight, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}" 
                           Width="{Binding ElementName=IndicatorsPanel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}">
-                            <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                                  Command="{Binding RelativeSource={RelativeSource AncestorType=local:ImageIndicators}, Path=OpenProbotborWindow}">
                                 <Image  Source="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}"/>
                             </buttons:VissmaButton>
                             <Grid Height="50" Width="50" Margin="5,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -80,7 +81,8 @@
                     <ListBoxItem Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.PitatelExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}">
                         <Grid Height="{Binding ElementName=IndicatorsPanel, Path=ActualHeight, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}"
                           Width="{Binding ElementName=IndicatorsPanel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}">
-                            <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                                  Command="{Binding RelativeSource={RelativeSource AncestorType=local:ImageIndicators}, Path=OpenPitatelWindow}">
                                 <Image Source="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.PitatelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource PitatelImageStatuses}}"/>
                             </buttons:VissmaButton>
                             <Grid Height="50" Width="50" Margin="5,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -94,7 +96,8 @@
                     <ListBoxItem Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.DrobilkaExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}">
                         <Grid Height="{Binding ElementName=IndicatorsPanel, Path=ActualHeight, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}" 
                           Width="{Binding ElementName=IndicatorsPanel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}">
-                            <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                                  Command="{Binding RelativeSource={RelativeSource AncestorType=local:ImageIndicators}, Path=OpenDrobilkaWindow}">
                                 <Image Source="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.DrobilkaStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DrobilkaImageStatuses}}"/>
                             </buttons:VissmaButton>
                             <Grid Height="50" Width="50" Margin="5,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -108,7 +111,8 @@
                     <ListBoxItem Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.SecondaryExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}">
                         <Grid Height="{Binding ElementName=IndicatorsPanel, Path=ActualHeight, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}" 
                           Width="{Binding ElementName=IndicatorsPanel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}">
-                            <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                                  Command="{Binding RelativeSource={RelativeSource AncestorType=local:ImageIndicators}, Path=OpenDelitelWindow}">
                                 <Image Source="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.ProbotborStatus2.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DelitelImageStatuses}}"/>
                             </buttons:VissmaButton>
                             <Grid Height="50" Width="50" Margin="5,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -150,7 +154,8 @@
                     <ListBoxItem Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.NakopitelExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}">
                         <Grid Height="{Binding ElementName=IndicatorsPanel, Path=ActualHeight, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}" 
                           Width="{Binding ElementName=IndicatorsPanel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}">
-                            <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                                  Command="{Binding RelativeSource={RelativeSource AncestorType=local:ImageIndicators}, Path=OpenNakopitelWindow}">
                                 <Image Source="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.NakopitelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"/>
                             </buttons:VissmaButton>
                             <Grid Height="50" Width="50" Margin="5,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -164,7 +169,8 @@
                     <Grid Height="{Binding ElementName=IndicatorsPanel, Path=ActualHeight, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}"
                           Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.ReturnExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
                           Width="{Binding ElementName=IndicatorsPanel, Path=ActualWidth, Converter={StaticResource DivConverter}, ConverterParameter={StaticResource Divider}}">
-                        <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <buttons:VissmaButton VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                              Command="{Binding RelativeSource={RelativeSource AncestorType=local:ImageIndicators}, Path=OpenReturnWindow}">
                             <Image Source="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.SysReturnStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource SysRetImageStatuses}}"/>
                         </buttons:VissmaButton>
                         <Grid Height="50" Width="50" Margin="5,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
