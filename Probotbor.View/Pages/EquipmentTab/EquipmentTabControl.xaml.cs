@@ -70,6 +70,15 @@ namespace Probotbor.View.Pages.EquipmentTab
             });
         }
 
+        public RelayCommand OpenReturnWindow
+        {
+            get => new RelayCommand(() =>
+            {
+                OpenEquipWindow(new ReturnWindow());
+
+            });
+        }
+
 
         private void OpenEquipWindow(Window window)
         {

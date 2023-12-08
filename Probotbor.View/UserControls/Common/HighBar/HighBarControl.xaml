@@ -17,6 +17,7 @@
             <local:HighBarReadyControl/>
             <local:HighBarGlobalErrorControl/>
             <local:HighBarDataControl/>
+            <local:RemoteModeHighBarControl/>
             <buttons:VissmaButton Height="50" Width="120" 
                                   Margin="10"
                                   BorderBrush="{StaticResource AquaColor}"

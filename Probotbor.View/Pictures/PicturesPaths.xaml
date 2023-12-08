@@ -12,13 +12,13 @@
     </x:Array>
 
     <x:Array Type="sys:String" x:Key="PitatelImageStatuses">
-        <sys:String>/Pictures\Pitatel\490.jpg</sys:String>
-        <sys:String>/Pictures\Pitatel\491.jpg</sys:String>
-        <sys:String>/Pictures\Pitatel\492.jpg</sys:String>
-        <sys:String>/Pictures\Pitatel\493.jpg</sys:String>
-        <sys:String>/Pictures\Pitatel\494.jpg</sys:String>
-        <sys:String>/Pictures\Pitatel\495.jpg</sys:String>
-        <sys:String>/Pictures\Pitatel\496.jpg</sys:String>
+        <sys:String>\Pictures\Pitatel\pitatel_ready.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_ready.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_ready.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_ready.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_ready.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_work.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_err.png</sys:String>
     </x:Array>
 
     <x:Array Type="sys:String" x:Key="DrobilkaImageStatuses">
@@ -67,23 +67,23 @@
     </x:Array>
 
     <x:Array Type="sys:String" x:Key="NakopitelImageStatuses">
-        <sys:String>\Pictures\Nakopitel/530.jpg</sys:String>
-        <sys:String>\Pictures\Nakopitel/531.jpg</sys:String>
-        <sys:String>\Pictures\Nakopitel/532.jpg</sys:String>
-        <sys:String>\Pictures\Nakopitel/533.jpg</sys:String>
-        <sys:String>\Pictures\Nakopitel/534.jpg</sys:String>
-        <sys:String>\Pictures\Nakopitel/535.jpg</sys:String>
-        <sys:String>\Pictures\Nakopitel/536.jpg</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_ready.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_ready.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_ready.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_ready.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_err.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_err.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_err.png</sys:String>
     </x:Array>
 
     <x:Array Type="sys:String" x:Key="SysRetImageStatuses">
-        <sys:String>\Pictures\Return/SysRet_Stop.jpg</sys:String>
-        <sys:String>\Pictures\Return/SysRet_Stop.jpg</sys:String>
-        <sys:String>\Pictures\Return/SysRet_Stop.jpg</sys:String>
-        <sys:String>\Pictures\Return/SysRet_Stop.jpg</sys:String>
-        <sys:String>\Pictures\Return/SysRet_Stop.jpg</sys:String>
-        <sys:String>\Pictures\Return/SysRet_Work.jpg</sys:String>
-        <sys:String>\Pictures\Return/SysRet_Err.jpg</sys:String>
+        <sys:String>\Pictures\Return\return_ready.png</sys:String>
+        <sys:String>\Pictures\Return\return_ready.png</sys:String>
+        <sys:String>\Pictures\Return\return_ready.png</sys:String>
+        <sys:String>\Pictures\Return\return_ready.png</sys:String>
+        <sys:String>\Pictures\Return\return_ready.png</sys:String>
+        <sys:String>\Pictures\Return\return_work.png</sys:String>
+        <sys:String>\Pictures\Return\return_err.png</sys:String>
     </x:Array>
 
 </ResourceDictionary>

@@ -283,6 +283,7 @@
                                             Visibility="{Binding PlcVm.PlcMainService.ProbotborSettings.ReturnExist, Converter={StaticResource VisibleIfEqualConverter}, ConverterParameter=True}"
                                             UnitNumber="{DynamicResource ReturnNum}"
                                             UnitName="Возврат пробы"
+                                            OnClickCommand="{Binding RelativeSource={RelativeSource AncestorType=local:EquipmentTabControl}, Path=OpenReturnWindow}"  
                                             Status="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.SysReturnStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"
                                             ImagePath="{Binding PlcVm.PlcMainService.PlcModel.IndicationModel.SysReturnStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource SysRetImageStatuses}}">
 
