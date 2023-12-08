@@ -1,0 +1,64 @@
+﻿<Window x:Class="Probotbor.View.Dialogs.AccessControl.UserDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:col="clr-namespace:System.Collections;assembly=netstandard"
+        xmlns:sys="clr-namespace:System;assembly=netstandard"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        Width="400"
+        xmlns:m="clr-namespace:Probotbor.Core.Models.AccessControl;assembly=Probotbor.Core"
+		SizeToContent="Height"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Probotbor.View.Dialogs.AccessControl"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=m:User}"
+        Title="Добавление или редактирование пользователя">
+    <StackPanel>
+        <StackPanel.Resources>
+            <col:ArrayList x:Key="AccessLevels">
+                <sys:String>Не авторизован</sys:String>
+                <sys:String>Сервис</sys:String>
+                <sys:String>Администратор</sys:String>
+            </col:ArrayList>
+            <Style TargetType="TextBlock" x:Key="desc">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            
+        </StackPanel.Resources>
+        <DockPanel >
+            <TextBlock Text="Имя" Style="{StaticResource desc}"/>
+            <TextBox HorizontalAlignment="Right" TabIndex="1" 
+                     TextChanged="TextBox_TextChanged"
+                     
+					 Margin="100,5,5,5" Width="100" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <DockPanel >
+            <TextBlock Text="Фамилия" Style="{StaticResource desc}"/>
+            <TextBox HorizontalAlignment="Right" TabIndex="2"
+					 Margin="100,5,5,5" Width="100" Text="{Binding LastName , ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <DockPanel >
+            <TextBlock Text="Логин" Style="{StaticResource desc}"/>
+            <TextBox HorizontalAlignment="Right" TabIndex="2"
+					 Margin="100,5,5,5" Width="100" Text="{Binding Login , ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <DockPanel >
+            <TextBlock Text="Пароль"  Style="{StaticResource desc}"/>
+            <TextBox Width="100"  Margin="100,5,5,5" TabIndex="3" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" />
+
+        </DockPanel>
+        <DockPanel >
+            <TextBlock Text="Уровень доступа" Style="{StaticResource desc}"/>
+            <ComboBox HorizontalAlignment="Right"
+					  ItemsSource="{StaticResource AccessLevels}"
+					  SelectedIndex="{Binding AccessLevel, UpdateSourceTrigger=LostFocus}"
+					  Margin="100,5,5,5"
+					  TabIndex="4"
+					  Width="100"></ComboBox>
+        </DockPanel>        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Margin="15" Width="100" Content="Отмена" Click="Cancel_Click" HorizontalContentAlignment="Center"/>
+            <Button Margin="15" Width="100" Content="Ок" IsEnabled="{Binding HasErrors, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}"  HorizontalContentAlignment="Center"  Click="Accept_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

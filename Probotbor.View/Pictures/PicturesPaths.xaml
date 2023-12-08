@@ -1,0 +1,89 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:Array Type="sys:String" x:Key="ProbotbornikImageStatuses">
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-12.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-12.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-12.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-06.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-09.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-09.png</sys:String>
+        <sys:String>/Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-06.png</sys:String>
+    </x:Array>
+
+    <x:Array Type="sys:String" x:Key="PitatelImageStatuses">
+        <sys:String>\Pictures\Pitatel\pitatel_ready.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_ready.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_ready.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_ready.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_ready.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_work.png</sys:String>
+        <sys:String>/Pictures\Pitatel\pitatel_err.png</sys:String>
+    </x:Array>
+
+    <x:Array Type="sys:String" x:Key="DrobilkaImageStatuses">
+        <sys:String>\Pictures\Drobilka\540.jpg</sys:String>
+        <sys:String>\Pictures\Drobilka/540.jpg</sys:String>
+        <sys:String>\Pictures\Drobilka/540.jpg</sys:String>
+        <sys:String>\Pictures\Drobilka/540.jpg</sys:String>
+        <sys:String>\Pictures\Drobilka/540.jpg</sys:String>
+        <sys:String>\Pictures\Drobilka/545.png</sys:String>
+        <sys:String>\Pictures\Drobilka/546.jpg</sys:String>
+    </x:Array>
+
+    <x:Array Type="sys:String" x:Key="DelitelImageStatuses">
+        <sys:String>\Pictures\Delitel/470.jpg</sys:String>
+        <sys:String>\Pictures\Delitel/471.jpg</sys:String>
+        <sys:String>\Pictures\Delitel/472.jpg</sys:String>
+        <sys:String>\Pictures\Delitel/473.jpg</sys:String>
+        <sys:String>\Pictures\Delitel/474.jpg</sys:String>
+        <sys:String>\Pictures\Delitel/475.jpg</sys:String>
+        <sys:String>\Pictures\Delitel/476.jpg</sys:String>
+    </x:Array>
+
+    <x:Array Type="sys:String" x:Key="DryImageStatuses">
+        <sys:String>\Pictures\Dry/Dry_0.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_10.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_10.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_10.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_10.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_10.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_10.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_10.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_10.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_10.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_10.jpg</sys:String>
+        <sys:String>\Pictures\Dry/Dry_11.jpg</sys:String>
+    </x:Array>
+
+    <x:Array Type="sys:String" x:Key="IstiratelImageStatuses">
+        <sys:String>\Pictures\Istiratel/Istiratel_Stop.jpg</sys:String>
+        <sys:String>\Pictures\Istiratel/Istiratel_Stop.jpg</sys:String>
+        <sys:String>\Pictures\Istiratel/Istiratel_Stop.jpg</sys:String>
+        <sys:String>\Pictures\Istiratel/Istiratel_Stop.jpg</sys:String>
+        <sys:String>\Pictures\Istiratel/Istiratel_Stop.jpg</sys:String>
+        <sys:String>\Pictures\Istiratel/Istiratel_Work.jpg</sys:String>
+        <sys:String>\Pictures\Istiratel/Istiratel_Err.jpg</sys:String>
+    </x:Array>
+
+    <x:Array Type="sys:String" x:Key="NakopitelImageStatuses">
+        <sys:String>\Pictures\Nakopitel/nakop_ready.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_ready.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_ready.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_ready.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_err.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_err.png</sys:String>
+        <sys:String>\Pictures\Nakopitel/nakop_err.png</sys:String>
+    </x:Array>
+
+    <x:Array Type="sys:String" x:Key="SysRetImageStatuses">
+        <sys:String>\Pictures\Return\return_ready.png</sys:String>
+        <sys:String>\Pictures\Return\return_ready.png</sys:String>
+        <sys:String>\Pictures\Return\return_ready.png</sys:String>
+        <sys:String>\Pictures\Return\return_ready.png</sys:String>
+        <sys:String>\Pictures\Return\return_ready.png</sys:String>
+        <sys:String>\Pictures\Return\return_work.png</sys:String>
+        <sys:String>\Pictures\Return\return_err.png</sys:String>
+    </x:Array>
+
+</ResourceDictionary>

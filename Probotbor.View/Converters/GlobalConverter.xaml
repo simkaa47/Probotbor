@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:conv="clr-namespace:Probotbor.View.Converters"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <conv:BoolNegationConverter x:Key="BoolNegationConverter"/>
+    <conv:IfTrueConverter x:Key="IfTrueConverter"/>
+    <conv:AndMultiVisibleConverter x:Key="AndMultiVisibleConverter"/>
+    <conv:IfEqualConverter x:Key="IsEqualConverter"/>
+    <conv:AndMultiNotVisibleConverter x:Key="AndMultiNotVisibleConverter"/>
+    <conv:UserVisibilityConverter x:Key="UserVisibilityConverter"/>
+    <conv:DivConverter x:Key="DivConverter"/>
+    <conv:GetByIndexFromParameterConverter x:Key="GetByIndexFromParameterConverter"/>
+    <conv:VisibleIfEqualConverter x:Key="VisibleIfEqualConverter"/>
+    <conv:VisisbleIfNotEqual x:Key="VisisbleIfNotEqual"/>
+    <conv:AddNumberConverter x:Key="AddNumberConverter"/>
+    <conv:GetByIndexMultiplyConverter x:Key="GetByIndexMultiplyConverter"/>
+    <conv:CommandConverter x:Key="CommandConverter"/>
+    <conv:OrMultibisibleConverter x:Key="OrMultibisibleConverter"/>
+    <conv:IfNotEqualConverter x:Key="IfNotEqualConverter"/>
+</ResourceDictionary>

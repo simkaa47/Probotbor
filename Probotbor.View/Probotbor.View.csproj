@@ -1,0 +1,106 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Pictures\00.png" />
+    <None Remove="Pictures\Delitel\470.jpg" />
+    <None Remove="Pictures\Delitel\471.jpg" />
+    <None Remove="Pictures\Delitel\472.jpg" />
+    <None Remove="Pictures\Delitel\473.jpg" />
+    <None Remove="Pictures\Delitel\474.jpg" />
+    <None Remove="Pictures\Delitel\475.jpg" />
+    <None Remove="Pictures\Delitel\476.jpg" />
+    <None Remove="Pictures\Drobilka\540.jpg" />
+    <None Remove="Pictures\Drobilka\545.png" />
+    <None Remove="Pictures\Drobilka\546.jpg" />
+    <None Remove="Pictures\Dry\Dry_0.jpg" />
+    <None Remove="Pictures\Dry\Dry_10.jpg" />
+    <None Remove="Pictures\Dry\Dry_11.jpg" />
+    <None Remove="Pictures\Istiratel\Istiratel_Err.jpg" />
+    <None Remove="Pictures\Istiratel\Istiratel_Stop.jpg" />
+    <None Remove="Pictures\Istiratel\Istiratel_Work.jpg" />
+    <None Remove="Pictures\konvels.png" />
+    <None Remove="Pictures\Nakopitel\nakop_err.png" />
+    <None Remove="Pictures\Nakopitel\nakop_ready.png" />
+    <None Remove="Pictures\Ok.png" />
+    <None Remove="Pictures\Pitatel\pitatel_err.png" />
+    <None Remove="Pictures\Pitatel\pitatel_ready.png" />
+    <None Remove="Pictures\Pitatel\pitatel_work.png" />
+    <None Remove="Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-06.png" />
+    <None Remove="Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-09.png" />
+    <None Remove="Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-12.png" />
+    <None Remove="Pictures\Return\return_err.png" />
+    <None Remove="Pictures\Return\return_ready.png" />
+    <None Remove="Pictures\Return\return_work.png" />
+    <None Remove="Pictures\SVG\KONVELS_NORNIKEL_upravlenie-59.svg" />
+    <None Remove="Pictures\Warning.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Material.Icons" Version="2.0.12" />
+    <PackageReference Include="Material.Icons.WPF" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+    <PackageReference Include="SharpVectors" Version="1.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Probotbor.Core\Probotbor.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Pictures\00.png" />
+    <Resource Include="Pictures\Delitel\470.jpg" />
+    <Resource Include="Pictures\Delitel\471.jpg" />
+    <Resource Include="Pictures\Delitel\472.jpg" />
+    <Resource Include="Pictures\Delitel\473.jpg" />
+    <Resource Include="Pictures\Delitel\474.jpg" />
+    <Resource Include="Pictures\Delitel\475.jpg" />
+    <Resource Include="Pictures\Delitel\476.jpg" />
+    <Resource Include="Pictures\Drobilka\540.jpg" />
+    <Resource Include="Pictures\Drobilka\545.png" />
+    <Resource Include="Pictures\Drobilka\546.jpg" />
+    <Resource Include="Pictures\Dry\Dry_0.jpg" />
+    <Resource Include="Pictures\Dry\Dry_10.jpg" />
+    <Resource Include="Pictures\Dry\Dry_11.jpg" />
+    <Resource Include="Pictures\Istiratel\Istiratel_Err.jpg" />
+    <Resource Include="Pictures\Istiratel\Istiratel_Stop.jpg" />
+    <Resource Include="Pictures\Istiratel\Istiratel_Work.jpg" />
+    <Resource Include="Pictures\konvels.png" />
+    <Resource Include="Pictures\Nakopitel\nakop_err.png" />
+    <Resource Include="Pictures\Nakopitel\nakop_ready.png" />
+    <Resource Include="Pictures\Ok.png" />
+    <Resource Include="Pictures\Pitatel\pitatel_err.png" />
+    <Resource Include="Pictures\Pitatel\pitatel_ready.png" />
+    <Resource Include="Pictures\Pitatel\pitatel_work.png" />
+    <Resource Include="Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-06.png" />
+    <Resource Include="Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-09.png" />
+    <Resource Include="Pictures\Probotborniks\KONVELS_NORNIKEL_upravlenie-12.png" />
+    <Resource Include="Pictures\Return\return_ready.png" />
+    <Resource Include="Pictures\Return\return_err.png" />
+    <Resource Include="Pictures\Return\return_work.png" />
+    <Resource Include="Pictures\SVG\KONVELS_NORNIKEL_upravlenie-59.svg" />
+    <Resource Include="Pictures\Warning.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="vissma_bulk.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="Probotbor.View.Pages.Administration.ErrorsEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+             xmlns:par="clr-namespace:Probotbor.Core.Models.Communication;assembly=Probotbor.Core"
+             xmlns:local="clr-namespace:Probotbor.View.Pages.Administration"
+             mc:Ignorable="d" 
+             xmlns:mat="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
+             xmlns:parVm="clr-namespace:Probotbor.Core.ViewModels;assembly=Probotbor.Core"
+             d:DataContext="{d:DesignInstance Type=parVm:ParametersVm}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.Resources>
+            <ObjectDataProvider x:Key="RegTypes"
+                                ObjectType="{x:Type sys:Enum}"
+                                MethodName="GetValues">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="par:ModbusRegType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--#region Кнопки -->
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Добавить" Command="{Binding AddErrorCommand}"
+                    Height="50" Width="100" Margin="10"/>
+            <Button Content="Сохранить" Command="{Binding SaveErrorsCommand}"
+                    Height="50" Width="100" Margin="10"/>
+        </StackPanel>
+        <!--#endregion-->
+        <!--#region Таблица -->
+        <DataGrid Grid.Row="1" 
+                  ItemsSource="{Binding Errors}"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  AlternationCount="100"                  
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  EnableRowVirtualization="False"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=AlternationIndex}"/>
+                <DataGridTextColumn Header="Название ошибки" Binding="{Binding Description}"/>                
+                <DataGridTemplateColumn Header="Тип Modbus регистра">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Source={StaticResource RegTypes}}"
+                                      SelectedItem="{Binding ModbusRegType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn  Header="№ Modbus регистра"  Binding="{Binding RegNum}"/>
+                <DataGridTextColumn  Header="№ ДБ (Siemens)"  Binding="{Binding DbNum}"/>
+                <DataGridTextColumn  Header="№ байта (Siemens)"  Binding="{Binding ByteNum}"/>
+                <DataGridTextColumn  Header="№ бита"  Binding="{Binding BitNum}"/>
+                <DataGridCheckBoxColumn Header="Задействован" Binding="{Binding IsRequired}"/>
+                <DataGridTextColumn IsReadOnly="True"  Header="Значение"  Binding="{Binding Value}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.DeleteErrorCommand}"
+                                    CommandParameter="{Binding}">
+                                <mat:MaterialIcon Kind="Remove"/>
+                                <Button.ToolTip>
+                                    <TextBlock Text="Удалить"/>
+                                </Button.ToolTip>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--#endregion-->
+    </Grid>
+</UserControl>

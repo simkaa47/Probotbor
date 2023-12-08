@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Probotbor.View.UserControls.Common.MainTabControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:eq="clr-namespace:Probotbor.View.Pages.EquipmentTab"
+             xmlns:err="clr-namespace:Probotbor.View.Pages.ErrorsTab"
+             xmlns:local="clr-namespace:Probotbor.View.UserControls.Common"
+             xmlns:main="clr-namespace:Probotbor.View.Pages.MainControlTab"
+             xmlns:u="clr-namespace:Probotbor.Core.Models.AccessControl;assembly=Probotbor.Core"
+             xmlns:adm="clr-namespace:Probotbor.View.Pages.Administration"
+             xmlns:vm="clr-namespace:Probotbor.Core.ViewModels;assembly=Probotbor.Core"
+             d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="{StaticResource TabControlCommon}">
+        <TabControl TabStripPlacement="Bottom" Background="{StaticResource TabControlCommon}" BorderThickness="0">
+            <TabItem Header="Управление" Style="{StaticResource TabItemStyleCommon}" MinHeight="50" MinWidth="240" FontSize="24">
+                <main:ControlTab/>
+            </TabItem>
+            <TabItem Header="Оборудование" Style="{StaticResource TabItemStyleCommon}" MinHeight="50" MinWidth="270" FontSize="24">
+                <eq:EquipmentTabControl/>
+            </TabItem>
+            <TabItem Header="Ошибки" Style="{StaticResource TabItemStyleCommon}" MinHeight="50" MinWidth="270" FontSize="24">
+                <err:ErrorsTabControl DataContext="{Binding ParametersVm}"/>
+            </TabItem>
+            <TabItem Header="Администрирование"
+                     Style="{StaticResource TabItemStyleCommon}" 
+                     MinHeight="50" 
+                     MinWidth="300"
+                     Visibility="{Binding AccessViewModel.CurrentUser, Converter={StaticResource UserVisibilityConverter}, ConverterParameter={x:Static u:UserAccessLevel.Admin}}"
+                     FontSize="24">
+                <adm:AdministrationControl />
+            </TabItem>
+        </TabControl>    
+    </Grid>
+</UserControl>

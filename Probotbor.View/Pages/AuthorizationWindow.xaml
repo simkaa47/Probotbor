@@ -1,0 +1,62 @@
+﻿<Window x:Class="Probotbor.View.Pages.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"       
+        xmlns:vm="clr-namespace:Probotbor.Core.ViewModels"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:a="clr-namespace:Probotbor.Core.Models.AccessControl;assembly=Probotbor.Core"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Probotbor.View.Pages"
+        mc:Ignorable="d"
+        xmlns:btns="clr-namespace:Probotbor.View.UserControls.Buttons"
+        WindowState="Maximized"        
+        Title="Авторизация" Height="1080" Width="1920">
+    <Window.Resources>
+        <a:Login x:Key="LoginModel"/>
+        <x:Array Type="sys:Object" x:Key="TextBoxErrorColors">
+            <SolidColorBrush Color="White"/>
+            <SolidColorBrush Color="Red"/>
+        </x:Array>
+    </Window.Resources>
+    <Viewbox>        
+        <Canvas Width="1920" Height="1080">
+            <Canvas.Background>
+                <ImageBrush ImageSource="../Pictures/00.png"/>
+            </Canvas.Background>
+
+            <TextBox Width="446" Height="104"					 
+					 DataContext="{StaticResource LoginModel}"
+					 Canvas.Left="1390" Canvas.Top="562"
+                     Background="Transparent"
+                     CaretBrush="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"
+					 Name="Login" FontSize="36" Padding="10"
+					 VerticalContentAlignment="Center"
+					 Text="{Binding LoginName, UpdateSourceTrigger=PropertyChanged}"
+					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"/>
+            <PasswordBox Width="446" Height="104" Name="pWord"
+					 Canvas.Left="1390" Canvas.Top="687"
+                     PasswordChanged="Password_PasswordChanged"
+                     Background="Transparent"
+                     DataContext="{StaticResource LoginModel}"
+					 FontSize="36" Padding="10"
+                    CaretBrush="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"
+					 VerticalContentAlignment="Center"				     
+					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"					 					 
+					 PasswordChar="•"/>
+            
+            <btns:VissmaButton 
+                Canvas.Left="1630" 
+                Canvas.Top="792" 
+                Height="92" 
+                MouseDown="LoginClick"                
+                Background="Transparent"
+                Width="208">
+                <btns:VissmaButton.MouseOverSolidColorBrush>
+                    <SolidColorBrush Color="White" Opacity="0.2"/>
+                </btns:VissmaButton.MouseOverSolidColorBrush>
+                
+            </btns:VissmaButton>
+        </Canvas>        
+    </Viewbox>
+</Window>
