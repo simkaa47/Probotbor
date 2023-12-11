@@ -22,23 +22,23 @@
     </x:Array>
 
     <x:Array Type="sys:String" x:Key="DrobilkaImageStatuses">
-        <sys:String>\Pictures\Drobilka\540.jpg</sys:String>
-        <sys:String>\Pictures\Drobilka/540.jpg</sys:String>
-        <sys:String>\Pictures\Drobilka/540.jpg</sys:String>
-        <sys:String>\Pictures\Drobilka/540.jpg</sys:String>
-        <sys:String>\Pictures\Drobilka/540.jpg</sys:String>
-        <sys:String>\Pictures\Drobilka/545.png</sys:String>
-        <sys:String>\Pictures\Drobilka/546.jpg</sys:String>
+        <sys:String>\Pictures\Drobilka\drobilka_ready.png</sys:String>
+        <sys:String>\Pictures\Drobilka/drobilka_ready.png</sys:String>
+        <sys:String>\Pictures\Drobilka/drobilka_ready.png</sys:String>
+        <sys:String>\Pictures\Drobilka/drobilka_ready.png</sys:String>
+        <sys:String>\Pictures\Drobilka/drobilka_ready.png</sys:String>
+        <sys:String>\Pictures\Drobilka/drobilka_work.png</sys:String>
+        <sys:String>\Pictures\Drobilka/drobilka_err.png</sys:String>
     </x:Array>
 
     <x:Array Type="sys:String" x:Key="DelitelImageStatuses">
-        <sys:String>\Pictures\Delitel/470.jpg</sys:String>
-        <sys:String>\Pictures\Delitel/471.jpg</sys:String>
-        <sys:String>\Pictures\Delitel/472.jpg</sys:String>
-        <sys:String>\Pictures\Delitel/473.jpg</sys:String>
-        <sys:String>\Pictures\Delitel/474.jpg</sys:String>
-        <sys:String>\Pictures\Delitel/475.jpg</sys:String>
-        <sys:String>\Pictures\Delitel/476.jpg</sys:String>
+        <sys:String>\Pictures\Delitel/delitel_ready_left.png</sys:String>
+        <sys:String>\Pictures\Delitel/delitel_ready_left.png</sys:String>
+        <sys:String>\Pictures\Delitel/delitel_ready_right.png</sys:String>
+        <sys:String>\Pictures\Delitel/delitel_need_return.png</sys:String>
+        <sys:String>\Pictures\Delitel/delitel_return.png</sys:String>
+        <sys:String>\Pictures\Delitel/delitel_work.png</sys:String>
+        <sys:String>\Pictures\Delitel/delitel_err.png</sys:String>
     </x:Array>
 
     <x:Array Type="sys:String" x:Key="DryImageStatuses">

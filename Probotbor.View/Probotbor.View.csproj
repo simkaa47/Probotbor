@@ -9,16 +9,16 @@
 
   <ItemGroup>
     <None Remove="Pictures\00.png" />
-    <None Remove="Pictures\Delitel\470.jpg" />
-    <None Remove="Pictures\Delitel\471.jpg" />
-    <None Remove="Pictures\Delitel\472.jpg" />
-    <None Remove="Pictures\Delitel\473.jpg" />
-    <None Remove="Pictures\Delitel\474.jpg" />
-    <None Remove="Pictures\Delitel\475.jpg" />
-    <None Remove="Pictures\Delitel\476.jpg" />
-    <None Remove="Pictures\Drobilka\540.jpg" />
-    <None Remove="Pictures\Drobilka\545.png" />
-    <None Remove="Pictures\Drobilka\546.jpg" />
+    <None Remove="Pictures\Delitel\delitel.png" />
+    <None Remove="Pictures\Delitel\delitel_err.png" />
+    <None Remove="Pictures\Delitel\delitel_need_return.png" />
+    <None Remove="Pictures\Delitel\delitel_ready_left.png" />
+    <None Remove="Pictures\Delitel\delitel_ready_right.png" />
+    <None Remove="Pictures\Delitel\delitel_return.png" />
+    <None Remove="Pictures\Delitel\delitel_work.png" />
+    <None Remove="Pictures\Drobilka\drobilka_err.png" />
+    <None Remove="Pictures\Drobilka\drobilka_ready.png" />
+    <None Remove="Pictures\Drobilka\drobilka_work.png" />
     <None Remove="Pictures\Dry\Dry_0.jpg" />
     <None Remove="Pictures\Dry\Dry_10.jpg" />
     <None Remove="Pictures\Dry\Dry_11.jpg" />
@@ -61,16 +61,16 @@
 
   <ItemGroup>
     <Resource Include="Pictures\00.png" />
-    <Resource Include="Pictures\Delitel\470.jpg" />
-    <Resource Include="Pictures\Delitel\471.jpg" />
-    <Resource Include="Pictures\Delitel\472.jpg" />
-    <Resource Include="Pictures\Delitel\473.jpg" />
-    <Resource Include="Pictures\Delitel\474.jpg" />
-    <Resource Include="Pictures\Delitel\475.jpg" />
-    <Resource Include="Pictures\Delitel\476.jpg" />
-    <Resource Include="Pictures\Drobilka\540.jpg" />
-    <Resource Include="Pictures\Drobilka\545.png" />
-    <Resource Include="Pictures\Drobilka\546.jpg" />
+    <Resource Include="Pictures\Delitel\delitel.png" />
+    <Resource Include="Pictures\Delitel\delitel_err.png" />
+    <Resource Include="Pictures\Delitel\delitel_need_return.png" />
+    <Resource Include="Pictures\Delitel\delitel_ready_left.png" />
+    <Resource Include="Pictures\Delitel\delitel_ready_right.png" />
+    <Resource Include="Pictures\Delitel\delitel_return.png" />
+    <Resource Include="Pictures\Delitel\delitel_work.png" />
+    <Resource Include="Pictures\Drobilka\drobilka_err.png" />
+    <Resource Include="Pictures\Drobilka\drobilka_ready.png" />
+    <Resource Include="Pictures\Drobilka\drobilka_work.png" />
     <Resource Include="Pictures\Dry\Dry_0.jpg" />
     <Resource Include="Pictures\Dry\Dry_10.jpg" />
     <Resource Include="Pictures\Dry\Dry_11.jpg" />
